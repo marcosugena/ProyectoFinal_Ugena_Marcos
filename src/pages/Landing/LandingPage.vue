@@ -4,7 +4,7 @@
          <HeaderComponent></HeaderComponent>
         <h1>Landing</h1>
         <router-link to="/detail">AQUI</router-link>
-        aaaaaaaaaaa
+        
     </div>
 </template>
 
@@ -27,7 +27,7 @@
 
 <style lang="scss" scoped>
    .landing{
-    margin: 0;
-    padding: 0;
+    margin-top: 12vh;
+    
    }
 </style>
