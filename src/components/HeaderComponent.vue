@@ -44,10 +44,10 @@
             <img src="../assets/cerrar.png" alt="" id="close" @click="toggleMenu">
         </div>
       <ul>
-        <li><router-link to="/detail">Proteína</router-link></li>
-        <li><router-link to="/detail">Nutrición</router-link></li>
-        <li><router-link to="/detail">Vitaminas</router-link></li>
-        <li><router-link to="/detail">Barritas y Snacks</router-link></li>
+        <li><router-link to="/detail">Proteína <img src="../assets/proteina-de-suero.png" alt="" id="prote"></router-link></li>
+        <li><router-link to="/detail">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Vitaminas <img src="../assets/vitaminas.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Snacks <img src="../assets/snack.png" alt=""></router-link></li>
       </ul>
     </div>
   </div>
@@ -132,7 +132,10 @@ export default {
     li{
         padding-bottom: 30px;
         font-size: 23px;
-        
+        img{
+          width: 33px;
+          margin-left: 15px;
+        }
         a{
             text-decoration: none;
             color: $bluelight;
