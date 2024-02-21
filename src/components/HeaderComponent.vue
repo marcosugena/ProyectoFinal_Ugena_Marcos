@@ -1,22 +1,42 @@
 <template>
   <div>
     <header class="headerpower d-flex align-items-center justify-content-between">
-      <div class="mx-0">
+      <div class="hmboilel mx-0">
         <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="toggleMenu">
         <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="toggleSearch">
       </div>
       <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-3">
-      <div class="header-right">
-        <router-lik to="/detail"><img src="../assets/usuario.png" alt="" id="user" class="mx-3 ms-0"></router-lik>
-        <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
+      <div class="searchbardesktop mt-2">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5">
+      </div>
+      <div class="header-right mx-lg-5 d-flex">
+        <div class="d-flex align-items-center mx-lg-5">
+          <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0" @click="PageContact">
+          <p class="disp mt-3" @click="PageContact">Usuario</p>
+        </div>
+        <div class="d-flex align-items-center ">
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
+          <p class="disp mt-3">Carrito</p>
+        </div>
       </div>
     </header>
+    <nav class="barnav w-100">
+      <ul class="d-flex justify-content-between mx-5 ms-5">
+        <li><router-link to="/detail">Proteína</router-link></li>
+        <li><router-link to="/detail">Nutrición</router-link></li>
+        <li><router-link to="/detail">Vitaminas</router-link></li>
+        <li><router-link to="/detail">Barritas y Snacks</router-link></li>
+      </ul>
+    </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
       <div class="searchbarmobile d-flex justify-content-between">
-        <input type="text" class="justify-content-center align-items-center" placeholder="Buscar...">
+        <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch">
         <div>
           <img src="../assets/lupa.png" alt="" class="" id="lupa">
         </div>
+      </div>
+      <div class="mb-5 ms-2">
+        <img src="../assets/cerrar.png" alt="" id="closesearch" @click="toggleSearch">
       </div>
     </div>
     <div class="sidebar" :class="{ 'sidebar-open': isMenuOpen }">
@@ -46,6 +66,13 @@ export default {
     },
     toggleSearch(){
       this.isSearchOpen = !this.isSearchOpen
+      if(this.isSearchOpen == true){
+        let input= document.getElementById("inputsearch");
+        input.focus();
+      }
+    },
+    PageContact(){
+      this.$router.push('/detail');
     }
   },
 };
@@ -53,7 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../Style/variables.scss';
-
+//HEADER STYLE MOBILE
 .headerpower {
   background-color: $black;
   color: $white;
@@ -73,7 +100,7 @@ export default {
     height: 12vh;
   }
   #user{
-    width: 38px;
+    width: 40px;
     height: 5.3vh;
   }
   #carrito{
@@ -94,7 +121,7 @@ export default {
   height: 100%;
   background-color: $black;
   color: $white;
-  transition: left 0.3s ease-in-out;
+  transition: left 0.4s ease-in-out;
   #close{
     width: 18px;
     height: 18px;
@@ -140,15 +167,71 @@ export default {
   outline: none;
   border: none;
   }
+  #closesearch{
+    height: 20px;
+  }
   .searchbarmobile{
     width: 90%;
     background-color: $black;
     padding: 10px;
     border-radius: 16px;
+    
   }
   
 }
 .bottombar-open{
   left: 0; 
+}
+.barnav{
+  display: none;
+}
+.searchbardesktop{
+  display: none;
+}
+.disp{
+  display: none;
+}
+//HEADER STYLE DESKTOP
+@media only screen and (min-width: 850px){
+.hmboilel{
+  display: none;
+}
+.disp{
+  display: block;
+}
+.barnav{
+  display: block;
+  background-color: $blue;
+  width: 100%;
+  position: fixed;
+  top: 12vh;
+  height: 5vh;
+  padding-bottom: 0px;
+  li{
+    padding-top: 10px;
+    list-style: none;
+    color: $white;
+    a{
+      text-decoration: none;
+      &:hover{
+        color: $white;
+      }
+    }
+    
+  }
+}
+.searchbardesktop{
+  display: block;
+  input{
+    border-radius: 16px;
+    border: none;
+    outline: none;
+    width: 72vh;
+  }
+  .header-right{
+    margin-right: 200px;
+  }
+}
+
 }
 </style>

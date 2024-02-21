@@ -1,7 +1,6 @@
 <template>
-
-    <div class="landing">
-         <HeaderComponent></HeaderComponent>
+    <HeaderComponent></HeaderComponent>
+    <div class="landing">       
         <h1>Landing</h1>
         <router-link to="/detail">AQUI</router-link>
         
@@ -28,6 +27,10 @@
 <style lang="scss" scoped>
    .landing{
     margin-top: 12vh;
-    
+   }
+   @media only screen and (min-width: 768px) {
+    .landing{
+    margin-top: 17vh;
+   }
    }
 </style>
