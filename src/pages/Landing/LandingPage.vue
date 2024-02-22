@@ -3,6 +3,7 @@
     <div class="landing">       
         <h1>Landing</h1>
         <router-link to="/detail">AQUI</router-link>    
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <FooterComponent></FooterComponent>
 </template>

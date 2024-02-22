@@ -71,7 +71,7 @@ export default {
     display: flex;
     list-style: none;
     color: $white;
-    padding-bottom: 8px;
+    padding-bottom: 11px;
     margin-top: 10px;
     img{
         width: 4vh;
@@ -85,7 +85,7 @@ export default {
   li{
     list-style: none;
     color: $white;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     padding-right: 18vh;
   }
 }
@@ -99,7 +99,8 @@ export default {
   }
   img {
     width: 5vh;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-right: 20px;
   }
 }
 .fcontent{
