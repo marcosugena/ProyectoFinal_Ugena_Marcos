@@ -20,10 +20,10 @@
       </div>
       <div class="ficons d-flex flex-row-reverse">
         <ul>
-          <li><img src="../assets/instagram.png" alt="" /></li>
-          <li><img src="../assets/tik-tok.png" alt="" /></li>
-          <li><img src="../assets/twitter.png" alt="" /></li>
-          <li><img src="../assets/telegram.png" alt="" /></li>
+          <li><img src="../assets/instagram.png" alt="" @click="insta"/></li>
+          <li><img src="../assets/tik-tok.png" alt="" @click="tiktok"/></li>
+          <li><img src="../assets/twitter.png" alt="" @click="twitter" /></li>
+          <li><img src="../assets/telegram.png" alt="" @click="telegram" /></li>
         </ul>
       </div>
     </div>
@@ -38,7 +38,20 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+  insta(){
+    window.location.href = 'https://www.instagram.com';
+  },
+  tiktok(){
+    window.location.href = 'https://www.tiktok.com';
+  },
+  twitter(){
+    window.location.href = 'https://www.twitter.com';
+  },
+  telegram(){
+    window.location.href = 'https://www.telegram.com';
+  },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -47,7 +60,7 @@ export default {
   z-index: 1;
   background-color: $blue;
   padding: 18px;
-  height: 40vh;
+  height: 47vh;
   text-align: center;
   position: relative;
   bottom: 0;
@@ -58,7 +71,7 @@ export default {
     display: flex;
     list-style: none;
     color: $white;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     margin-top: 10px;
     img{
         width: 4vh;
@@ -86,9 +99,11 @@ export default {
   }
   img {
     width: 5vh;
+    margin-bottom: 10px;
   }
 }
 .fcontent{
     color: $white;
 }
+
 </style>
