@@ -2,13 +2,12 @@
     <HeaderComponent></HeaderComponent>
     <div class="landing">       
         <h1>Landing</h1>
-        <router-link to="/detail">AQUI</router-link>
-        
+        <router-link to="/detail">AQUI</router-link>    
     </div>
 </template>
-
 <script>
     import HeaderComponent from '../../components/HeaderComponent.vue'
+    
     export default {
         components:{
             HeaderComponent 
@@ -21,6 +20,7 @@
        methods: {
         
        },
+       
     }
 </script>
 

@@ -5,11 +5,11 @@
         <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="toggleMenu">
         <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="toggleSearch">
       </div>
-      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-3">
-      <div class="searchbardesktop mt-2">
+      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2">
+      <div class="searchbardesktop mt-2 ms-lg-5">
         <input type="text" placeholder="Buscar..." class="p-2 ms-5">
       </div>
-      <div class="header-right mx-lg-5 d-flex">
+      <div class="header-right mx-lg-3 d-flex">
         <div class="d-flex align-items-center mx-lg-5">
           <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0" @click="PageContact">
           <p class="disp mt-3" @click="PageContact">Usuario</p>
@@ -18,6 +18,10 @@
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
           <p class="disp mt-3">Carrito</p>
         </div>
+      </div>
+      <div class="header-right-nologged d-flex">
+          <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
+          <button class="mx-lg-3 mt-lg-1 mx-1 ms-1" @click="RegisterPage">Register</button>
       </div>
     </header>
     <nav class="barnav w-100">
@@ -73,8 +77,29 @@ export default {
     },
     PageContact(){
       this.$router.push('/detail');
+    },
+    LoginPage(){
+      this.$router.push('/detail');
+    },
+    RegisterPage(){
+      this.$router.push('/detail');
     }
   },
+  mounted() {
+        this.$store.commit('setUsuarioLogueado', true);
+        console.log(this.$store.getters.estadoUsuario);
+        if(this.$store.getters.estadoUsuario == "No Logueado"){
+          let hd=Array.from(document.getElementsByClassName("header-right"))[0];
+          let hd2=Array.from(document.getElementsByClassName("header-right-nologged"))[0];
+          hd.classList.add('d-none');
+          hd2.classList.remove('d-none')
+        }else{
+          let hd=Array.from(document.getElementsByClassName("header-right"))[0];
+          let hd2=Array.from(document.getElementsByClassName("header-right-nologged"))[0];
+          hd2.classList.add('d-none');
+          hd.classList.remove('d-none')
+        }
+       },
 };
 </script>
 
@@ -194,8 +219,28 @@ export default {
 .disp{
   display: none;
 }
+.header-right-nologged{
+button{
+  width: 50%;
+  border: 1px solid $bluelight;
+  color: $bluelight;
+  background-color: $black;
+  border-radius: 16px;
+  padding: 10px;
+  padding-left: 10px;
+  padding-right: 12px;
+  &:hover{
+    color:$white;
+  }
+}
+}
 //HEADER STYLE DESKTOP
 @media only screen and (min-width: 850px){
+  .header-right-nologged{
+button{
+  padding-left: 15px;
+}
+}
 .hmboilel{
   display: none;
 }
