@@ -1,6 +1,6 @@
 <template>
   <footer class="footerclass">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
       <div class="flist d-flex">
         <ul>
           <li><img src="../assets/informacion.png" alt=""><p>Contact us</p></li>
@@ -9,6 +9,14 @@
           <li><img src="../assets/cookies-web.png" alt=""><p>Cookies</p></li>
           <li><img src="../assets/reembolso.png" alt=""><p>Devoluciones</p></li>
         </ul>
+      </div>
+      <div class="flist2 d-flex d-none d-lg-block ">
+          <ul>
+            <li>Acerca de Nosotros</li>
+            <li>Términos y condiciones</li>
+            <li>Accesibilidad</li>
+            <li>Trabaja en PowerLab</li>
+          </ul>
       </div>
       <div class="ficons d-flex flex-row-reverse">
         <ul>
@@ -50,7 +58,8 @@ export default {
     display: flex;
     list-style: none;
     color: $white;
-    margin-bottom: 5px;
+    padding-bottom: 10px;
+    margin-top: 10px;
     img{
         width: 4vh;
         height: 3vh;
@@ -58,10 +67,22 @@ export default {
     }
   }
 }
+.flist2{
+  
+  li{
+    list-style: none;
+    color: $white;
+    padding-bottom: 30px;
+    padding-right: 18vh;
+  }
+}
 .ficons {
+  ul{
+    margin-top: 15px;
+  }
   li {
     list-style: none;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
   }
   img {
     width: 5vh;
