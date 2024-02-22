@@ -63,6 +63,7 @@ export default {
 }
 
 .sidebar {
+  z-index: 2;
   position: fixed;
   top: 12vh;
   left: -250px; 

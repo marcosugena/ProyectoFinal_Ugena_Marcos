@@ -1,18 +1,19 @@
 <template>
-
-    <div class="landing">
-         <HeaderComponent></HeaderComponent>
+    <HeaderComponent></HeaderComponent>
+    <div class="landing">   
         <h1>Landing</h1>
         <router-link to="/detail">AQUI</router-link>
         aaaaaaaaaaa
     </div>
+    <FooterComponent></FooterComponent>
 </template>
 
 <script>
     import HeaderComponent from '../../components/HeaderComponent.vue'
+    import FooterComponent from '../../components/FooterComponent.vue'
     export default {
         components:{
-            HeaderComponent 
+            HeaderComponent,FooterComponent
         },
        data() {
         return {
@@ -27,7 +28,7 @@
 
 <style lang="scss" scoped>
    .landing{
-    margin: 0;
+    margin-top: 12vh;
     padding: 0;
    }
 </style>
