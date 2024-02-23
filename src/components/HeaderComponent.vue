@@ -71,6 +71,7 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     toggleSearch(){
+      console.log(this.isSearchOpen)
       this.isSearchOpen = !this.isSearchOpen
       if(this.isSearchOpen == true){
         let input= document.getElementById("inputsearch");
@@ -183,6 +184,7 @@ export default {
   background-color: $blue;
   color: $white;
   transition:  0.5s ease-in-out;
+  z-index: 1000;
  
   #lupa{
     width: 30px;
