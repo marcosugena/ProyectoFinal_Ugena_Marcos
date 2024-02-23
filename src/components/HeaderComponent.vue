@@ -30,6 +30,7 @@
         <li><router-link to="/detail">Nutrición</router-link></li>
         <li><router-link to="/detail">Vitaminas</router-link></li>
         <li><router-link to="/detail">Barritas y Snacks</router-link></li>
+        <li><router-link to="/detail">Alimentación</router-link></li>
       </ul>
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
@@ -52,6 +53,7 @@
         <li><router-link to="/detail">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link></li>
         <li><router-link to="/detail">Vitaminas <img src="../assets/vitaminas.png" alt=""></router-link></li>
         <li><router-link to="/detail">Snacks <img src="../assets/snack.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Alimentación<img src="../assets/snack.png" alt=""></router-link></li>
       </ul>
     </div>
   </div>
@@ -116,6 +118,7 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000;
   #menu {
     width: 32px;
     height: 6.3vh;
@@ -265,6 +268,7 @@ button{
   top: 12vh;
   height: 5vh;
   padding-bottom: 0px;
+  z-index: 1000;
   li{
     padding-top: 10px;
     list-style: none;
@@ -282,7 +286,7 @@ button{
 .searchbardesktop{
   display: block;
   input{
-    &:focus{
+    &:hover{
       border: 2px solid $bluelight;
     }
     border-radius: 16px;

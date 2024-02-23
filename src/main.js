@@ -6,6 +6,7 @@ import store from './store.js';
 // BOOSTRAP
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // Componentes
 import LandingPage from '../src/pages/Landing/LandingPage.vue';
