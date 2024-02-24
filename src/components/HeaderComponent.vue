@@ -275,6 +275,7 @@ button{
     padding-top: 10px;
     list-style: none;
     color: $white;
+    font-size: 20px;
     a{
       color: $white;
       text-decoration: none;
@@ -289,6 +290,9 @@ button{
   display: block;
   input{
     &:hover{
+      border: 2px solid $bluelight;
+    }
+    &:focus{
       border: 2px solid $bluelight;
     }
     border-radius: 16px;

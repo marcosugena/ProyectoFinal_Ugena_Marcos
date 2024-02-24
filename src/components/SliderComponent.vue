@@ -6,27 +6,35 @@
           aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
           <img src="../assets/slide1.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption  d-md-block ">
-              <h4 class="mb-1">Descubre el sabor extraordinario de la vida con nuestra selección premium de alimentos, elevando cada bocado hacia una experiencia culinaria inigualable</h4>
-              <p>Sabor, excelencia, experiencia.</p>
+          <div class="carousel-caption d-md-block">
+            <h4 class="mb-1">Descubre el sabor extraordinario de la vida con nuestra selección premium de alimentos, elevando cada bocado hacia una experiencia culinaria inigualable</h4>
+            <p>Sabor, excelencia, experiencia.</p>
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="10000">
           <img src="../assets/slide2.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption  d-md-block">
+          <div class="carousel-caption d-md-block">
             <h4 class="mb-1">Eleva tu nutrición con nuestra selección premium de alimentos</h4>
             <p>Nutrición de élite.</p>
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="10000">
           <img src="../assets/slide3.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption  d-md-block">
+          <div class="carousel-caption d-md-block">
             <h4>Optimiza tu rendimiento con nuestra suplementación deportiva de excelencia</h4>
             <p>Alcanza tu máximo</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <img src="../assets/slide4.jpg" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-md-block">
+            <h4>Texto del cuarto slide</h4>
+            <p>Descripción del cuarto slide.</p>
           </div>
         </div>
       </div>
@@ -41,6 +49,7 @@
     </div>
   </div>
 </template>
+
 
 <style lang="scss" scoped>
 @import '../Style/variables.scss';
@@ -71,7 +80,7 @@
     z-index: 0;
 
     img {
-      height: 52vh;
+      height: 70vh;
       filter: brightness(60%) contrast(90%) saturate(80%);
     }
   }
