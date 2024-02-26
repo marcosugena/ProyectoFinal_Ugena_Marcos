@@ -93,7 +93,6 @@ export default {
   },
   mounted() {
         this.$store.commit('setUsuarioLogueado', true);
-        console.log(this.$store.getters.estadoUsuario);
         if(this.$store.getters.estadoUsuario == "No Logueado"){
           let hd=Array.from(document.getElementsByClassName("header-right"))[0];
           let hd2=Array.from(document.getElementsByClassName("header-right-nologged"))[0];
@@ -181,7 +180,7 @@ export default {
   left: -100%; 
   width: 100%;
   height: 10%;
-  background-color: $blue;
+  background-color: $grey;
   color: $white;
   transition:  0.5s ease-in-out;
   z-index: 1000;

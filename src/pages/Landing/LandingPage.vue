@@ -3,7 +3,7 @@
     <div class="landing">
         <SliderComponent></SliderComponent>
         <div class="Patrocinadores">
-            <h1 class="pt-3">Patrocinadores Oficiales de PowerLab</h1>
+            <h1 class="pt-3">Proveedores Oficiales de PowerLab</h1>
             <div class="card-container">
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/amix.jpg" alt=""></div>
@@ -19,36 +19,55 @@
                 </div>
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/usa.jpg" alt=""></div>
-                    <div class="card-face card-back">Back</div>
+                    <div class="card-face card-back">
+                        <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo y alcanzar tus metas de bienestar físico</p>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/LifePro.jpg" alt=""></div>
-                    <div class="card-face card-back">Back</div>
+                    <div class="card-face card-back">
+                        <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo y alcanzar tus metas de bienestar físico</p>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/hsn.jpg" alt=""></div>
-                    <div class="card-face card-back">Back</div>
+                    <div class="card-face card-back">
+                        <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo y lograr tus objetivos de bienestar físico.</p>
+                    </div>
                 </div>
                 <div class="card d-lg-none">
                     <div class="card-face card-front"><img src="../../assets/biocop.jpg" alt=""></div>
-                    <div class="card-face card-back">Back</div>
+                    <div class="card-face card-back">
+                        <p>Con Biocop, descubre productos biológicos que nutren tu cuerpo y contribuyen a un bienestar equilibrado de manera sostenible</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
         <div class="Recommendforyou">
             <h2 class="pt-4">Recomendado para ti</h2>
-            <div class="ProductContainer ">
-                <ProductComponent></ProductComponent>
-                <ProductComponent></ProductComponent>
-                <ProductComponent></ProductComponent>
-                <ProductComponent></ProductComponent>
-                <ProductComponent></ProductComponent>
-                <ProductComponent></ProductComponent>
+            <div class="ProductContainer mt-5">
+                <ProductComponent :price="86.54" :imageURL="'/recommend1.png'"></ProductComponent>
+                <ProductComponent :price="34.54" :imageURL="'/recommend1.png'"></ProductComponent>
+                <ProductComponent :price="22.54" :imageURL="'/recommend1.png'"></ProductComponent>
+                <ProductComponent :price="18.54" :imageURL="'/recommend1.png'"></ProductComponent>
+                <ProductComponent :price="76.54" :imageURL="'/recommend1.png'"></ProductComponent>
+                <ProductComponent :price="56.54" :imageURL="'/recommend1.png'"></ProductComponent>
             </div>
         </div>
-        <div class="Landingvideo">
-
+        <OfferComponent :imageUrl="'/banner2.jpg'"></OfferComponent>
+        <div class="Landingvideo d-none d-lg-block">
+            <video muted autoplay loop playsinline class="m-0" >
+                <source src="../../assets/videocortado.mp4" type="video/mp4">
+            </video>
+            <div class="videotext w-75">
+                <h2>
+                    Transforma tu esfuerzo en victoria. En PowerLab, te ofrecemos el impulso que necesitas para alcanzar tus metas
+                     fitness. Descubre el camino hacia un rendimiento superior y una vida más fuerte.
+                </h2>
+            </div>
         </div>
+        
         <div class="LandingInfo d-flex align-items-center flex-wrap">
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="../../assets/transporte.png" alt="">
@@ -79,9 +98,7 @@
                 </p>
             </div>
         </div>
-        <h1>Landing</h1>
-        <router-link to="/detail">AQUI</router-link>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <NewsLetterComponent></NewsLetterComponent>
     </div>
     <FooterComponent></FooterComponent>
 </template>
@@ -89,16 +106,23 @@
 import HeaderComponent from "../../components/HeaderComponent.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 import SliderComponent from "../../components/SliderComponent.vue";
+import OfferComponent from "../../components/OfferComponent.vue";
 import ProductComponent from "../../components/ProductComponent.vue";
+import NewsLetterComponent from "../../components/NewsLetterComponent.vue";
+
 export default {
     components: {
         HeaderComponent,
         FooterComponent,
         SliderComponent,
-        ProductComponent
+        ProductComponent,
+        OfferComponent,
+        NewsLetterComponent
     },
     data() {
-        return {};
+        return {
+
+        };
     },
     methods: {},
 };
@@ -106,10 +130,32 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../Style/variables.scss";
-.LandingInfo{
- flex-wrap: wrap;
+.Landingvideo {
+    position: relative; // Necesario para posicionar elementos hijos de manera absoluta
+    background-color: lighten($grey, 0%);
+
+    video {
+        width: 100%;
+        height: 80vh;
+        object-fit: cover;
+        cursor: none;
+        filter: brightness(40%) contrast(90%) saturate(80%);
+    }
+
+    .videotext {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+    }
+}
+.LandingInfo {
+    flex-wrap: wrap;
 
 }
+
 .infocontainer {
     span {
         text-transform: uppercase;
@@ -118,19 +164,20 @@ export default {
         min-height: 2em;
         color: inherit;
     }
-    p{
+
+    p {
         width: 60%;
     }
 }
 
 .Patrocinadores {
-    background-color: $blue;
+    background-color: $grey;
     height: 73vh;
     width: 100%;
 
     h1 {
         text-align: center;
-        color: $white;
+        color: $black;
     }
 }
 
@@ -188,6 +235,7 @@ export default {
 }
 
 .card-front {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
     background-color: $white;
 }
 
@@ -197,7 +245,7 @@ export default {
 }
 
 .Recommendforyou {
-    height: 135vh;
+    height: 115vh;
     background-color: $black;
     color: $white;
 
@@ -225,6 +273,7 @@ export default {
         background-color: $black;
         color: $white;
 
+
         .ProductContainer {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -236,27 +285,31 @@ export default {
 
         }
     }
+
     .LandingInfo {
-    height: 30vh;
-    width: 100%;
-    background-color: lighten($grey, 0%);
-}
-.infocontainer {
-    width: 25%;
-    span {
-        text-transform: uppercase;
-        font-size: 1.2em;
-        text-decoration: none;
-        min-height: 2em;
-        color: inherit;
+        height: 30vh;
+        width: 100%;
+        background-color: lighten($grey, 0%);
     }
-    p{
-        width: 60%;
+
+    .infocontainer {
+        width: 25%;
+
+        span {
+            text-transform: uppercase;
+            font-size: 1.2em;
+            text-decoration: none;
+            min-height: 2em;
+            color: inherit;
+        }
+
+        p {
+            width: 60%;
+        }
     }
-}
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1600px) {
     .landing {
         margin-top: 17vh;
     }
@@ -281,7 +334,7 @@ export default {
         gap: 5vh;
         justify-content: center;
         margin: 20px;
-        margin-left: 33vh;
+        margin-left: 35vh;
         margin-top: 50px;
     }
 
