@@ -45,7 +45,7 @@
         </div>
         <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
         <div class="Recommendforyou">
-            <h2 class="pt-4">Recomendado para ti</h2>
+            <h2 class="pt-4">RECOMENDADO PARA TI</h2>
             <div class="ProductContainer mt-5">
                 <ProductComponent :price="86.54" :imageURL="'/recommend1.png'"></ProductComponent>
                 <ProductComponent :price="34.54" :imageURL="'/recommend1.png'"></ProductComponent>
@@ -72,33 +72,34 @@
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="../../assets/transporte.png" alt="">
                 <span>ENVÍOS GRATIS Y RÁPIDOS</span>
-                <p>
+                <p class="text-center">
                     Envío rapidísimo en 24/48 horas y gratis a partir de 24,90€
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="../../assets/alta-calidad.png" alt="">
                 <span>MÁXIMA CALIDAD</span>
-                <p>
+                <p class="text-center">
                     Desarrollado por nuestro equipo de I+D+I y fabricado en nuestra propia fábrica
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="../../assets/sostenibilidad.png" alt="">
                 <span>SOSTENIBILIDAD</span>
-                <p>
+                <p class="text-center">
                     Mejoramos progresivamente los procesos existentes para reducir nuestra huella medioambiental
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="../../assets/organico.png" alt="">
                 <span>MATERIAS PRIMAS PREMIUM</span>
-                <p>
+                <p class="text-center">
                     Utilizamos las mejores materias primas probadas y reconocidas por certificados de calidad
                 </p>
             </div>
         </div>
         <NewsLetterComponent></NewsLetterComponent>
+        <PaymentSend></PaymentSend>
     </div>
     <FooterComponent></FooterComponent>
 </template>
@@ -109,6 +110,7 @@ import SliderComponent from "../../components/SliderComponent.vue";
 import OfferComponent from "../../components/OfferComponent.vue";
 import ProductComponent from "../../components/ProductComponent.vue";
 import NewsLetterComponent from "../../components/NewsLetterComponent.vue";
+import PaymentSend from "../../components/PaymentSend.vue";
 
 export default {
     components: {
@@ -117,7 +119,8 @@ export default {
         SliderComponent,
         ProductComponent,
         OfferComponent,
-        NewsLetterComponent
+        NewsLetterComponent,
+        PaymentSend
     },
     data() {
         return {
@@ -136,7 +139,7 @@ export default {
 
     video {
         width: 100%;
-        height: 80vh;
+        height: 58vh;
         object-fit: cover;
         cursor: none;
         filter: brightness(40%) contrast(90%) saturate(80%);
@@ -149,6 +152,7 @@ export default {
         transform: translate(-50%, -50%);
         text-align: center;
         color: white;
+        font-family: "Roboto", "Open Sans", sans-serif;
     }
 }
 .LandingInfo {
@@ -294,7 +298,6 @@ export default {
 
     .infocontainer {
         width: 25%;
-
         span {
             text-transform: uppercase;
             font-size: 1.2em;

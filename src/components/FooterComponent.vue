@@ -10,12 +10,20 @@
           <li><img src="../assets/reembolso.png" alt=""><p>Devoluciones</p></li>
         </ul>
       </div>
-      <div class="flist2 d-flex d-none d-lg-block ">
+      <div class="flist2 d-flex d-none d-lg-block mt-3 ">
           <ul>
             <li>Acerca de Nosotros</li>
             <li>Términos y condiciones</li>
             <li>Accesibilidad</li>
             <li>Trabaja en PowerLab</li>
+          </ul>
+      </div>
+      <div class="flist2 d-flex d-none d-lg-block mt-3">
+          <ul>
+            <li>FAQ's</li>
+            <li>¿Dónde está mi pedido?</li>
+            <li>Envíos a España</li>
+            <li>Envíos Internacionales</li>
           </ul>
       </div>
       <div class="ficons d-flex flex-row-reverse">

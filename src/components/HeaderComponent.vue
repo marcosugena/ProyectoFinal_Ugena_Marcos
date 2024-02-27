@@ -71,7 +71,7 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     toggleSearch(){
-      console.log(this.isSearchOpen)
+
       this.isSearchOpen = !this.isSearchOpen
       if(this.isSearchOpen == true){
         let input= document.getElementById("inputsearch");
@@ -263,7 +263,7 @@ button{
 }
 .barnav{
   display: block;
-  background-color: $blue;
+  background-color: $white;
   width: 100%;
   position: fixed;
   top: 12vh;
@@ -275,8 +275,9 @@ button{
     list-style: none;
     color: $white;
     font-size: 20px;
+
     a{
-      color: $white;
+      color: $blue;
       text-decoration: none;
       &:hover{
         color: $bluelight;
