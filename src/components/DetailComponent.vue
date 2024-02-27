@@ -1,4 +1,5 @@
 <template>
+    
     <div>
         <p>holaaaaaaaa</p>
         <router-link to="/">Pulsa</router-link>
@@ -7,10 +8,12 @@
 
 <script>
     export default {
-        
+        components:{
+            
+        },
     }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 
 </style>

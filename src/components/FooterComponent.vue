@@ -10,12 +10,20 @@
           <li><img src="../assets/reembolso.png" alt=""><p>Devoluciones</p></li>
         </ul>
       </div>
-      <div class="flist2 d-flex d-none d-lg-block ">
+      <div class="flist2 d-flex d-none d-lg-block mt-3 ">
           <ul>
             <li>Acerca de Nosotros</li>
             <li>Términos y condiciones</li>
             <li>Accesibilidad</li>
             <li>Trabaja en PowerLab</li>
+          </ul>
+      </div>
+      <div class="flist2 d-flex d-none d-lg-block mt-3">
+          <ul>
+            <li>FAQ's</li>
+            <li>¿Dónde está mi pedido?</li>
+            <li>Envíos a España</li>
+            <li>Envíos Internacionales</li>
           </ul>
       </div>
       <div class="ficons d-flex flex-row-reverse">
@@ -71,7 +79,7 @@ export default {
     display: flex;
     list-style: none;
     color: $white;
-    padding-bottom: 8px;
+    padding-bottom: 11px;
     margin-top: 10px;
     img{
         width: 4vh;
@@ -85,7 +93,7 @@ export default {
   li{
     list-style: none;
     color: $white;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     padding-right: 18vh;
   }
 }
@@ -99,7 +107,8 @@ export default {
   }
   img {
     width: 5vh;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-right: 20px;
   }
 }
 .fcontent{
