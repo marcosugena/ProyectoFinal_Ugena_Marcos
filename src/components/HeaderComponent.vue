@@ -82,7 +82,7 @@ export default {
       this.$router.push('/detail');
     },
     LoginPage(){
-      this.$router.push('/detail');
+      this.$router.push('/login');
     },
     RegisterPage(){
       this.$router.push('/register');
