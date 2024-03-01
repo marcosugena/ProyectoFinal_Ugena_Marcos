@@ -11,6 +11,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 // Componentes
 import LandingPage from '../src/pages/Landing/LandingPage.vue';
 import DetailComponent from '../src/components/DetailComponent.vue';
+import RegisterPage from '../src/pages/Register/RegisterPage.vue';
 
 // Definir rutas
 const routes = [
@@ -22,6 +23,10 @@ const routes = [
     path: '/detail',
     component: DetailComponent,
   },
+  {
+    path:'/register',
+    component:RegisterPage
+  }
 ];
 
 // Crear objeto de Vue Router
