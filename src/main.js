@@ -12,6 +12,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import LandingPage from '../src/pages/Landing/LandingPage.vue';
 import DetailComponent from '../src/components/DetailComponent.vue';
 import RegisterPage from '../src/pages/Register/RegisterPage.vue';
+import LoginPage from '../src/pages/LoginPage/LoginPage.vue';
+
 
 // Definir rutas
 const routes = [
@@ -25,7 +27,11 @@ const routes = [
   },
   {
     path:'/register',
-    component:RegisterPage
+    component:RegisterPage,
+  },
+  {
+    path:'/login',
+    component:LoginPage
   }
 ];
 
