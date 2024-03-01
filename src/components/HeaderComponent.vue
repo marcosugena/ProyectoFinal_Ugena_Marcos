@@ -21,7 +21,7 @@
       </div>
       <div class="header-right-nologged d-flex">
           <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
-          <button class="mx-lg-3 mt-lg-1 mx-1 ms-1" @click="RegisterPage">Register</button>
+          <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage">Register</button>
       </div>
     </header>
     <nav class="barnav w-100">
@@ -85,14 +85,14 @@ export default {
       this.$router.push('/detail');
     },
     RegisterPage(){
-      this.$router.push('/detail');
+      this.$router.push('/register');
     },
     land(){
-      this.$router.push("/");
+     
     }
   },
   mounted() {
-        this.$store.commit('setUsuarioLogueado', true);
+        //this.$store.commit('setUsuarioLogueado', true);
         if(this.$store.getters.estadoUsuario == "No Logueado"){
           let hd=Array.from(document.getElementsByClassName("header-right"))[0];
           let hd2=Array.from(document.getElementsByClassName("header-right-nologged"))[0];

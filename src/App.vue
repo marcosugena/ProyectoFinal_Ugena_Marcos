@@ -17,6 +17,13 @@ export default {
     margin: 0;
     padding: 0;
     font-family: "Roboto", "Open Sans", sans-serif;
+    input{
+      border: none;
+    }
+    input:focus{
+      outline: none;
+      border: none;
+  }
 }
 </style>
 
