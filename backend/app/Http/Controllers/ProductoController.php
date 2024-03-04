@@ -3,30 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use App\Models\Usuario;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class ProductoController extends Controller
 {
-    public function ObtenerProductos()
+    public function ObtenerProductosNutricion()
     {
         try {
-            $nombresProductos = Producto::all();
-            return response()->json($nombresProductos);
+            $productosNutricion = Producto::where('tipo', 'nutricion')->get();
+            return response()->json($productosNutricion);
         } catch (Exception $e) {
-            return response()->json(['error' => 'Error al obtener nombres de productos ' . $e], 500);
+            return response()->json(['error' => 'Error al obtener productos de nutricion ' . $e], 500);
         }
     }
-    public function ObtenerImagenes()
-    {
-        try {
-            $imagenes = Producto::pluck('ImagenProducto');
-            
-            return response()->json(['imagenes' => $imagenes]);
-        } catch (Exception $e) {
-            return response()->json(['error' => 'Error al obtener las imagenes ' . $e], 500);
-        }
-    }
+   
 }

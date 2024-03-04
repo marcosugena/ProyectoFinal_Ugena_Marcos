@@ -9,15 +9,15 @@
         <form method="post" id="regform" @submit.prevent="regvalidator">
           <div class="registercontainer">
             <p class="ms-4">UserName</p>
-            <input type="text" id="regusu">
+            <input type="text" id="regusu" v-model="userData.username">
           </div>
           <div class="registercontainer">
             <p class="ms-4">Email</p>
-            <input type="email" id="regemail">
+            <input type="email" id="regemail" v-model="userData.email">
           </div>
           <div class="registercontainer">
             <p class="ms-4">Password</p>
-            <input type="password" id="regpass">
+            <input type="password" id="regpass" v-model="userData.password">
           </div>
           <div class="d-flex justify-content-center mt-3 flex-column align-items-center">
             <button type="submit" class="w-50 mt-2">Register</button>
@@ -31,28 +31,48 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+  data() {
+    return {
+      userData: {
+        username: '',
+        email: '',
+        password: '',
+      },
+    }
+  },
   methods: {
-    regvalidator(e) {
+     async regvalidator(e) {
+      //VALIDACION DE DATOS
       let usuario = document.getElementById("regusu").value;
       let email = document.getElementById("regemail").value;
       let password = document.getElementById("regpass").value;
-      let danger=document.getElementById("danger");
+      let danger = document.getElementById("danger");
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const usuregex=/[A-Z]/
-      danger.textContent="";
+      const usuregex = /[A-Z]/
+      danger.textContent = "";
       if (usuario == "" || email == "" || password == "") {
         e.preventDefault();
-        danger.textContent+="Algun Campo Vacio";
-      }else if(!emailRegex.test(email)){
+        danger.textContent += "Algun Campo Vacio";
+      } else if (!emailRegex.test(email)) {
         e.preventDefault()
-        danger.textContent="Email Incorrecto";
-      }else if(!usuregex.test(usuario)){
-        danger.textContent="Introduce una mayuscula en el UserName";
+        danger.textContent = "Email Incorrecto";
+      } else if (!usuregex.test(usuario)) {
+        danger.textContent = "Introduce una mayuscula en el UserName";
         e.preventDefault()
-      }else{
+      } else {
         //LOGICA DE BACKEND DE REGISTRO
-        this.$router.push("/");
+        try {
+          const response = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
+          // Manejar la respuesta como desees
+          if(response.data.success){
+          this.$router.push("/");
+        }
+        } catch (error) {
+          console.error('Error al registrar usuario:', error.response.data);
+          // Manejar el error
+        }
       }
     }
   },
@@ -73,9 +93,11 @@ export default {
     margin-bottom: 5px;
   }
 }
-#danger{
+
+#danger {
   color: red;
 }
+
 .Register {
   position: relative;
   height: 100vh;
@@ -137,9 +159,11 @@ button {
   }
 
 }
+
 @media only screen and (min-width: 800px) {
   .RegisterBox {
     width: 45vh;
     height: 55vh;
   }
-}</style>
+}
+</style>

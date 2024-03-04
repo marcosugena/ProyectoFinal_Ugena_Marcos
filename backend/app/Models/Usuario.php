@@ -9,4 +9,5 @@ class Usuario extends Model
 {
     protected $table = 'usuario';
     protected $fillable = ['UserId',"UserName","Gmail","Password","Admin"];
+    public $timestamps = false;
 }

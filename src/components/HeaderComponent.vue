@@ -12,7 +12,7 @@
       <div class="header-right mx-lg-3 d-flex mt-1">
         <div class="d-flex align-items-center mx-lg-5">
           <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0" @click="PageContact">
-          <p class="disp mt-3" @click="PageContact">Usuario</p>
+          <p class="disp mt-3" @click="PageContact">{{UserName}}</p>
         </div>
         <div class="d-flex align-items-center ">
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
@@ -59,11 +59,13 @@
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
       isMenuOpen: false,
       isSearchOpen: false,
+      UserName:"a"
     };
   },
   methods: {

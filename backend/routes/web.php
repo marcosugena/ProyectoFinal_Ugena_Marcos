@@ -16,5 +16,4 @@ use App\Http\Controllers\ProductoController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/productouno',[ProductoController::class,'ObtenerProductos']);
-Route::get('/imanutri',[ProductoController::class,'ObtenerImagenes']);
+Route::get('/productosnutri',[ProductoController::class,'ObtenerProductosNutricion']);

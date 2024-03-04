@@ -27,7 +27,7 @@ export default {
     methods: {
         async CogeProductos() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/productouno');
+                const response = await axios.get('http://127.0.0.1:8000/productosnutri');
                 this.productos = response.data;
                 
             } catch (error) {
@@ -44,5 +44,14 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0px;
+}
+
+@media only screen and (min-width: 800px) {
+    .fondonutri{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0px; 
+    }
+
 }
 </style>
