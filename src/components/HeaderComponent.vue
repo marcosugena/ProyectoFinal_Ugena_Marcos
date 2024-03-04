@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="headercomponent">
     <header class="headerpower d-flex align-items-center justify-content-between">
       <div class="hmboilel mx-0">
         <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="toggleMenu">
         <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="toggleSearch">
       </div>
-      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="land">
+      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5">
         <input type="text" placeholder="Buscar..." class="p-2 ms-5">
       </div>
@@ -27,7 +27,7 @@
     <nav class="barnav w-100">
       <ul class="d-flex justify-content-between mx-5 ms-5">
         <li><router-link to="/detail">Proteína</router-link></li>
-        <li><router-link to="/detail">Nutrición</router-link></li>
+        <li><router-link to="/nutricion">Nutrición</router-link></li>
         <li><router-link to="/detail">Vitaminas</router-link></li>
         <li><router-link to="/detail">Barritas y Snacks</router-link></li>
         <li><router-link to="/detail">Alimentación</router-link></li>
@@ -50,7 +50,7 @@
         </div>
       <ul>
         <li><router-link to="/detail">Proteína <img src="../assets/proteina-de-suero.png" alt="" id="prote"></router-link></li>
-        <li><router-link to="/detail">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link></li>
+        <li><router-link to="/nutricion">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link></li>
         <li><router-link to="/detail">Vitaminas <img src="../assets/vitaminas.png" alt=""></router-link></li>
         <li><router-link to="/detail">Snacks <img src="../assets/snack.png" alt=""></router-link></li>
         <li><router-link to="/detail">Alimentación<img src="../assets/snack.png" alt=""></router-link></li>
@@ -87,8 +87,8 @@ export default {
     RegisterPage(){
       this.$router.push('/register');
     },
-    land(){
-     
+    landing(){
+      this.$router.push('/');
     }
   },
   mounted() {
@@ -110,6 +110,9 @@ export default {
 <style lang="scss" scoped>
 @import '../Style/variables.scss';
 //HEADER STYLE MOBILE
+.headercomponent{
+  margin-bottom: 12vh;
+}
 .headerpower {
   background-color: $black;
   color: $white;
@@ -240,6 +243,9 @@ button{
 }
 //HEADER STYLE DESKTOP
 @media only screen and (min-width: 850px){
+  .headercomponent{
+  margin-bottom: 17vh;
+}
   .headerpower{
     #user{
     width: 40px;

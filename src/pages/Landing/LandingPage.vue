@@ -47,12 +47,12 @@
         <div class="Recommendforyou">
             <h2 class="pt-4">RECOMENDADO PARA TI</h2>
             <div class="ProductContainer mt-5">
-                <ProductComponent :price="86.54" :imageURL="'/recommend1.png'"></ProductComponent>
-                <ProductComponent :price="34.54" :imageURL="'/recommend1.png'"></ProductComponent>
-                <ProductComponent :price="22.54" :imageURL="'/recommend1.png'"></ProductComponent>
-                <ProductComponent :price="18.54" :imageURL="'/recommend1.png'"></ProductComponent>
-                <ProductComponent :price="76.54" :imageURL="'/recommend1.png'"></ProductComponent>
-                <ProductComponent :price="56.54" :imageURL="'/recommend1.png'"></ProductComponent>
+                <ProductComponent :price="'86.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
+                <ProductComponent :price="'34.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
+                <ProductComponent :price="'22.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
+                <ProductComponent :price="'18.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
+                <ProductComponent :price="'76.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
+                <ProductComponent :price="'56.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
             </div>
         </div>
         <OfferComponent :imageUrl="'/banner2.jpg'"></OfferComponent>
@@ -289,7 +289,6 @@ export default {
 
         }
     }
-
     .LandingInfo {
         height: 30vh;
         width: 100%;
@@ -311,12 +310,7 @@ export default {
         }
     }
 }
-
 @media only screen and (min-width: 1600px) {
-    .landing {
-        margin-top: 17vh;
-    }
-
     .card {
         width: 20vh;
         height: 20vh;

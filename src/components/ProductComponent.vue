@@ -3,10 +3,10 @@
         <div class="productbox d-flex " :style="{ backgroundImage: 'url(' + imageURL + ')' }">
         </div>
         <div class="productext d-flex justify-content-center mt-3">
-            <a href="#">WHEY PROTEIN</a>
+            <a href="#" class="text-center">{{nameproduct}}</a>
         </div>
         <div id="price" class="d-flex flex-column align-items-center mt-0">
-            <p>{{ price }} €</p>
+            <p >{{ price }} €</p>
         </div>
 
     </div>
@@ -16,9 +16,10 @@
 export default {
     props: {
     price:{
-        type:Number,
+        type:String,
         required:true
     },
+    nameproduct:String,
     imageURL:String
     
   },
@@ -47,6 +48,7 @@ export default {
 .productext {
     p {
         font-size: smaller;
+    
     }
     a{
         text-decoration: none;
@@ -68,6 +70,9 @@ export default {
             background-color: $blue;
             color: $white;
         }
+    }
+    p{
+        color:$white;
     }
 }
 
