@@ -64,13 +64,13 @@ export default {
       } else {
         //LOGICA DE BACKEND DE REGISTRO
         try {
-          const response = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
+          const respuesta = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
           // Manejar la respuesta como desees
-          if(response.data.success){
+          if(respuesta.data.success){
           this.$router.push("/");
         }
         } catch (error) {
-          console.error('Error al registrar usuario:', error.response.data);
+          console.error('Error al registrar usuario:', error.respuesta.data);
           // Manejar el error
         }
       }

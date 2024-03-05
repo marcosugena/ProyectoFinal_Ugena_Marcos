@@ -21,6 +21,21 @@ class UserController extends Controller
             return response()->json(['success' => false, 'error' => 'Error al registrar usuario '. $e->getMessage()], 500);
         }
     }
+    public function login(Request $request)
+    {
+        $email=$request->gmail;
+        $password=$request->password;
+        $usuario=Usuario::where('Gmail',$email)->first();
+        if($usuario){
+            if(Hash::check($password,$usuario->Password)){
+                return $usuario->UserName;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
 
 

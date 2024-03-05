@@ -11,15 +11,16 @@
           </div>
           <div class="Logincontainer mb-4">
             <p class="ms-4">Email</p>
-            <input type="email" id="logemail">
+            <input type="email" id="logemail" v-model="UserData.gmail">
           </div>
           <div class="Logincontainer mb-4">
             <p class="ms-4">Password</p>
-            <input type="password" id="logpass">
+            <input type="password" id="logpass" v-model="UserData.password">
           </div>
           <div class="d-flex justify-content-center mt-3 flex-column align-items-center">
             <button type="submit" class="w-25 mt-2">Login</button>
             <div id="danger" class="text-center mt-4">
+              
             </div>
           </div>
         </form>
@@ -28,9 +29,18 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
+  data() {
+    return {
+      UserData:{
+        gmail:'',
+        password:''
+      }
+    }
+  },
   methods: {
-    logvalidator(e) {
+   async logvalidator(e) {
       let email = document.getElementById("logemail").value;
       let password = document.getElementById("logpass").value;
       let danger=document.getElementById("danger");
@@ -43,8 +53,17 @@ export default {
         e.preventDefault()
         danger.textContent="Email Incorrecto";
       }else{
-        //LOGICA DE BACKEND DE logISTRO
-        this.$router.push("/");
+        //LOGICA DE BACKEND DE login
+        const respuesta=await axios.post('http://127.0.0.1:8000/api/login',this.UserData);
+        if(respuesta.data == ""){
+          let danger=document.getElementById("danger")
+          danger.textContent="Email o Contraseña Incorrectos"
+        }else{
+          this.$store.commit('setUsuarioLogueado', true);
+          this.$store.commit('setUserName', respuesta.data);
+          this.$router.push("/");
+        }
+        
       }
     }
   },
