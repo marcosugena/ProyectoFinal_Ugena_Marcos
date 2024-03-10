@@ -1,33 +1,45 @@
 <template>
-  <div>
+  <div class="headercomponent">
     <header class="headerpower d-flex align-items-center justify-content-between">
       <div class="hmboilel mx-0">
         <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="toggleMenu">
         <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="toggleSearch">
       </div>
-      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="land">
+      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5">
-        <input type="text" placeholder="Buscar..." class="p-2 ms-5">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5" v-on:input="search" v-model="searchtext.texto">
       </div>
-      <div class="header-right mx-lg-3 d-flex mt-1">
-        <div class="d-flex align-items-center mx-lg-5">
-          <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0" @click="PageContact">
-          <p class="disp mt-3" @click="PageContact">Usuario</p>
+      <div class="header-right mx-lg-3 d-flex mt-1 ">
+        <div class="d-flex align-items-center mx-lg-5 useroptions" @click="toggleOptions" id="optionsmobile">
+          <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0">
+          <p class="disp mt-3" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
+          <div class="dropdown-menu">
+            <ul>
+              <li><a href="#">Mis Compras</a></li>
+              <li><a href="#">Contacto</a></li>
+              <li><a href="#">User Settings</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="d-flex align-items-center ">
+        <div class="d-flex align-items-center carrito " @click="toggleCarrito">
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
           <p class="disp mt-3">Carrito</p>
+          <div class="dropdown-menu2">
+            <ul>
+              <li><a href="#">Ver Carrito</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="header-right-nologged d-flex">
-          <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
-          <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage">Register</button>
+        <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
+        <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage">Register</button>
       </div>
     </header>
     <nav class="barnav w-100">
       <ul class="d-flex justify-content-between mx-5 ms-5">
         <li><router-link to="/detail">Proteína</router-link></li>
-        <li><router-link to="/detail">Nutrición</router-link></li>
+        <li><router-link to="/nutricion">Nutrición</router-link></li>
         <li><router-link to="/detail">Vitaminas</router-link></li>
         <li><router-link to="/detail">Barritas y Snacks</router-link></li>
         <li><router-link to="/detail">Alimentación</router-link></li>
@@ -45,12 +57,14 @@
       </div>
     </div>
     <div class="sidebar" :class="{ 'sidebar-open': isMenuOpen }">
-        <div class="d-flex flex-row-reverse mx-3 mt-2">
-            <img src="../assets/cerrar.png" alt="" id="close" @click="toggleMenu">
-        </div>
+      <div class="d-flex flex-row-reverse mx-3 mt-2">
+        <img src="../assets/cerrar.png" alt="" id="close" @click="toggleMenu">
+      </div>
       <ul>
-        <li><router-link to="/detail">Proteína <img src="../assets/proteina-de-suero.png" alt="" id="prote"></router-link></li>
-        <li><router-link to="/detail">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Proteína <img src="../assets/proteina-de-suero.png" alt=""
+              id="prote"></router-link></li>
+        <li><router-link to="/nutricion">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link>
+        </li>
         <li><router-link to="/detail">Vitaminas <img src="../assets/vitaminas.png" alt=""></router-link></li>
         <li><router-link to="/detail">Snacks <img src="../assets/snack.png" alt=""></router-link></li>
         <li><router-link to="/detail">Alimentación<img src="../assets/snack.png" alt=""></router-link></li>
@@ -59,57 +73,134 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
       isMenuOpen: false,
       isSearchOpen: false,
+      isOptionOpen: false,
+      isCarritoOpen: false,
+      UserName: "a",
+      searchtext: {
+        texto: ""
+      },
+      searchcontent: []
     };
   },
   methods: {
+    async search() {
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/api/search", {
+          palabra: this.searchtext.texto
+        });
+        // Asignar la respuesta directamente a searchcontent
+        this.searchcontent = response.data;
+        console.log(this.searchcontent[0]);
+      } catch (error) {
+        console.error('Error al obtener productos:', error);
+      }
+    },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-    toggleSearch(){
+    toggleOptions() {
+      this.isOptionOpen = !this.isOptionOpen;
+      const dropdownMenu = document.querySelector('.useroptions .dropdown-menu');
+      if (this.isOptionOpen) {
+        dropdownMenu.style.display = 'block';
+      } else {
+        dropdownMenu.style.display = 'none';
+      }
+    },
+    toggleCarrito() {
 
+    },
+    toggleSearch() {
       this.isSearchOpen = !this.isSearchOpen
-      if(this.isSearchOpen == true){
-        let input= document.getElementById("inputsearch");
+      if (this.isSearchOpen == true) {
+        let input = document.getElementById("inputsearch");
         input.focus();
       }
     },
-    PageContact(){
-      this.$router.push('/detail');
-    },
-    LoginPage(){
+    LoginPage() {
       this.$router.push('/login');
     },
-    RegisterPage(){
+    RegisterPage() {
       this.$router.push('/register');
     },
-    land(){
-     
+    landing() {
+      this.$router.push('/');
     }
   },
   mounted() {
-        //this.$store.commit('setUsuarioLogueado', true);
-        if(this.$store.getters.estadoUsuario == "No Logueado"){
-          let hd=Array.from(document.getElementsByClassName("header-right"))[0];
-          let hd2=Array.from(document.getElementsByClassName("header-right-nologged"))[0];
-          hd.classList.add('d-none');
-          hd2.classList.remove('d-none')
-        }else{
-          let hd=Array.from(document.getElementsByClassName("header-right"))[0];
-          let hd2=Array.from(document.getElementsByClassName("header-right-nologged"))[0];
-          hd2.classList.add('d-none');
-          hd.classList.remove('d-none')
-        }
-       },
+    //this.$store.commit('setUsuarioLogueado', true);
+    if (this.$store.getters.estadoUsuario == "No Logueado") {
+      let hd = Array.from(document.getElementsByClassName("header-right"))[0];
+      let hd2 = Array.from(document.getElementsByClassName("header-right-nologged"))[0];
+      hd.classList.add('d-none');
+      hd2.classList.remove('d-none')
+    } else {
+      let hd = Array.from(document.getElementsByClassName("header-right"))[0];
+      let hd2 = Array.from(document.getElementsByClassName("header-right-nologged"))[0];
+      hd2.classList.add('d-none');
+      hd.classList.remove('d-none')
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
 @import '../Style/variables.scss';
-//HEADER STYLE MOBILE
+
+//HEADER STYLE MOBILE 
+@mixin dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 98%;
+  z-index: 10;
+  background-color: $black;
+  color: $white ;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  right: -1%;
+
+  &:hover {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 10px;
+      font-size: 16px;
+
+      a {
+        text-decoration: none;
+        color: $white;
+
+        &:hover {
+          color: $bluelight;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  @include dropdown-menu;
+
+}
+
+.dropdown-menu2 {
+  @include dropdown-menu;
+}
+
+.headercomponent {
+  margin-bottom: 12vh;
+}
+
 .headerpower {
   background-color: $black;
   color: $white;
@@ -119,191 +210,282 @@ export default {
   top: 0;
   width: 100%;
   z-index: 1000;
+
   #menu {
     width: 32px;
     height: 6.3vh;
   }
+
   #logo {
     width: 100px;
     height: 12vh;
   }
-  #user{
+
+  #user {
     width: 40px;
     height: 5.3vh;
   }
-  #carrito{
+
+  #carrito {
     width: 45px;
     height: 5.3vh;
   }
-  #lupa{
+
+  #lupa {
     width: 35px;
     height: 4.3vh;
   }
 }
+
 .sidebar {
   z-index: 2;
   position: fixed;
   top: 12vh;
-  left: -250px; 
+  left: -250px;
   width: 250px;
   height: 100%;
   background-color: $black;
   color: $white;
   transition: left 0.4s ease-in-out;
-  #close{
+
+  #close {
     width: 18px;
     height: 18px;
   }
-  ul{
+
+  ul {
     list-style: none;
     margin-top: 2vh;
-    li{
-        padding-bottom: 30px;
-        font-size: 23px;
-        img{
-          width: 33px;
-          margin-left: 15px;
-        }
-        a{
-            text-decoration: none;
-            color: $bluelight;
-        }
+
+    li {
+      padding-bottom: 30px;
+      font-size: 23px;
+
+      img {
+        width: 33px;
+        margin-left: 15px;
+      }
+
+      a {
+        text-decoration: none;
+        color: $bluelight;
+      }
     }
   }
 }
+
 .sidebar-open {
-  left: 0; 
+  left: 0;
 }
-.bottombar{
+
+.bottombar {
   position: fixed;
   top: 12vh;
-  left: -100%; 
+  left: -100%;
   width: 100%;
   height: 10%;
   background-color: $grey;
   color: $white;
-  transition:  0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
   z-index: 1000;
- 
-  #lupa{
+
+  #lupa {
     width: 30px;
     height: 3.8vh;
   }
-  input{
+
+  input {
     background-color: $black;
     border: none;
     color: $white;
     width: 100%;
   }
-  input:focus{
-  outline: none;
-  border: none;
+
+  input:focus {
+    outline: none;
+    border: none;
   }
-  #closesearch{
+
+  #closesearch {
     height: 20px;
   }
-  .searchbarmobile{
+
+  .searchbarmobile {
     width: 90%;
     background-color: $black;
     padding: 10px;
     border-radius: 16px;
-    
-  }
-  
-}
-.bottombar-open{
-  left: 0; 
-}
-.barnav{
-  display: none;
-}
-.searchbardesktop{
-  display: none;
-}
-.disp{
-  display: none;
-}
-.header-right-nologged{
-button{
-  width: 50%;
-  border: 1px solid $bluelight;
-  color: $bluelight;
-  background-color: $black;
-  border-radius: 16px;
-  padding: 10px;
-  padding-left: 10px;
-  padding-right: 12px;
-  &:hover{
-    color:$white;
-  }
-}
-}
-//HEADER STYLE DESKTOP
-@media only screen and (min-width: 850px){
-  .headerpower{
-    #user{
-    width: 40px;
-    height: 4.3vh;
-  }
-  #carrito{
-    width: 45px;
-    height: 4.3vh;
-  }
-  }
-  .header-right-nologged{
-button{
-  padding-left: 15px;
-}
-}
-.hmboilel{
-  display: none;
-}
-.disp{
-  display: block;
-}
-.barnav{
-  display: block;
-  background-color: $white;
-  width: 100%;
-  position: fixed;
-  top: 12vh;
-  height: 5vh;
-  padding-bottom: 0px;
-  z-index: 1000;
-  li{
-    padding-top: 10px;
-    list-style: none;
-    color: $white;
-    font-size: 20px;
 
-    a{
-      color: $blue;
-      text-decoration: none;
-      &:hover{
-        color: $bluelight;
+  }
+
+}
+
+.bottombar-open {
+  left: 0;
+}
+
+.barnav {
+  display: none;
+}
+
+.searchbardesktop {
+  display: none;
+}
+
+.disp {
+  display: none;
+}
+
+.header-right-nologged {
+  button {
+    width: 50%;
+    border: 1px solid $bluelight;
+    color: $bluelight;
+    background-color: $black;
+    border-radius: 16px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 12px;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+//HEADER STYLE DESKTOP
+@media only screen and (min-width: 850px) {
+  @mixin dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 70%;
+    z-index: 10;
+    background-color: $black;
+    color: $white ;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    right: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 10px;
+        font-size: 16px;
+
+        a {
+          text-decoration: none;
+          color: $white;
+
+          &:hover {
+            color: $bluelight;
+          }
+        }
       }
     }
-    
   }
-}
-.searchbardesktop{
-  display: block;
-  input{
-    &:hover{
-      border: 2px solid $bluelight;
-    }
-    &:focus{
-      border: 2px solid $bluelight;
-    }
-    border-radius: 16px;
-    border: none;
-    outline: none;
-    width: 72vh;
-  }
-  .header-right{
-    margin-right: 200px;
 
+  .dropdown-menu {
+    @include dropdown-menu;
   }
-}
+
+  .dropdown-menu2 {
+    @include dropdown-menu;
+  }
+
+  .useroptions:hover {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+
+  .carrito:hover {
+    .dropdown-menu2 {
+      display: block;
+    }
+  }
+
+  .headercomponent {
+    margin-bottom: 17vh;
+  }
+
+  .headerpower {
+    #user {
+      width: 40px;
+      height: 4.3vh;
+    }
+
+    #carrito {
+      width: 45px;
+      height: 4.3vh;
+    }
+  }
+
+  .header-right-nologged {
+    button {
+      padding-left: 15px;
+    }
+  }
+
+  .hmboilel {
+    display: none;
+  }
+
+  .disp {
+    display: block;
+  }
+
+  .barnav {
+    display: block;
+    background-color: $white;
+    width: 100%;
+    position: fixed;
+    top: 12vh;
+    height: 5vh;
+    padding-bottom: 0px;
+    z-index: 1;
+
+    li {
+      padding-top: 10px;
+      list-style: none;
+      color: $white;
+      font-size: 20px;
+
+      a {
+        color: $blue;
+        text-decoration: none;
+
+        &:hover {
+          color: $bluelight;
+        }
+      }
+
+    }
+  }
+
+  .searchbardesktop {
+    display: block;
+
+    input {
+      &:hover {
+        border: 2px solid $bluelight;
+      }
+
+      &:focus {
+        border: 2px solid $bluelight;
+      }
+
+      border-radius: 16px;
+      border: none;
+      outline: none;
+      width: 72vh;
+    }
+
+    .header-right {
+      margin-right: 200px;
+
+    }
+  }
 }
 </style>

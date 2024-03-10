@@ -1,17 +1,21 @@
 const path = require('path');
-
 module.exports = {
-  // ... Otras configuraciones de Webpack
-
   module: {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
+        include: [
+          path.resolve(__dirname, 'assets'),
+          path.resolve(__dirname, 'public'),
+        ],
         use: [
           {
             loader: 'file-loader',
             options: {
-              outputPath: path.join('assets'), // Carpeta de salida para las imágenes optimizadas
+              outputPath: (url, resourcePath, context) => {
+                const isAsset = resourcePath.includes(path.join(context, 'assets'));
+                return isAsset ? path.join('assets', url) : path.join('public', url);
+              },
             },
           },
           {
