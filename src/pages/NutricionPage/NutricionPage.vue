@@ -2,7 +2,7 @@
     <HeaderComponent></HeaderComponent>
     <div class="fondonutri">
            <div v-for="producto in productos" :key="producto.id">
-            <ProductComponent :price="producto.Precio" :imageURL="producto.ImagenProducto" :nameproduct="producto.Nombre"></ProductComponent>
+            <ProductComponent :price="producto.Precio" :imageURL="producto.ImagenProducto" :nameproduct="producto.Nombre" :ProductId="producto.ProductId"></ProductComponent>
            </div>
     </div>
 </template>

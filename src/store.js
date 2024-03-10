@@ -3,7 +3,8 @@ import { createStore } from 'vuex';
 const store = createStore({
   state: {
     usuarioLogueado: false,
-    NombreUsuario:""
+    NombreUsuario:"",
+    IdUsuario:-1
   },
   mutations: {
     setUsuarioLogueado(state, valor) {
@@ -12,6 +13,9 @@ const store = createStore({
     setUserName(state, valor) {
       state.NombreUsuario = valor;
     },
+    setId(state, valor){
+      state.IdUsuario = valor;
+    }
   },
   actions: {
     login({ commit }) {
@@ -25,6 +29,10 @@ const store = createStore({
     UserName({ commit }, nombreUsuario) {
       // Lógica de actualización del nombre de usuario
       commit('setUserName', nombreUsuario);
+    },
+    IdUsuario({ commit }, id) {
+      // Lógica de actualización del nombre de usuario
+      commit('setId', id);
     }
   },
   getters: {

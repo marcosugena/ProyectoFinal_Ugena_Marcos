@@ -17,3 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/productosnutri',[ProductoController::class,'ObtenerProductosNutricion']);
+Route::get('/productosrecomendados',[ProductoController::class,'ObtenerRecomendados']);

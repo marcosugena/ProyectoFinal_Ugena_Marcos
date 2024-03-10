@@ -20,25 +20,29 @@
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/usa.jpg" alt=""></div>
                     <div class="card-face card-back">
-                        <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo y alcanzar tus metas de bienestar físico</p>
+                        <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo y alcanzar tus
+                            metas de bienestar físico</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/LifePro.jpg" alt=""></div>
                     <div class="card-face card-back">
-                        <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo y alcanzar tus metas de bienestar físico</p>
+                        <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo y alcanzar tus
+                            metas de bienestar físico</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/hsn.jpg" alt=""></div>
                     <div class="card-face card-back">
-                        <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo y lograr tus objetivos de bienestar físico.</p>
+                        <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo y lograr tus objetivos
+                            de bienestar físico.</p>
                     </div>
                 </div>
                 <div class="card d-lg-none">
                     <div class="card-face card-front"><img src="../../assets/biocop.jpg" alt=""></div>
                     <div class="card-face card-back">
-                        <p>Con Biocop, descubre productos biológicos que nutren tu cuerpo y contribuyen a un bienestar equilibrado de manera sostenible</p>
+                        <p>Con Biocop, descubre productos biológicos que nutren tu cuerpo y contribuyen a un bienestar
+                            equilibrado de manera sostenible</p>
                     </div>
                 </div>
             </div>
@@ -46,28 +50,28 @@
         <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
         <div class="Recommendforyou">
             <h2 class="pt-4">RECOMENDADO PARA TI</h2>
-            <div class="ProductContainer mt-5">
-                <ProductComponent :price="'86.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
-                <ProductComponent :price="'34.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
-                <ProductComponent :price="'22.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
-                <ProductComponent :price="'18.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
-                <ProductComponent :price="'76.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
-                <ProductComponent :price="'56.54'" :imageURL="'/recommend1.png'" :nameproduct="'WHEY PROTEIN'"></ProductComponent>
+            <div class="ProductContainer mt-lg-5">
+                <div v-for="producto in Recomendados" :key="producto.id">
+                    <ProductComponent :price="producto.Precio" :imageURL="producto.ImagenProducto"
+                        :nameproduct="producto.Nombre" :ProductId="producto.ProductId"></ProductComponent>
+                </div>
+
             </div>
         </div>
         <OfferComponent :imageUrl="'/banner2.jpg'"></OfferComponent>
         <div class="Landingvideo d-none d-lg-block">
-            <video muted autoplay loop playsinline class="m-0" >
+            <video muted autoplay loop playsinline class="m-0">
                 <source src="../../assets/videocortado.mp4" type="video/mp4">
             </video>
             <div class="videotext w-75">
                 <h2>
-                    Transforma tu esfuerzo en victoria. En PowerLab, te ofrecemos el impulso que necesitas para alcanzar tus metas
-                     fitness. Descubre el camino hacia un rendimiento superior y una vida más fuerte.
+                    Transforma tu esfuerzo en victoria. En PowerLab, te ofrecemos el impulso que necesitas para alcanzar
+                    tus metas
+                    fitness. Descubre el camino hacia un rendimiento superior y una vida más fuerte.
                 </h2>
             </div>
         </div>
-        
+
         <div class="LandingInfo d-flex align-items-center flex-wrap">
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="../../assets/transporte.png" alt="">
@@ -104,6 +108,7 @@
     <FooterComponent></FooterComponent>
 </template>
 <script>
+import axios from 'axios';
 import HeaderComponent from "../../components/HeaderComponent.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 import SliderComponent from "../../components/SliderComponent.vue";
@@ -124,17 +129,30 @@ export default {
     },
     data() {
         return {
-
+            Recomendados: []
         };
     },
-    methods: {},
+    methods: {
+        async cogerecomend() {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/productosrecomendados")
+                this.Recomendados = response.data.recomendados;
+            } catch (error) {
+                console.error('Error al obtener productos:', error);
+            }
+        }
+    },
+    mounted() {
+        this.cogerecomend();
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../Style/variables.scss";
+
 .Landingvideo {
-    position: relative; // Necesario para posicionar elementos hijos de manera absoluta
+    position: relative; 
     background-color: lighten($grey, 0%);
 
     video {
@@ -155,6 +173,7 @@ export default {
         font-family: "Roboto", "Open Sans", sans-serif;
     }
 }
+
 .LandingInfo {
     flex-wrap: wrap;
 
@@ -237,7 +256,6 @@ export default {
     color: $white;
     border-radius: 8px;
 }
-
 .card-front {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
     background-color: $white;
@@ -269,7 +287,6 @@ export default {
     height: 100vh;
     background-color: lighten($grey, 0%);
 }
-
 //MEDIAQUERYS
 @media only screen and (min-width: 800px) {
     .Recommendforyou {
@@ -289,6 +306,7 @@ export default {
 
         }
     }
+
     .LandingInfo {
         height: 30vh;
         width: 100%;
@@ -297,6 +315,7 @@ export default {
 
     .infocontainer {
         width: 25%;
+
         span {
             text-transform: uppercase;
             font-size: 1.2em;
@@ -310,6 +329,7 @@ export default {
         }
     }
 }
+
 @media only screen and (min-width: 1600px) {
     .card {
         width: 20vh;
@@ -344,4 +364,5 @@ export default {
     .Patrocinadores {
         height: 45vh;
     }
-}</style>
+}
+</style>

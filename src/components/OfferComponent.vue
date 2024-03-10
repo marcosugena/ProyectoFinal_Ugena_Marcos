@@ -3,7 +3,6 @@
     <img :src="imageUrl" alt="">
   </div>
 </template>
-
 <script>
 export default {
   props: {
@@ -11,7 +10,6 @@ export default {
   },
   
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -19,7 +17,7 @@ export default {
 
 .slideroffer{
  img{
-  height: 22vh;
+  height: 22.2vh;
   width: 100%;
  }
   background-size: cover;

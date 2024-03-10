@@ -1,7 +1,7 @@
 <template>
     <div class="paysend">
         <h3 class="text-center pt-3">Metodos de pago</h3>
-        <div class="payment ms-3 ms-lg-5 mt-lg-3">
+        <div class="payment ms-3 ms-lg-5 mt-lg-3 d-lg-flex justify-content-center ">
             <img src="../assets/mastercard.png" alt="">
             <img src="../assets/visa.png" alt="">
             <img src="../assets/paypal.png" alt="">
@@ -10,7 +10,7 @@
             <img src="../assets/sequra.png" alt="">
         </div>
         <h3 class="text-center pt-3">Metodos de envio</h3>
-        <div class="sender ms-3 ms-lg-5 mt-lg-3">
+        <div class="sender ms-3 ms-lg-5 mt-lg-3 d-lg-flex justify-content-center ">
             <img src="../assets/correos.png" alt="">
             <img src="../assets/correosexpress.png" alt="">
             <img src="../assets/dhl.png" alt="">
@@ -70,22 +70,22 @@ font-family: 'Rubik';
 }
 .payment{
     display: grid;
-    grid-template-columns: repeat(6,1fr);
-    gap: 10px;
+    grid-template-columns: repeat(12,1fr);
+    gap: 30px;
     row-gap: 0px;
     img{
         width: 15vh;
-        height: 11vh;
+        height: 11.5vh;
     }
 }
 .sender{
     display: grid;
-    grid-template-columns: repeat(6,1fr);
-    gap: 10px;
+    grid-template-columns: repeat(12,1fr);
+    gap: 30px;
     row-gap: 20px;
     img{
         width: 15vh;
-        height: 11vh;
+        height: 11.5vh;
     }
 } 
 }

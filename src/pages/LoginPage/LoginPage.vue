@@ -3,7 +3,7 @@
     <div class="LoginImage"></div>
     <div class="LoginBox ">
       <div class="d-flex justify-content-center">
-        <img src="../../assets/PowerLab.jpg" alt="">
+        <img src="../../assets/PowerLab.jpg" alt="" v-on:click="inicio">
       </div>
       <div class="d-flex flex-column loginput">
         <form method="post" id="logform" @submit.prevent="logvalidator">
@@ -60,11 +60,15 @@ export default {
           danger.textContent="Email o Contraseña Incorrectos"
         }else{
           this.$store.commit('setUsuarioLogueado', true);
-          this.$store.commit('setUserName', respuesta.data);
+          this.$store.commit('setUserName', respuesta.data.usu);
+          this.$store.commit('setId',respuesta.data.id)
           this.$router.push("/");
         }
         
       }
+    },
+    inicio(){
+      this.$router.push('/')
     }
   },
 };

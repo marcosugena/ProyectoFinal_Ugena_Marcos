@@ -3,7 +3,7 @@
     <div class="RegisterImage"></div>
     <div class="RegisterBox ">
       <div class="d-flex justify-content-center">
-        <img src="../../assets/PowerLab.jpg" alt="">
+        <img src="../../assets/PowerLab.jpg" alt="" v-on:click="inicio">
       </div>
       <div class="d-flex flex-column reginput">
         <form method="post" id="regform" @submit.prevent="regvalidator">
@@ -66,14 +66,19 @@ export default {
         try {
           const respuesta = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
           // Manejar la respuesta como desees
-          if(respuesta.data.success){
-          this.$router.push("/");
+        if(respuesta.data.success){
+            this.$router.push("/");
+        }else{
+          let danger=document.getElementById("danger")
+          danger.textContent="Este correo ya esta registrado";
         }
         } catch (error) {
-          console.error('Error al registrar usuario:', error.respuesta.data);
-          // Manejar el error
+          console.error('Error al registrar usuario'+error);
         }
       }
+    },
+    inicio(){
+      this.$router.push('/')
     }
   },
 };

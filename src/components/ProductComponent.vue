@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-3 p-1 d-flex align-items-center flex-column">
+    <div class="mb-3 p-1 d-flex align-items-center flex-column" :id="ProductId">
         <div class="productbox d-flex " :style="{ backgroundImage: 'url(' + imageURL + ')' }">
         </div>
         <div class="productext d-flex justify-content-center mt-3">
@@ -8,10 +8,8 @@
         <div id="price" class="d-flex flex-column align-items-center mt-0">
             <p >{{ price }} €</p>
         </div>
-
     </div>
 </template>
-
 <script>
 export default {
     props: {
@@ -20,15 +18,13 @@ export default {
         required:true
     },
     nameproduct:String,
-    imageURL:String
-    
+    imageURL:String,
+    ProductId:Number
   },
 }
 </script>
-
 <style lang="scss" scoped>
 @import "../Style/variables.scss";
-
 .productbox {
     background-size: cover;
     height: 19vh;
@@ -44,7 +40,6 @@ export default {
         box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 20px -5px, rgba(180, 71, 71, 0.3) 0px 8px 8px -8px;
     }
 }
-
 .productext {
     p {
         font-size: smaller;
@@ -97,6 +92,5 @@ export default {
             font-size: smaller;
         }
     }
-
-
-}</style>
+}
+</style>
