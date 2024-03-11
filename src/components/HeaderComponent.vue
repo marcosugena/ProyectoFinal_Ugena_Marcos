@@ -6,8 +6,13 @@
         <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="toggleSearch">
       </div>
       <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
-      <div class="searchbardesktop mt-2 ms-lg-5">
-        <input type="text" placeholder="Buscar..." class="p-2 ms-5" v-on:input="search" v-model="searchtext.texto">
+      <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search" v-model="searchtext.texto" v-on:blur="ocultainput" v-on:focus="revelainput">
+        <div class=" d-flex justify-content-center w-100">
+          <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
+            <ul id="listsearchdesktop"></ul>
+          </div>
+        </div>
       </div>
       <div class="header-right mx-lg-3 d-flex mt-1 ">
         <div class="d-flex align-items-center mx-lg-5 useroptions" @click="toggleOptions" id="optionsmobile">
@@ -47,7 +52,7 @@
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
       <div class="searchbarmobile d-flex justify-content-between">
-        <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch">
+        <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch" v-model="searchtext.texto" v-on:input="searchmobile">
         <div>
           <img src="../assets/lupa.png" alt="" class="" id="lupa">
         </div>
@@ -55,6 +60,10 @@
       <div class="mb-5 ms-2">
         <img src="../assets/cerrar.png" alt="" id="closesearch" @click="toggleSearch">
       </div>
+    </div>
+    <div class="dropdown-menumobile text-center p-3" id="listsearchmobile" >
+      <ul class="p-1"  >
+      </ul>
     </div>
     <div class="sidebar" :class="{ 'sidebar-open': isMenuOpen }">
       <div class="d-flex flex-row-reverse mx-3 mt-2">
@@ -89,14 +98,76 @@ export default {
     };
   },
   methods: {
+    ocultainput() {
+      document.getElementById("dropdown-menusearch").style.display = "none"
+    },
+    revelainput(){
+      document.getElementById("dropdown-menusearch").style.display = "block"
+    },
     async search() {
       try {
         const response = await axios.post("http://127.0.0.1:8000/api/search", {
           palabra: this.searchtext.texto
         });
-        // Asignar la respuesta directamente a searchcontent
         this.searchcontent = response.data;
-        console.log(this.searchcontent[0]);
+        let list = document.getElementById("listsearchdesktop")
+        while (list.firstChild) {
+          list.removeChild(list.firstChild);
+        }
+        for (let i = 0; i < this.searchcontent.length; i++) {
+          if(this.searchtext.texto.length == 0){
+            if(i == 4){
+              break;
+            }
+          }
+          let li = document.createElement("li")
+          li.textContent = this.searchcontent[i];
+          li.addEventListener("mouseover",function(){
+            li.style.backgroundColor="white";
+            li.style.color="black";
+          })
+          li.addEventListener("mouseout",function(){
+            li.style.backgroundColor="#262626";
+            li.style.color="white";
+          })
+          li.style.padding="10px"
+          list.appendChild(li)
+        }
+      } catch (error) {
+        console.error('Error al obtener productos:', error);
+      }
+    },
+    async searchmobile() {
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/api/search", {
+          palabra: this.searchtext.texto
+        });
+        this.searchcontent = response.data;
+        let list = document.getElementById("listsearchmobile")
+        list.style.display="block"
+        while (list.firstChild) {
+          list.removeChild(list.firstChild);
+        }
+        for (let i = 0; i < this.searchcontent.length; i++) {
+          if(this.searchtext.texto.length == 0){
+            if(i == 4){
+              break;
+            }
+          }
+          let li = document.createElement("li")
+          li.textContent = this.searchcontent[i];
+          li.style.listStyle="none"
+          li.addEventListener("mouseover",function(){
+            li.style.backgroundColor="white";
+            li.style.color="black";
+          })
+          li.addEventListener("mouseout",function(){
+            li.style.backgroundColor="#262626";
+            li.style.color="white";
+          })
+          li.style.padding="12px"
+          list.appendChild(li)
+        }
       } catch (error) {
         console.error('Error al obtener productos:', error);
       }
@@ -117,11 +188,16 @@ export default {
 
     },
     toggleSearch() {
+     
+      let list = document.getElementById("listsearchmobile")
+      list.style.display="none"
       this.isSearchOpen = !this.isSearchOpen
       if (this.isSearchOpen == true) {
         let input = document.getElementById("inputsearch");
         input.focus();
+        
       }
+      
     },
     LoginPage() {
       this.$router.push('/login');
@@ -153,6 +229,21 @@ export default {
 @import '../Style/variables.scss';
 
 //HEADER STYLE MOBILE 
+.dropdown-menumobile{
+  position: fixed;
+  top: 22vh;
+  width: 100%;
+  background-color: $black;
+  z-index: 1;
+  color: $white;
+  display: none;
+  ul{
+    list-style: none;
+  }
+  li{
+    padding: 10px;
+  }
+}
 @mixin dropdown-menu {
   display: none;
   position: absolute;
@@ -195,6 +286,33 @@ export default {
 
 .dropdown-menu2 {
   @include dropdown-menu;
+}
+
+.dropdown-menusearch {
+  background-color: $black;
+  padding: 5px;
+  position: absolute;
+  width: 65vh;
+  margin-left: 45px;
+  margin-top: 6px;
+  display: none;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  li {
+    padding: 30px;
+    font-size: 32px;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
 }
 
 .headercomponent {
@@ -474,18 +592,23 @@ export default {
 
       &:focus {
         border: 2px solid $bluelight;
+        
       }
 
       border-radius: 16px;
       border: none;
       outline: none;
-      width: 72vh;
+      width: 65vh;
     }
 
     .header-right {
       margin-right: 200px;
 
     }
+  }
+
+  .dropdown-menusearch {
+    display: block;
   }
 }
 </style>
