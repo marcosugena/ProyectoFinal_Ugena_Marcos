@@ -4,7 +4,7 @@
         <SliderComponent></SliderComponent>
         <div class="Patrocinadores">
             <h1 class="pt-3">Proveedores Oficiales de PowerLab</h1>
-            <div class="card-container">
+            <div class="card-container d-lg-flex justify-content-center align-items-center">
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/amix.jpg" alt=""></div>
                     <div class="card-face card-back">
@@ -140,11 +140,13 @@ export default {
             } catch (error) {
                 console.error('Error al obtener productos:', error);
             }
+
         }
     },
     mounted() {
         this.cogerecomend();
     },
+    
 };
 </script>
 
@@ -152,7 +154,7 @@ export default {
 @import "../../Style/variables.scss";
 
 .Landingvideo {
-    position: relative; 
+    position: relative;
     background-color: lighten($grey, 0%);
 
     video {
@@ -211,11 +213,11 @@ export default {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(14vh, 1fr));
-    gap: 5vh;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
     justify-content: center;
     margin: 20px;
-    margin-left: 5vh;
+
 }
 
 .card {
@@ -256,6 +258,7 @@ export default {
     color: $white;
     border-radius: 8px;
 }
+
 .card-front {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
     background-color: $white;
@@ -287,6 +290,7 @@ export default {
     height: 100vh;
     background-color: lighten($grey, 0%);
 }
+
 //MEDIAQUERYS
 @media only screen and (min-width: 800px) {
     .Recommendforyou {
@@ -347,11 +351,9 @@ export default {
 
     .card-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(22vh, 2fr));
+        grid-template-columns: repeat(5, 1fr);
         gap: 5vh;
         justify-content: center;
-        margin: 20px;
-        margin-left: 35vh;
         margin-top: 50px;
     }
 

@@ -38,6 +38,7 @@ const store = createStore({
   getters: {
     estadoUsuario: (state) => (state.usuarioLogueado ? 'Logueado' : 'No Logueado'),
     nombreDeUsuario: (state) => state.NombreUsuario,
+    Idusu: (state) => state.IdUsuario
   },
 });
 

@@ -47,7 +47,6 @@ const router = createRouter({
 
 // Instancia de Vue
 const app = createApp(App);
-
 // Usa el router y el store en la aplicación
 app.use(router);
 app.use(store); // Usa el store Vuex
