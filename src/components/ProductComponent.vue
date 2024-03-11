@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-3 p-1 d-flex align-items-center flex-column" :id="ProductId">
+    <div class="mb-3 p-1 d-flex align-items-center flex-column" :id="ProductId" @click="MostrarProducto(ProductId)">
         <div class="productbox d-flex " :style="{ backgroundImage: 'url(' + imageURL + ')' }">
         </div>
         <div class="productext d-flex justify-content-center mt-3">
@@ -20,6 +20,11 @@ export default {
     nameproduct:String,
     imageURL:String,
     ProductId:Number
+  },
+  methods: {
+    MostrarProducto(ProductId){
+        console.log(ProductId)
+    }
   },
 }
 </script>
