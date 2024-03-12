@@ -83,7 +83,8 @@ export default {
     z-index: 0;
 
     img {
-      height: 70vh;
+      height: 75vh;
+      width: 100%;
       filter: brightness(60%) contrast(90%) saturate(80%);
     }
   }

@@ -3,7 +3,7 @@
         <div class="productbox d-flex " :style="{ backgroundImage: 'url(' + imageURL + ')' }">
         </div>
         <div class="productext d-flex justify-content-center mt-3">
-            <a href="#" class="text-center">{{nameproduct}}</a>
+            <a class="text-center" @click="MostrarProducto(ProductId)">{{nameproduct}}</a>
         </div>
         <div id="price" class="d-flex flex-column align-items-center mt-0">
             <p >{{ price }} €</p>
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     MostrarProducto(ProductId){
-        console.log(ProductId)
+        this.$router.push({ name: 'ProductView', params: { id: ProductId } });
     }
   },
 }

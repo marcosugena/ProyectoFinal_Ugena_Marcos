@@ -58,7 +58,7 @@
 
             </div>
         </div>
-        <OfferComponent :imageUrl="'/banner2.jpg'"></OfferComponent>
+        <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto(2)"></OfferComponent>
         <div class="Landingvideo d-none d-lg-block">
             <video muted autoplay loop playsinline class="m-0">
                 <source src="../../assets/videocortado.mp4" type="video/mp4">
@@ -141,7 +141,10 @@ export default {
                 console.error('Error al obtener productos:', error);
             }
 
-        }
+        },
+        MostrarProducto(ProductId){
+        this.$router.push({ name: 'ProductView', params: { id: ProductId } });
+    }
     },
     mounted() {
         this.cogerecomend();
