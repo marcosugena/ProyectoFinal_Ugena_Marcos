@@ -63,7 +63,10 @@ class ProductoController extends Controller
     public function ObtenerBusqueda(Request $request)
     {
         $palabraClave = $request->input('palabra');
-        $resultados = Producto::select("Nombre")->where("Nombre", 'LIKE', $palabraClave . "%")->pluck('Nombre')->toArray();
+        $resultados = Producto::where("Nombre", 'LIKE', $palabraClave . "%")
+                        ->select("ProductId", "Nombre")
+                        ->get()
+                        ->toArray();
         return response()->json($resultados);
     }
     public function ObtenerProductoPorId(Request $request){

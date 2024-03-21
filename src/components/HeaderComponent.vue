@@ -7,7 +7,8 @@
       </div>
       <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column">
-        <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search" v-model="searchtext.texto" v-on:blur="ocultainput" v-on:focus="revelainput">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search"
+          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
             <ul id="listsearchdesktop"></ul>
@@ -52,7 +53,8 @@
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
       <div class="searchbarmobile d-flex justify-content-between">
-        <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch" v-model="searchtext.texto" v-on:input="searchmobile">
+        <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch"
+          v-model="searchtext.texto" v-on:input="searchmobile">
         <div>
           <img src="../assets/lupa.png" alt="" class="" id="lupa">
         </div>
@@ -61,8 +63,8 @@
         <img src="../assets/cerrar.png" alt="" id="closesearch" @click="toggleSearch">
       </div>
     </div>
-    <div class="dropdown-menumobile text-center p-3" id="listsearchmobile" >
-      <ul class="p-1"  >
+    <div class="dropdown-menumobile text-center p-3" id="listsearchmobile">
+      <ul class="p-1">
       </ul>
     </div>
     <div class="sidebar" :class="{ 'sidebar-open': isMenuOpen }">
@@ -98,10 +100,13 @@ export default {
     };
   },
   methods: {
+    muestraproducto(id) {
+      this.$router.push({ name: 'ProductView', params: { id: id } })
+    },
     ocultainput() {
       document.getElementById("dropdown-menusearch").style.display = "none"
     },
-    revelainput(){
+    revelainput() {
       document.getElementById("dropdown-menusearch").style.display = "block"
     },
     async search() {
@@ -115,22 +120,27 @@ export default {
           list.removeChild(list.firstChild);
         }
         for (let i = 0; i < this.searchcontent.length; i++) {
-          if(this.searchtext.texto.length == 0){
-            if(i == 4){
+          if (this.searchtext.texto.length == 0) {
+            if (i == 4) {
               break;
             }
           }
           let li = document.createElement("li")
-          li.textContent = this.searchcontent[i];
-          li.addEventListener("mouseover",function(){
-            li.style.backgroundColor="white";
-            li.style.color="black";
+          li.textContent = this.searchcontent[i].Nombre;
+          console.log(this.searchcontent[i].ProductId)
+          li.addEventListener("click", () => {
+            this.muestraproducto(this.searchcontent[i].ProductId);
+          });
+          li.addEventListener("mouseover", function () {
+            li.style.backgroundColor = "white";
+            li.style.color = "black";
           })
-          li.addEventListener("mouseout",function(){
-            li.style.backgroundColor="#262626";
-            li.style.color="white";
+          li.addEventListener("mouseout", function () {
+            li.style.backgroundColor = "#262626";
+            li.style.color = "white";
           })
-          li.style.padding="10px"
+
+          li.style.padding = "10px"
           list.appendChild(li)
         }
       } catch (error) {
@@ -144,28 +154,28 @@ export default {
         });
         this.searchcontent = response.data;
         let list = document.getElementById("listsearchmobile")
-        list.style.display="block"
+        list.style.display = "block"
         while (list.firstChild) {
           list.removeChild(list.firstChild);
         }
         for (let i = 0; i < this.searchcontent.length; i++) {
-          if(this.searchtext.texto.length == 0){
-            if(i == 4){
+          if (this.searchtext.texto.length == 0) {
+            if (i == 4) {
               break;
             }
           }
           let li = document.createElement("li")
           li.textContent = this.searchcontent[i];
-          li.style.listStyle="none"
-          li.addEventListener("mouseover",function(){
-            li.style.backgroundColor="white";
-            li.style.color="black";
+          li.style.listStyle = "none"
+          li.addEventListener("mouseover", function () {
+            li.style.backgroundColor = "white";
+            li.style.color = "black";
           })
-          li.addEventListener("mouseout",function(){
-            li.style.backgroundColor="#262626";
-            li.style.color="white";
+          li.addEventListener("mouseout", function () {
+            li.style.backgroundColor = "#262626";
+            li.style.color = "white";
           })
-          li.style.padding="12px"
+          li.style.padding = "12px"
           list.appendChild(li)
         }
       } catch (error) {
@@ -188,16 +198,15 @@ export default {
 
     },
     toggleSearch() {
-     
       let list = document.getElementById("listsearchmobile")
-      list.style.display="none"
+      list.style.display = "none"
       this.isSearchOpen = !this.isSearchOpen
       if (this.isSearchOpen == true) {
         let input = document.getElementById("inputsearch");
         input.focus();
-        
+
       }
-      
+
     },
     LoginPage() {
       this.$router.push('/login');
@@ -229,7 +238,7 @@ export default {
 @import '../Style/variables.scss';
 
 //HEADER STYLE MOBILE 
-.dropdown-menumobile{
+.dropdown-menumobile {
   position: fixed;
   top: 22vh;
   width: 100%;
@@ -237,13 +246,16 @@ export default {
   z-index: 1;
   color: $white;
   display: none;
-  ul{
+
+  ul {
     list-style: none;
   }
-  li{
+
+  li {
     padding: 10px;
   }
 }
+
 @mixin dropdown-menu {
   display: none;
   position: absolute;
@@ -296,6 +308,7 @@ export default {
   margin-left: 45px;
   margin-top: 6px;
   display: none;
+
   ul {
     list-style: none;
     margin: 0;
@@ -592,7 +605,7 @@ export default {
 
       &:focus {
         border: 2px solid $bluelight;
-        
+
       }
 
       border-radius: 16px;
