@@ -4,7 +4,7 @@
         <SliderComponent></SliderComponent>
         <div class="Patrocinadores">
             <h1 class="pt-3">Proveedores Oficiales de PowerLab</h1>
-            <div class="card-container d-lg-flex justify-content-center align-items-center">
+            <div class="card-container d-lg-flex justify-content-center align-items-center ms-5 ms-lg-0">
                 <div class="card">
                     <div class="card-face card-front"><img src="../../assets/amix.jpg" alt=""></div>
                     <div class="card-face card-back">
