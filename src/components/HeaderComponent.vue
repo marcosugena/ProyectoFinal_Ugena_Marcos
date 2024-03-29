@@ -2,13 +2,13 @@
   <div class="headercomponent">
     <header class="headerpower d-flex align-items-center justify-content-between">
       <div class="hmboilel mx-0">
-        <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="toggleMenu">
-        <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="toggleSearch">
+        <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="Menu">
+        <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
       </div>
       <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column">
         <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search"
-          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
+          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput" >
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
             <ul id="listsearchdesktop"></ul>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="header-right mx-lg-3 d-flex mt-1 ">
-        <div class="d-flex align-items-center mx-lg-5 useroptions" @click="toggleOptions" id="optionsmobile">
+        <div class="d-flex align-items-center mx-lg-5 useroptions" @click="Options" id="optionsmobile">
           <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0">
           <p class="disp mt-3" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
           <div class="dropdown-menu">
@@ -27,7 +27,7 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito " @click="toggleCarrito">
+        <div class="d-flex align-items-center carrito " @click="Carrito">
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
           <p class="disp mt-3">Carrito</p>
           <div class="dropdown-menu2">
@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="mb-5 ms-2">
-        <img src="../assets/cerrar.png" alt="" id="closesearch" @click="toggleSearch">
+        <img src="../assets/cerrar.png" alt="" id="closesearch" @click="Search">
       </div>
     </div>
     <div class="dropdown-menumobile text-center p-3" id="listsearchmobile">
@@ -69,7 +69,7 @@
     </div>
     <div class="sidebar" :class="{ 'sidebar-open': isMenuOpen }">
       <div class="d-flex flex-row-reverse mx-3 mt-2">
-        <img src="../assets/cerrar.png" alt="" id="close" @click="toggleMenu">
+        <img src="../assets/cerrar.png" alt="" id="close" @click="Menu">
       </div>
       <ul>
         <li><router-link to="/detail">Proteína <img src="../assets/proteina-de-suero.png" alt=""
@@ -100,11 +100,16 @@ export default {
     };
   },
   methods: {
-    muestraproducto(id) {
-      this.$router.push({ name: 'ProductView', params: { id: id } })
+    async muestraproducto(ID) { 
+      this.$router.push({ path: `/producto/${ID}` });
+      console.log(this.$router.currentRoute)
     },
     ocultainput() {
+    /*
+    setTimeout(() => {
       document.getElementById("dropdown-menusearch").style.display = "none"
+    }, 1000);
+    */
     },
     revelainput() {
       document.getElementById("dropdown-menusearch").style.display = "block"
@@ -127,10 +132,10 @@ export default {
           }
           let li = document.createElement("li")
           li.textContent = this.searchcontent[i].Nombre;
-          console.log(this.searchcontent[i].ProductId)
           li.addEventListener("click", () => {
             this.muestraproducto(this.searchcontent[i].ProductId);
           });
+          console.log(this.searchcontent[i].ProductId)
           li.addEventListener("mouseover", function () {
             li.style.backgroundColor = "white";
             li.style.color = "black";
@@ -182,10 +187,10 @@ export default {
         console.error('Error al obtener productos:', error);
       }
     },
-    toggleMenu() {
+    Menu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-    toggleOptions() {
+    Options() {
       this.isOptionOpen = !this.isOptionOpen;
       const dropdownMenu = document.querySelector('.useroptions .dropdown-menu');
       if (this.isOptionOpen) {
@@ -194,10 +199,10 @@ export default {
         dropdownMenu.style.display = 'none';
       }
     },
-    toggleCarrito() {
+    Carrito() {
 
     },
-    toggleSearch() {
+    Search() {
       let list = document.getElementById("listsearchmobile")
       list.style.display = "none"
       this.isSearchOpen = !this.isSearchOpen

@@ -42,6 +42,13 @@ export default {
             }
         }
     },
+    watch: {
+        '$route'(to) {
+            // Cada vez que la ruta cambie
+            // Vuelve a cargar el producto
+            this.cargaproducto(to.params.id);
+        }
+    },
 };
 </script>
 
