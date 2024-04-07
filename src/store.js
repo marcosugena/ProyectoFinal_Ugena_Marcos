@@ -4,7 +4,8 @@ const store = createStore({
   state: {
     usuarioLogueado: false,
     NombreUsuario:"",
-    IdUsuario:-1
+    IdUsuario:-1,
+    Carrito:[]
   },
   mutations: {
     setUsuarioLogueado(state, valor) {
@@ -15,7 +16,20 @@ const store = createStore({
     },
     setId(state, valor){
       state.IdUsuario = valor;
-    }
+    },
+    agregarAlCarrito(state, producto) {
+      const index = state.Carrito.findIndex(item => item.Id === producto.Id);
+  
+      if (index !== -1) {
+          // Si el producto ya está en el carrito, incrementa la cantidad
+          state.Carrito[index].Cantidad++;
+      } else {
+          // Si el producto no está en el carrito, agrégalo con cantidad 1
+          producto.Cantidad = 1;
+          state.Carrito.push(producto);
+      }
+  }
+  
   },
   actions: {
     login({ commit }) {
@@ -33,12 +47,16 @@ const store = createStore({
     IdUsuario({ commit }, id) {
       // Lógica de actualización del nombre de usuario
       commit('setId', id);
+    },
+    agregarAlCarrito({ commit }, producto) {
+      commit('agregarAlCarrito', producto);
     }
   },
   getters: {
     estadoUsuario: (state) => (state.usuarioLogueado ? 'Logueado' : 'No Logueado'),
     nombreDeUsuario: (state) => state.NombreUsuario,
-    Idusu: (state) => state.IdUsuario
+    Idusu: (state) => state.IdUsuario,
+    carrito: state => state.Carrito
   },
 });
 
