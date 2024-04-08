@@ -578,7 +578,7 @@ export default {
     width: 100%;
     position: fixed;
     top: 12vh;
-    height: 5vh;
+    height: 7vh;
     padding-bottom: 0px;
     z-index: 1;
 

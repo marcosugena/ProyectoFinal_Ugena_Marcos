@@ -216,7 +216,7 @@ export default {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     justify-content: center;
     margin: 20px;
@@ -361,13 +361,13 @@ export default {
     }
 
     .Patrocinadores {
-        height: 40vh;
+        height: 50vh;
     }
 }
 
 @media only screen and (min-width: 704px) and (max-width: 1500px) {
     .Patrocinadores {
-        height: 45vh;
+        height: 55vh;
     }
 }
 </style>

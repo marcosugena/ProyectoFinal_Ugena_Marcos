@@ -66,7 +66,7 @@ font-family: 'Rubik';
 }
 .paysend{
     background-color: $grey;
-    height: 40vh;
+    height: 50vh;
 }
 .payment{
     display: grid;
