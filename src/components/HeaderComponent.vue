@@ -428,7 +428,7 @@ export default {
 
       a {
         text-decoration: none;
-        color: $bluelight;
+        color: $bluelight2;
       }
     }
   }

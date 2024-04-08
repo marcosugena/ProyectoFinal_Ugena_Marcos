@@ -178,7 +178,7 @@ export default {
 
 .Recommendforyou {
     height: 115vh;
-    background: linear-gradient(to bottom right,$blue  30%, $bluelight );
+    background: linear-gradient(to bottom right , $grey, $black 40%, $black 70%,$grey 100%,);
     color: $white;
 
     .ProductContainer {
@@ -194,8 +194,10 @@ export default {
 }
 
 .LandingInfo {
-    height: 100vh;
-    background-color: lighten($grey, 0%);
+    height: 120vh;
+    background: linear-gradient(to bottom , $grey, $black 8%, $black 92%,$grey 100%,);
+    
+    color: $white;
 }
 
 //MEDIAQUERYS
@@ -219,7 +221,7 @@ export default {
     }
 
     .LandingInfo {
-        height: 30vh;
+        height: 40vh;
         width: 100%;
         background-color: lighten($grey, 0%);
     }

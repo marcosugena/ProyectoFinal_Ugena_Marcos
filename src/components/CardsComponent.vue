@@ -53,43 +53,23 @@ export default {
 <style lang="scss" scoped>
 @import "../Style/variables.scss";
 .Patrocinadores {
-    background:linear-gradient(to bottom right,$black  30%, $blue );
+    background: linear-gradient(to bottom right , $grey, $black 50%);
     height: 70vh;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     justify-content: center;
     align-items: center;
-  
+ 
     h1 {
         text-align: center;
         color: $black;
     }
 }
 .card-container {
-        justify-content: center;
-      
-    }
-    .card {
-        width: 20vh;
-        height: 18vh;
-
-        p {
-            font-size: 16px;
-        }
-
-        img {
-            width: 22vh;
-            height: 20vh;
-        }
-    }
-    .card-container {
-
     justify-content: center;
     margin: 20px;
-
 }
-
 .card {
     width:20vh;
     height:18vh;
@@ -99,14 +79,14 @@ export default {
 
 
     p {
-        font-size: 9.2px;
+        font-size: 12px;
         margin: 10px;
         text-align: center;
     }
 
     img {
-        width: 15vh;
-        height: 15vh;
+        width:20vh;
+        height:18vh;
         border-radius: 8px;
     }
 }
