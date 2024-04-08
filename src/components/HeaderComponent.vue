@@ -43,13 +43,13 @@
       </div>
     </header>
     <nav class="barnav w-100">
-      <ul class="d-flex justify-content-between mx-5 ms-5">
-        <li><router-link to="/detail">Proteína</router-link></li>
-        <li><router-link to="/nutricion">Nutrición</router-link></li>
-        <li><router-link to="/detail">Vitaminas</router-link></li>
-        <li><router-link to="/detail">Barritas y Snacks</router-link></li>
-        <li><router-link to="/detail">Alimentación</router-link></li>
-      </ul>
+      <div class="d-flex align-items-center flex-row justify-content-around h-100">
+      <div><router-link to="/detail">Proteína</router-link></div>
+       <div><router-link to="/nutricion">Nutrición</router-link></div>
+       <div><router-link to="/detail">Vitaminas</router-link></div>
+       <div><router-link to="/detail">Barritas y Snacks</router-link></div>
+       <div><router-link to="/detail">Alimentación</router-link></div>
+      </div>
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
       <div class="searchbarmobile d-flex justify-content-between">
@@ -600,23 +600,15 @@ export default {
   .disp {
     display: block;
   }
-
   .barnav {
     display: block;
+    font-size: 22px;
     background-color: $white;
     width: 100%;
     position: fixed;
     top: 12vh;
-    height: 7vh;
-    padding-bottom: 0px;
+    height: 6vh;
     z-index: 1;
-
-    li {
-      padding-top: 10px;
-      list-style: none;
-      color: $white;
-      font-size: 20px;
-
       a {
         color: $blue;
         text-decoration: none;
@@ -626,7 +618,7 @@ export default {
         }
       }
 
-    }
+    
   }
 
   .searchbardesktop {

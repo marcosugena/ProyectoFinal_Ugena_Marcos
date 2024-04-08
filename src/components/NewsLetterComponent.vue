@@ -106,8 +106,8 @@ export default {
     .newform {
     input[type="text"] {
         width: 50vh;
-        padding: 8px;
-        border-radius: 16px;
+        padding: 12px;
+        border-radius: 0px;
         border: none;
 
         &:focus {
@@ -117,12 +117,12 @@ export default {
     }
 
     button {
-        background-color: red;
+        background-color: #1babf9;
         border: none;
         color: $white;
-        padding: 7px;
+        padding: 14px;
         width: 50%;
-        border-radius: 32px;
+        border-radius: 0px;
     }
 }
 }

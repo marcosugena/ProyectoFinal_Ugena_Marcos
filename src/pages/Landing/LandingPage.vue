@@ -102,9 +102,10 @@
                 </p>
             </div>
         </div>
-        <NewsLetterComponent></NewsLetterComponent>
+       
         <PaymentSend></PaymentSend>
     </div>
+    <NewsLetterComponent></NewsLetterComponent>
     <FooterComponent></FooterComponent>
 </template>
 <script>
@@ -297,7 +298,7 @@ export default {
 //MEDIAQUERYS
 @media only screen and (min-width: 800px) {
     .Recommendforyou {
-        height: 100vh;
+        height: 105vh;
         background-color: $black;
         color: $white;
 

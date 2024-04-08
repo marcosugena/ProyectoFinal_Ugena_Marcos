@@ -1,22 +1,22 @@
 <template>
     <div class="paysend">
         <h3 class="text-center pt-3">Metodos de pago</h3>
-        <div class="payment ms-3 ms-lg-5 mt-lg-3 d-lg-flex justify-content-center ">
-            <img src="../assets/mastercard.png" alt="">
-            <img src="../assets/visa.png" alt="">
-            <img src="../assets/paypal.png" alt="">
-            <img src="../assets/bizum.png" alt="">
-            <img src="../assets/amazonpay.png" alt="">
-            <img src="../assets/sequra.png" alt="">
+        <div class="payment ms-3 ms-lg-5 mt-lg-3 d-lg-flex justify-content-around ">
+            <div><img src="../assets/mastercard.png" alt=""></div>
+            <div><img src="../assets/visa.png" alt=""></div>
+            <div><img src="../assets/paypal.png" alt=""></div>
+            <div><img src="../assets/bizum.png" alt=""></div>
+            <div><img src="../assets/amazonpay.png" alt=""></div>
+            <div> <img src="../assets/sequra.png" alt=""></div>
         </div>
         <h3 class="text-center pt-3">Metodos de envio</h3>
-        <div class="sender ms-3 ms-lg-5 mt-lg-3 d-lg-flex justify-content-center ">
-            <img src="../assets/correos.png" alt="">
-            <img src="../assets/correosexpress.png" alt="">
-            <img src="../assets/dhl.png" alt="">
-            <img src="../assets/fedex.png" alt="">
-            <img src="../assets/gls.png" alt="">
-            <img src="../assets/ups.png" alt="">
+        <div class="sender ms-3 ms-lg-5 mt-lg-3 d-lg-flex justify-content-around ">
+        <div><img src="../assets/correos.png" alt=""></div>
+        <div> <img src="../assets/correosexpress.png" alt=""></div>
+        <div><img src="../assets/dhl.png" alt=""></div>
+        <div><img src="../assets/fedex.png" alt=""></div>
+        <div> <img src="../assets/gls.png" alt=""></div>
+        <div> <img src="../assets/ups.png" alt=""></div>     
         </div>
     </div>
 </template>
@@ -41,6 +41,8 @@ font-family: 'Rubik';
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 10px;
+    row-gap: 20px;
+  
     row-gap: 20px;
     img{
         width: 10vh;
@@ -69,20 +71,14 @@ font-family: 'Rubik';
     height: 50vh;
 }
 .payment{
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    gap: 30px;
-    row-gap: 0px;
+ 
     img{
         width: 15vh;
         height: 11.5vh;
     }
 }
 .sender{
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    gap: 30px;
-    row-gap: 20px;
+
     img{
         width: 15vh;
         height: 11.5vh;
