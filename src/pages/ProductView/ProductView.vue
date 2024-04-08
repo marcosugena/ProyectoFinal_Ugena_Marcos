@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-center carritobutton">
-            <button class="d-flex flex-row justify-content-center align-items-center">AÑADIR POR {{ producto.Precio }}€ <img src="../../assets/carrito-de-compras.png" alt="" class="ms-2"></button>
+            <button class="d-flex flex-row justify-content-center align-items-center" @click="AnyadirCarrito()">AÑADIR POR {{ producto.Precio }}€ <img src="../../assets/carrito-de-compras.png" alt="" class="ms-2"></button>
         </div>
     </div>
 </template>
@@ -19,7 +19,6 @@
 <script>
 import axios from 'axios';
 import HeaderComponent from "../../components/HeaderComponent.vue";
-
 export default {
     components: {
         HeaderComponent
@@ -40,12 +39,21 @@ export default {
             } catch (error) {
                 console.error('Error al obtener el producto por ID:', error);
             }
+        },
+        async AnyadirCarrito(){
+            const producto = {
+                Precio: this.producto.Precio,
+                ImagenProducto: this.producto.ImagenProducto,
+                Nombre: this.producto.Nombre,
+                Id:this.$route.params.id,
+                Cantidad:1
+            };
+            this.$store.commit("agregarAlCarrito",producto)
         }
     },
+    
     watch: {
         '$route'(to) {
-            // Cada vez que la ruta cambie
-            // Vuelve a cargar el producto
             this.cargaproducto(to.params.id);
         }
     },

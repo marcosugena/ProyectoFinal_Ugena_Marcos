@@ -11,7 +11,7 @@
           v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput" >
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
-            <ul id="listsearchdesktop"></ul>
+            <ul id="listsearchdesktop" ></ul>
           </div>
         </div>
       </div>
@@ -31,8 +31,8 @@
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
           <p class="disp mt-3">Carrito</p>
           <div class="dropdown-menu2">
-            <ul>
-              <li><a href="#">Ver Carrito</a></li>
+            <ul id="carritopr">
+              <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
             </ul>
           </div>
         </div>
@@ -85,7 +85,12 @@
 </template>
 <script>
 import axios from 'axios';
+import LiCarComponent from "../components/LiCarComponent.vue";
+
 export default {
+  components: {
+    LiCarComponent
+  },
   data() {
     return {
       isMenuOpen: false,
@@ -96,20 +101,25 @@ export default {
       searchtext: {
         texto: ""
       },
-      searchcontent: []
+      searchcontent: [],
+      carrito:[]
     };
   },
   methods: {
+    async actualizacarrito() {
+     this.carrito=this.$store.getters.carrito;  
+    },
     async muestraproducto(ID) { 
       this.$router.push({ path: `/producto/${ID}` });
-      console.log(this.$router.currentRoute)
+      if(this.isSearchOpen){
+        this.isSearchOpen = !this.isSearchOpen
+      }
     },
     ocultainput() {
-    /*
     setTimeout(() => {
       document.getElementById("dropdown-menusearch").style.display = "none"
-    }, 1000);
-    */
+    }, 200);
+    
     },
     revelainput() {
       document.getElementById("dropdown-menusearch").style.display = "block"
@@ -135,7 +145,7 @@ export default {
           li.addEventListener("click", () => {
             this.muestraproducto(this.searchcontent[i].ProductId);
           });
-          console.log(this.searchcontent[i].ProductId)
+       
           li.addEventListener("mouseover", function () {
             li.style.backgroundColor = "white";
             li.style.color = "black";
@@ -170,7 +180,10 @@ export default {
             }
           }
           let li = document.createElement("li")
-          li.textContent = this.searchcontent[i];
+          li.textContent = this.searchcontent[i].Nombre;
+          li.addEventListener("click", () => {
+            this.muestraproducto(this.searchcontent[i].ProductId);
+          });
           li.style.listStyle = "none"
           li.addEventListener("mouseover", function () {
             li.style.backgroundColor = "white";
@@ -199,9 +212,6 @@ export default {
         dropdownMenu.style.display = 'none';
       }
     },
-    Carrito() {
-
-    },
     Search() {
       let list = document.getElementById("listsearchmobile")
       list.style.display = "none"
@@ -222,8 +232,10 @@ export default {
     landing() {
       this.$router.push('/');
     }
+   
   },
   mounted() {
+   this.actualizacarrito();
     //this.$store.commit('setUsuarioLogueado', true);
     if (this.$store.getters.estadoUsuario == "No Logueado") {
       let hd = Array.from(document.getElementsByClassName("header-right"))[0];
@@ -236,7 +248,16 @@ export default {
       hd2.classList.add('d-none');
       hd.classList.remove('d-none')
     }
+    
   },
+  watch: {
+  '$store.getters.carrito': {
+    handler() {
+      this.actualizacarrito();
+    },
+    deep: true
+  }
+},
 };
 </script>
 <style lang="scss" scoped>
@@ -269,7 +290,7 @@ export default {
   background-color: $black;
   color: $white ;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  right: -1%;
+
 
   &:hover {
     display: block;
@@ -298,11 +319,14 @@ export default {
 
 .dropdown-menu {
   @include dropdown-menu;
-
 }
 
 .dropdown-menu2 {
   @include dropdown-menu;
+  left: 70vw;
+  width: 570px;
+  padding: 20px;
+  
 }
 
 .dropdown-menusearch {
@@ -488,7 +512,12 @@ export default {
     }
   }
 }
-
+@media only screen and (min-width: 704px) and (max-width: 1500px) {
+  .dropdown-menu2 {
+    left: 50vw;
+    top: 5vw;
+  }
+}
 //HEADER STYLE DESKTOP
 @media only screen and (min-width: 850px) {
   @mixin dropdown-menu {
