@@ -39,7 +39,7 @@
       </div>
       <div class="header-right-nologged d-flex">
         <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
-        <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage">Register</button>
+        <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
       </div>
     </header>
     <nav class="barnav w-100">
@@ -502,14 +502,19 @@ export default {
     border: 1px solid $bluelight;
     color: $bluelight;
     background-color: $black;
-    border-radius: 16px;
+    border-radius: 0px;
     padding: 10px;
     padding-left: 10px;
     padding-right: 12px;
+    margin-right:5px;
 
     &:hover {
       color: $white;
     }
+  }
+  #regbutton{
+    background-color: $bluelight;
+    color: $white;
   }
 }
 @media only screen and (min-width: 704px) and (max-width: 1500px) {
@@ -604,13 +609,14 @@ export default {
     display: block;
     font-size: 22px;
     background-color: $white;
+    background: linear-gradient(to right, $bluelight, $blue 90%);
     width: 100%;
     position: fixed;
     top: 12vh;
     height: 6vh;
     z-index: 1;
       a {
-        color: $blue;
+        color: $white;
         text-decoration: none;
 
         &:hover {

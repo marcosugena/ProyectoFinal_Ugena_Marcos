@@ -2,51 +2,7 @@
     <HeaderComponent></HeaderComponent>
     <div class="landing">
         <SliderComponent></SliderComponent>
-        <div class="Patrocinadores">
-            <h1 class="pt-3">Proveedores Oficiales de PowerLab</h1>
-            <div class="card-container d-lg-flex justify-content-center align-items-center ms-5 ms-lg-0">
-                <div class="card">
-                    <div class="card-face card-front"><img src="../../assets/amix.jpg" alt=""></div>
-                    <div class="card-face card-back">
-                        <p>Amix Para deportistas que quieran mejorar su rendimiento deportivo y cuidar su salud.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-face card-front"><img src="../../assets/big.jpg" alt=""></div>
-                    <div class="card-face card-back">
-                        <p>Big Amplia variedad de productos para moldear tu cuerpo.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-face card-front"><img src="../../assets/usa.jpg" alt=""></div>
-                    <div class="card-face card-back">
-                        <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo y alcanzar tus
-                            metas de bienestar físico</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-face card-front"><img src="../../assets/LifePro.jpg" alt=""></div>
-                    <div class="card-face card-back">
-                        <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo y alcanzar tus
-                            metas de bienestar físico</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-face card-front"><img src="../../assets/hsn.jpg" alt=""></div>
-                    <div class="card-face card-back">
-                        <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo y lograr tus objetivos
-                            de bienestar físico.</p>
-                    </div>
-                </div>
-                <div class="card d-lg-none">
-                    <div class="card-face card-front"><img src="../../assets/biocop.jpg" alt=""></div>
-                    <div class="card-face card-back">
-                        <p>Con Biocop, descubre productos biológicos que nutren tu cuerpo y contribuyen a un bienestar
-                            equilibrado de manera sostenible</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <CardsComponent></CardsComponent>
         <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
         <div class="Recommendforyou">
             <h2 class="pt-4">RECOMENDADO PARA TI</h2>
@@ -64,11 +20,9 @@
                 <source src="../../assets/videocortado.mp4" type="video/mp4">
             </video>
             <div class="videotext w-75">
-                <h2>
-                    Transforma tu esfuerzo en victoria. En PowerLab, te ofrecemos el impulso que necesitas para alcanzar
-                    tus metas
-                    fitness. Descubre el camino hacia un rendimiento superior y una vida más fuerte.
-                </h2>
+                <h6>OUR PHILOSOPHY</h6>
+                <h2>FROM THE GROUND UP</h2>
+                <h4>POWERLAB</h4>
             </div>
         </div>
 
@@ -117,6 +71,7 @@ import OfferComponent from "../../components/OfferComponent.vue";
 import ProductComponent from "../../components/ProductComponent.vue";
 import NewsLetterComponent from "../../components/NewsLetterComponent.vue";
 import PaymentSend from "../../components/PaymentSend.vue";
+import CardsComponent from '../../components/CardsComponent.vue';
 
 export default {
     components: {
@@ -126,7 +81,8 @@ export default {
         ProductComponent,
         OfferComponent,
         NewsLetterComponent,
-        PaymentSend
+        PaymentSend,
+        CardsComponent
     },
     data() {
         return {
@@ -166,7 +122,7 @@ export default {
         height: 58vh;
         object-fit: cover;
         cursor: none;
-        filter: brightness(40%) contrast(90%) saturate(80%);
+        filter: brightness(20%) contrast(90%) saturate(80%);
     }
 
     .videotext {
@@ -177,6 +133,18 @@ export default {
         text-align: center;
         color: white;
         font-family: "Roboto", "Open Sans", sans-serif;
+        h6{
+            font-weight: 400;
+        }
+        h2{
+            font-size: 74px;
+            font-family: Helvetica,Helvetica Neue,Arial,Lucida Grande,sans-serif;
+            font-weight: 700;
+        }
+        h4{
+            font-weight: 700;
+        }
+        
     }
 }
 
@@ -199,83 +167,18 @@ export default {
     }
 }
 
-.Patrocinadores {
-    background-color: $grey;
-    height: 73vh;
-    width: 100%;
 
-    h1 {
-        text-align: center;
-        color: $black;
-    }
-}
 
 .landing {
     margin-top: 12vh;
     padding: 0;
 }
 
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    justify-content: center;
-    margin: 20px;
 
-}
-
-.card {
-    width: 15vh;
-    height: 15vh;
-    transform-style: preserve-3d;
-    transition: transform 0.8s;
-    cursor: pointer;
-    margin-right: 3vh;
-
-    p {
-        font-size: 9.2px;
-        margin: 10px;
-        text-align: center;
-    }
-
-    img {
-        width: 15vh;
-        height: 15vh;
-        border-radius: 8px;
-    }
-}
-
-.card:hover {
-    transform: rotateY(180deg);
-}
-
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: $white;
-    border-radius: 8px;
-}
-
-.card-front {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
-    background-color: $white;
-}
-
-.card-back {
-    background-color: $black;
-    transform: rotateY(180deg);
-}
 
 .Recommendforyou {
     height: 115vh;
-    background-color: $black;
+    background: linear-gradient(to bottom right,$blue  30%, $bluelight );
     color: $white;
 
     .ProductContainer {
@@ -338,37 +241,4 @@ export default {
     }
 }
 
-@media only screen and (min-width: 1600px) {
-    .card {
-        width: 20vh;
-        height: 20vh;
-
-        p {
-            font-size: 16px;
-        }
-
-        img {
-            width: 22vh;
-            height: 20vh;
-        }
-    }
-
-    .card-container {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 5vh;
-        justify-content: center;
-        margin-top: 50px;
-    }
-
-    .Patrocinadores {
-        height: 50vh;
-    }
-}
-
-@media only screen and (min-width: 704px) and (max-width: 1500px) {
-    .Patrocinadores {
-        height: 55vh;
-    }
-}
 </style>

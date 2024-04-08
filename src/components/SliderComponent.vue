@@ -10,7 +10,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src="../assets/slide1.jpg" class="d-block w-100" alt="..." />
+          <img src="../assets/slide4.jpg" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-md-block">
             <h4 class="mb-1">Descubre el sabor extraordinario de la vida con nuestra selección premium de alimentos</h4>
             <p>Sabor, excelencia, experiencia.</p>
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="10000">
-          <img src="../assets/slide4.jpg" class="d-block w-100" alt="..." />
+          <img src="../assets/slide1.jpg" class="d-block w-100" alt="..." />
           <div class="carousel-caption d-md-block">
             <h4>BCAAs potencia tu rendimiento, acelera la recuperación.</h4>
             <p>Potencia tu rendimiento y acelera la recuperación</p>
