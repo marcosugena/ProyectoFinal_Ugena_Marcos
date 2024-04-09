@@ -71,12 +71,12 @@ export default {
     margin: 20px;
 }
 .card {
-    width:20vh;
-    height:18vh;
+    width:15vh;
+    height:15vh;
     transform-style: preserve-3d;
     transition: transform 0.8s;
     cursor: pointer;
-
+    margin-left: 9vw;
 
     p {
         font-size: 12px;
@@ -85,8 +85,8 @@ export default {
     }
 
     img {
-        width:20vh;
-        height:18vh;
+        width:15vh;
+        height:15vh;
         border-radius: 8px;
     }
 }
@@ -125,7 +125,15 @@ export default {
         height: 30vh;
         
     }
-
+    .card{
+        margin-left: 0;
+        width:20vh;
+        height:18vh;
+        img{
+            width:20vh;
+            height:18vh;
+        }
+    }
 }
 
 </style>

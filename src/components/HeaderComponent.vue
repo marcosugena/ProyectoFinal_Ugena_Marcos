@@ -27,19 +27,28 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito " @click="Carrito">
+        <div class="d-flex align-items-center carrito mx-4" @click="Carrito">
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
-          <p class="disp mt-3">Carrito</p>
+          <div class="dropdown-menu2 " >
+            <ul id="carritopr">
+              <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      <div class="header-right-nologged d-flex">
+        <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
+        <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
+
+        <div class="d-flex align-items-center carrito mx-4" @click="Carrito">
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
           <div class="dropdown-menu2">
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
             </ul>
           </div>
         </div>
-      </div>
-      <div class="header-right-nologged d-flex">
-        <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
-        <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
       </div>
     </header>
     <nav class="barnav w-100">
@@ -519,8 +528,8 @@ export default {
 }
 @media only screen and (min-width: 704px) and (max-width: 1500px) {
   .dropdown-menu2 {
-    left: 50vw;
-    top: 5vw;
+    left: 58vw;
+    top: 6vw;
   }
 }
 //HEADER STYLE DESKTOP
@@ -562,6 +571,7 @@ export default {
 
   .dropdown-menu2 {
     @include dropdown-menu;
+    
   }
 
   .useroptions:hover {
@@ -587,8 +597,8 @@ export default {
     }
 
     #carrito {
-      width: 45px;
-      height: 4.3vh;
+      width: 5vh;
+      height: 5vh;
     }
   }
 
@@ -618,7 +628,7 @@ export default {
       a {
         color: $white;
         text-decoration: none;
-
+        font-weight: 300;
         &:hover {
           color: $bluelight;
         }

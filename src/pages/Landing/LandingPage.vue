@@ -2,7 +2,6 @@
     <HeaderComponent></HeaderComponent>
     <div class="landing">
         <SliderComponent></SliderComponent>
-        <CardsComponent></CardsComponent>
         <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
         <div class="Recommendforyou">
             <h2 class="pt-4">RECOMENDADO PARA TI</h2>
@@ -11,7 +10,6 @@
                     <ProductComponent :price="producto.Precio" :imageURL="producto.ImagenProducto"
                         :nameproduct="producto.Nombre" :ProductId="producto.ProductId"></ProductComponent>
                 </div>
-
             </div>
         </div>
         <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto(2)"></OfferComponent>
@@ -56,8 +54,9 @@
                 </p>
             </div>
         </div>
-       
+        
         <PaymentSend></PaymentSend>
+        <CardsComponent></CardsComponent>   
     </div>
     <NewsLetterComponent></NewsLetterComponent>
     <FooterComponent></FooterComponent>
@@ -189,7 +188,7 @@ export default {
 
     h2 {
         text-align: center;
-
+        font-weight:700;
     }
 }
 

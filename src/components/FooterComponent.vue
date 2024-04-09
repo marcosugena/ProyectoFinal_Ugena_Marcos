@@ -1,6 +1,6 @@
 <template>
   <footer class="footerclass">
-    <div class="footer-container d-lg-flex justify-content-between">
+    <div class="footer-container d-lg-flex justify-content-around">
       <div class="d-flex flex-column p-3 text-center ">
         <span>TIENDA ONLINE</span>
         <a href="#">Mas popular</a>
