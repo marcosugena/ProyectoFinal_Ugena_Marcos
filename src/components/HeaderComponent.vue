@@ -27,7 +27,7 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito mx-4" @click="Carrito">
+        <div class="d-flex align-items-center carrito mx-lg-4" @click="Carrito">
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
           <div class="dropdown-menu2 " >
             <ul id="carritopr">
@@ -41,8 +41,8 @@
         <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
         <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
 
-        <div class="d-flex align-items-center carrito mx-4" @click="Carrito">
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
+        <div class="d-flex align-items-center carrito" @click="Carrito">
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4">
           <div class="dropdown-menu2">
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
