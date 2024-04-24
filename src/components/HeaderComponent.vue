@@ -27,8 +27,8 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito mx-lg-4" @click="Carrito">
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1">
+        <div class="d-flex align-items-center carrito mx-lg-4" @click="Carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1" >
           <div class="dropdown-menu2 " >
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
@@ -41,9 +41,9 @@
         <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
         <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
 
-        <div class="d-flex align-items-center carrito" @click="Carrito">
+        <div class="d-flex align-items-center carrito" @click="Carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4">
-          <div class="dropdown-menu2">
+          <div class="dropdown-menu2" id="dropdownmenu2help">
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
             </ul>
@@ -115,6 +115,18 @@ export default {
     };
   },
   methods: {
+    ocultarcarrito(){
+      const div=document.getElementById("dropdownmenu2help");
+      div.style.display="none";
+    },
+    mostrarcarrito(){
+      const div=document.getElementById("dropdownmenu2help");
+      if(this.$store.getters.carrito.length != 0){
+        div.style.display="block";
+      }else{
+        div.style.display="none";
+      }
+    },
     async actualizacarrito() {
      this.carrito=this.$store.getters.carrito;  
     },
@@ -164,7 +176,8 @@ export default {
             li.style.color = "white";
           })
 
-          li.style.padding = "10px"
+          li.style.padding = "10px";
+          li.style.borderRadius="10px";
           list.appendChild(li)
         }
       } catch (error) {
@@ -346,7 +359,7 @@ export default {
   margin-left: 45px;
   margin-top: 6px;
   display: none;
-
+  border-radius: 8px;
   ul {
     list-style: none;
     margin: 0;
@@ -511,7 +524,7 @@ export default {
     border: 1px solid $bluelight;
     color: $bluelight;
     background-color: $black;
-    border-radius: 0px;
+    border-radius: 3px;
     padding: 10px;
     padding-left: 10px;
     padding-right: 12px;
@@ -530,6 +543,7 @@ export default {
   .dropdown-menu2 {
     left: 58vw;
     top: 6vw;
+    
   }
 }
 //HEADER STYLE DESKTOP
@@ -579,13 +593,13 @@ export default {
       display: block;
     }
   }
-
+  /*
   .carrito:hover {
     .dropdown-menu2 {
-      display: block;
+      display: none;
     }
   }
-
+*/
   .headercomponent {
     margin-bottom: 17vh;
   }

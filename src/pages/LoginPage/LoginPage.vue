@@ -103,7 +103,7 @@ export default {
   input {
     width: 85%;
     margin-left: 20px;
-    border-radius:4px;
+    border-radius:8px;
     padding: 5px;
   }
 
@@ -142,7 +142,7 @@ button {
   background-color: $black;
   border: 1px solid $bluelight;
   color: $bluelight;
-  border-radius: 3px;
+  border-radius: 6px;
   &:hover {
     background-color: $bluelight;
     color: $white;

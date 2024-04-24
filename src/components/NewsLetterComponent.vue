@@ -1,7 +1,7 @@
 <template>
-  <div class="NewsLetter d-flex align-items-center flex-column ">
-    <form @submit.prevent="formchecker">
-      <div class="newlettertext mt-5">
+  <div class="NewsLetter d-flex align-items-center flex-column pb-5">
+    <form @submit.prevent="formchecker" >
+      <div class="newlettertext mt-5 pb-3">
         <h2 class="text-center mt-3 mt-lg-5">REGÍSTRATE EN NUESTRA NEWSLETTER</h2>
         <p class="text-center">Mantente al día sobre los mejores productos y las mejores ofertas del mercado.</p>
       </div>
@@ -82,7 +82,7 @@ export default {
     input[type="text"] {
         width: 35vh;
         padding: 12px;
-        border-radius: 0px;
+        border-radius: 6px;
         border: none;
 
         &:focus {
@@ -95,9 +95,8 @@ export default {
         background-color: #1babf9;
         border: none;
         color: $white;
-        padding: 14px;
-        width: 30%;
-        border-radius: 0px;
+        padding: 16px;
+        border-radius: 4px;
     }
 }
 
@@ -105,8 +104,8 @@ export default {
     .newform {
     input[type="text"] {
         width: 50vh;
-        padding: 12px;
-        border-radius: 0px;
+        padding: 14px;
+        border-radius: 6px;
         border: none;
 
         &:focus {
@@ -117,11 +116,17 @@ export default {
 
     button {
         background-color: #1babf9;
+        
         border: none;
         color: $white;
         padding: 14px;
         width: 30%;
-        border-radius: 0px;
+        border-radius: 4px;
+        &:hover{
+          background-color: $white;
+          color: $bluelight;
+          border: 2px solid $bluelight;
+        }
     }
 }
 }
