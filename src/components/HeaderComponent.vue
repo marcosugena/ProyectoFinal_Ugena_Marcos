@@ -118,6 +118,7 @@ export default {
     ocultarcarrito(){
       const div=document.getElementById("dropdownmenu2help");
       div.style.display="none";
+      
     },
     mostrarcarrito(){
       const div=document.getElementById("dropdownmenu2help");
