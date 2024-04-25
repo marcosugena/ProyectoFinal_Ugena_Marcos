@@ -115,7 +115,7 @@ export default {
   input {
     width: 85%;
     margin-left: 20px;
-    border-radius: 16px;
+    border-radius:4px;
     padding: 5px;
   }
 
@@ -139,13 +139,12 @@ export default {
     width: 15vh;
     height: 15vh;
   }
-
   color: $white;
   z-index: 1000;
   width: 38vh;
   height: 58vh;
   border-radius: 32px;
-  background-color: $black;
+  background: linear-gradient(to bottom right , $grey, $black 40%, $black 80%,$grey 100%,);
 }
 
 button {
@@ -156,13 +155,11 @@ button {
   background-color: $black;
   border: 1px solid $bluelight;
   color: $bluelight;
-  border-radius: 16px;
-
+  border-radius: 3px;
   &:hover {
     background-color: $bluelight;
     color: $white;
   }
-
 }
 
 @media only screen and (min-width: 800px) {

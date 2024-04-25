@@ -14,7 +14,7 @@ import DetailComponent from '../src/components/DetailComponent.vue';
 import RegisterPage from '../src/pages/Register/RegisterPage.vue';
 import LoginPage from '../src/pages/LoginPage/LoginPage.vue';
 import NutricionPage from '../src/pages/NutricionPage/NutricionPage.vue'
-
+import ProductView from '../src/pages/ProductView/ProductView.vue'
 // Definir rutas
 const routes = [
   {
@@ -36,7 +36,13 @@ const routes = [
   {
     path:'/nutricion',
     component:NutricionPage
+  },
+  { 
+    path: '/producto/:id',
+    name: 'ProductView',
+    component: ProductView 
   }
+  
 ];
 
 // Crear objeto de Vue Router
