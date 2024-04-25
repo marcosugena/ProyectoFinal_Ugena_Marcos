@@ -5,11 +5,10 @@
             <li class="text-center w-25">{{name}}</li>
             <li>X{{Cantidad}}</li>
             <li>{{price}}€</li>
-            <li><img src="/papelera.png" alt="" id="papelera"></li>
+            <li><img src="/papelera.png" alt="" id="papelera" @click="deleteproduct(name)"></li>
         </div>
     </div>
 </template>
-
 <script>
     export default {
         props:{
@@ -19,6 +18,19 @@
             Cantidad:{
             default:1,    
             Number
+            }
+        },
+        methods:{
+            deleteproduct(name){
+                const carrito=this.$store.getters.carrito;
+                for(let i=0;i<carrito.length;i++){
+                    if(carrito[i].Nombre == name){
+                        carrito.splice(i,1);
+                        break;
+                    }
+                }
+                this.$store.commit('setcarrito', carrito);
+                console.log(this.$store.getters.carrito);
             }
         }
     }
@@ -31,7 +43,7 @@
         width: 80px;
     }
     #papelera{
-        width: 32px;
+        width: 26px;
         margin-left: 20px;
     }
 }

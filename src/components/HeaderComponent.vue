@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="header-right mx-lg-3 d-flex mt-1 ">
-        <div class="d-flex align-items-center mx-lg-5 useroptions" @click="Options" id="optionsmobile">
+        <div class="d-flex align-items-center mx-lg-5 useroptions " @click="Options" id="optionsmobile">
           <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0">
           <p class="disp mt-3" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
           <div class="dropdown-menu">
@@ -27,9 +27,10 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito mx-lg-4" @click="Carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1" >
-          <div class="dropdown-menu2 " >
+        <div class="d-flex align-items-center carrito mx-2" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
+          <p class="mb-4 numbercar">{{this.$store.getters.carrito.length}}</p>
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" >
+          <div class="dropdown-menu2 position-fixed top-0 end-0 p-3"  style="z-index: 1030;" id="dropdownmenu2help2" >
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
             </ul>
@@ -41,11 +42,13 @@
         <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
         <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
 
-        <div class="d-flex align-items-center carrito" @click="Carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
+        <div class="d-flex align-items-center carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
+          <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{this.$store.getters.carrito.length}}</p>
           <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4">
-          <div class="dropdown-menu2" id="dropdownmenu2help">
+          <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" id="dropdownmenu2help" style="z-index: 1030;" >
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
+              <p class=" w-100 text-end ">Precio Total: {{ price }}€</p>
             </ul>
           </div>
         </div>
@@ -111,22 +114,54 @@ export default {
         texto: ""
       },
       searchcontent: [],
-      carrito:[]
+      carrito:[],
+      price:0
     };
   },
   methods: {
+    actualizaprice(){
+      const carrito=this.$store.getters.carrito;
+      let precio=0;
+      carrito.forEach(pr => {
+        precio+=pr.Precio*pr.Cantidad;
+        this.price=precio.toFixed(2);
+      });
+    },
+    shouldHideElement() {
+      const numbercar=document.getElementById("numbercar")
+      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992){
+        numbercar.style.display="none"
+      }else{
+        numbercar.style.display="block"
+      }
+    },
     ocultarcarrito(){
       const div=document.getElementById("dropdownmenu2help");
-      div.style.display="none";
+      const div2=document.getElementById("dropdownmenu2help2");
+      if (this.$store.getters.estadoUsuario == "No Logueado"){
+        div.style.display="none";
+      }else{
+        div2.style.display="none";
+      }
       
     },
     mostrarcarrito(){
       const div=document.getElementById("dropdownmenu2help");
-      if(this.$store.getters.carrito.length != 0){
+      const div2=document.getElementById("dropdownmenu2help2");
+      if (this.$store.getters.estadoUsuario == "No Logueado") {
+        if(this.$store.getters.carrito.length != 0){
         div.style.display="block";
-      }else{
+        }else{
         div.style.display="none";
       }
+      }else{
+        if(this.$store.getters.carrito.length != 0){
+        div2.style.display="block";
+        }else{
+        div2.style.display="none";
+      }
+      }
+      
     },
     async actualizacarrito() {
      this.carrito=this.$store.getters.carrito;  
@@ -258,7 +293,10 @@ export default {
    
   },
   mounted() {
-   this.actualizacarrito();
+    window.addEventListener('resize', () => this.shouldHideElement());
+    this.shouldHideElement()
+    this.actualizacarrito();
+    this.actualizaprice();
     //this.$store.commit('setUsuarioLogueado', true);
     if (this.$store.getters.estadoUsuario == "No Logueado") {
       let hd = Array.from(document.getElementsByClassName("header-right"))[0];
@@ -271,12 +309,14 @@ export default {
       hd2.classList.add('d-none');
       hd.classList.remove('d-none')
     }
+   
     
   },
   watch: {
   '$store.getters.carrito': {
     handler() {
       this.actualizacarrito();
+      this.actualizaprice();
     },
     deep: true
   }
@@ -286,7 +326,17 @@ export default {
 <style lang="scss" scoped>
 @import '../Style/variables.scss';
 
-//HEADER STYLE MOBILE 
+//HEADER STYLE MOBILE
+.numbercar{
+    background-color: red;
+    position: fixed;
+    right: 1vw;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 360px;
+    margin-left: 35 px;
+  }
 .dropdown-menumobile {
   position: fixed;
   top: 22vh;
@@ -345,10 +395,37 @@ export default {
 }
 
 .dropdown-menu2 {
-  @include dropdown-menu;
-  left: 70vw;
+  display: none;
+  margin-top: 4.35vw;
+  z-index: 10;
+  background-color: $black;
+  color: $white ;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   width: 570px;
   padding: 20px;
+  &:hover {
+    display: block;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 10px;
+      font-size: 16px;
+
+      a {
+        text-decoration: none;
+        color: $white;
+
+        &:hover {
+          color: $bluelight;
+        }
+      }
+    }
+  }
+  
   
 }
 
@@ -356,7 +433,7 @@ export default {
   background-color: $black;
   padding: 5px;
   position: absolute;
-  width: 65vh;
+  width: 50vh;
   margin-left: 45px;
   margin-top: 6px;
   display: none;
@@ -540,15 +617,19 @@ export default {
     color: $white;
   }
 }
-@media only screen and (min-width: 704px) and (max-width: 1500px) {
-  .dropdown-menu2 {
-    left: 58vw;
-    top: 6vw;
-    
-  }
-}
+
 //HEADER STYLE DESKTOP
 @media only screen and (min-width: 850px) {
+  .numbercar{
+    background-color: red;
+    position: fixed;
+    right: 1vw;
+    padding: 3px;
+    padding-left: 6px;
+    padding-right: 7px;
+    border-radius: 360px;
+    
+  }
   @mixin dropdown-menu {
     display: none;
     position: absolute;
@@ -584,23 +665,14 @@ export default {
     @include dropdown-menu;
   }
 
-  .dropdown-menu2 {
-    @include dropdown-menu;
-    
-  }
+ 
 
   .useroptions:hover {
     .dropdown-menu {
       display: block;
     }
   }
-  /*
-  .carrito:hover {
-    .dropdown-menu2 {
-      display: none;
-    }
-  }
-*/
+
   .headercomponent {
     margin-bottom: 17vh;
   }
@@ -608,7 +680,7 @@ export default {
   .headerpower {
     #user {
       width: 40px;
-      height: 4.3vh;
+      height: 4.8vh;
     }
 
     #carrito {
@@ -657,18 +729,17 @@ export default {
 
     input {
       &:hover {
-        border: 2px solid $bluelight;
+        border: 3px solid $bluelight;
       }
 
       &:focus {
-        border: 2px solid $bluelight;
+        border: 3px solid $bluelight;
 
       }
-
-      border-radius: 16px;
-      border: none;
+      border: 2px solid $bluelight;
+      border-radius: 4px;
       outline: none;
-      width: 65vh;
+      width: 50vh;
     }
 
     .header-right {

@@ -17,6 +17,9 @@ const store = createStore({
     setId(state, valor){
       state.IdUsuario = valor;
     },
+    setcarrito(state,carrito){
+      state.Carrito = carrito;
+    },
     agregarAlCarrito(state, producto) {
       const index = state.Carrito.findIndex(item => item.Id === producto.Id);
   
@@ -50,7 +53,11 @@ const store = createStore({
     },
     agregarAlCarrito({ commit }, producto) {
       commit('agregarAlCarrito', producto);
-    }
+    },
+    ponercarrito({ commit }, carrito) {
+      // Lógica de actualización de carrito
+      commit('setcarrito', carrito);
+    },
   },
   getters: {
     estadoUsuario: (state) => (state.usuarioLogueado ? 'Logueado' : 'No Logueado'),

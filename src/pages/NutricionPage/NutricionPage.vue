@@ -40,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../Style/variables.scss";
 .fondonutri{
-    background-color: $black;
+    background: linear-gradient(to bottom right,$black 2%,$grey 100%,);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0px;

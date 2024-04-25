@@ -177,7 +177,7 @@ export default {
 
 .Recommendforyou {
     height: 115vh;
-    background: linear-gradient(to bottom right , $grey, $black 40%, $black 70%,$grey 100%,);
+    background: linear-gradient(to bottom right , $grey, $black 40%, $black 50%,$grey 100%,);
     color: $white;
 
     .ProductContainer {
