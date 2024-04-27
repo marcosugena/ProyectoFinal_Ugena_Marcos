@@ -4,6 +4,7 @@
             <img :src="imageurl" alt="">
             <li class="text-center w-25">{{name}}</li>
             <li>X{{Cantidad}}</li>
+            <li class="d-flex flex-column"><img src="../assets/mas.png" alt="" class="mb-1"> <img src="../assets/menos.png" alt="" class="mt-1"></li>
             <li>{{price}}€</li>
             <li><img src="/papelera.png" alt="" id="papelera" @click="deleteproduct(name)"></li>
         </div>
@@ -45,6 +46,11 @@
     #papelera{
         width: 26px;
         margin-left: 20px;
+    }
+    li{
+        img{
+            width: 20px;
+        }
     }
 }
    

@@ -1,11 +1,12 @@
 import { createStore } from 'vuex';
-
+import CryptoJS from 'crypto-js';
 const store = createStore({
   state: {
     usuarioLogueado: false,
     NombreUsuario:"",
     IdUsuario:-1,
-    Carrito:[]
+    Carrito:[],
+    key:"ZvD;uHg87<fY9#YP-0C~"
   },
   mutations: {
     setUsuarioLogueado(state, valor) {
@@ -58,12 +59,21 @@ const store = createStore({
       // Lógica de actualización de carrito
       commit('setcarrito', carrito);
     },
+    encrypt(context, valor) {
+      // Lógica de encriptación
+      return CryptoJS.AES.encrypt(valor, context.state.key).toString();
+    },
+    decrypt(context, valor) {
+      // Lógica de desencriptación
+      return CryptoJS.AES.decrypt(valor, context.state.key).toString(CryptoJS.enc.Utf8);
+    }
   },
   getters: {
     estadoUsuario: (state) => (state.usuarioLogueado ? 'Logueado' : 'No Logueado'),
     nombreDeUsuario: (state) => state.NombreUsuario,
     Idusu: (state) => state.IdUsuario,
-    carrito: state => state.Carrito
+    carrito: state => state.Carrito,
+    key: state => state.key
   },
 });
 

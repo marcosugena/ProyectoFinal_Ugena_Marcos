@@ -15,6 +15,10 @@ import RegisterPage from '../src/pages/Register/RegisterPage.vue';
 import LoginPage from '../src/pages/LoginPage/LoginPage.vue';
 import NutricionPage from '../src/pages/NutricionPage/NutricionPage.vue'
 import ProductView from '../src/pages/ProductView/ProductView.vue'
+import ShoppingCartView from '../src/pages/ShoppingCartView/ShoppingCartView.vue'
+
+
+
 // Definir rutas
 const routes = [
   {
@@ -41,8 +45,12 @@ const routes = [
     path: '/producto/:id',
     name: 'ProductView',
     component: ProductView 
+  },{
+    path:'/ShoppingCartView/:precio',
+    name: 'ShoppingCartView',
+    component: ShoppingCartView
   }
-  
+
 ];
 
 // Crear objeto de Vue Router

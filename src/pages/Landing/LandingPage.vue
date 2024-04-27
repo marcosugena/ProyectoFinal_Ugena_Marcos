@@ -169,7 +169,7 @@ export default {
 
 
 .landing {
-    margin-top: 12vh;
+    margin-top: 18vh;
     padding: 0;
 }
 

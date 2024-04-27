@@ -8,10 +8,10 @@
       <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column">
         <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search"
-          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput" >
+          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
-            <ul id="listsearchdesktop" ></ul>
+            <ul id="listsearchdesktop"></ul>
           </div>
         </div>
       </div>
@@ -27,27 +27,33 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito mx-2" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
-          <p class="mb-4 numbercar">{{this.$store.getters.carrito.length}}</p>
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" >
-          <div class="dropdown-menu2 position-fixed top-0 end-0 p-3"  style="z-index: 1030;" id="dropdownmenu2help2" >
+        <div class="d-flex align-items-center carrito mx-2" v-on:mouseover="mostrarcarrito"
+          v-on:mouseout="ocultarcarrito">
+          <p class="mb-4 numbercar">{{ this.$store.getters.carrito.length }}</p>
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" @click="MostrarCarrito()">
+          <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" style="z-index: 1030;" id="dropdownmenu2help2">
             <ul id="carritopr">
-              <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
+              <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio"
+                :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad">
+              </LiCarComponent>
             </ul>
           </div>
         </div>
-        
+
       </div>
       <div class="header-right-nologged d-flex">
         <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
         <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
 
         <div class="d-flex align-items-center carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
-          <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{this.$store.getters.carrito.length}}</p>
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4">
-          <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" id="dropdownmenu2help" style="z-index: 1030;" >
+          <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
+          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4"
+            @click="MostrarCarrito()">
+          <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" id="dropdownmenu2help" style="z-index: 1030;">
             <ul id="carritopr">
-              <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio" :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad"></LiCarComponent>
+              <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio"
+                :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad">
+              </LiCarComponent>
               <p class=" w-100 text-end ">Precio Total: {{ price }}€</p>
             </ul>
           </div>
@@ -56,11 +62,11 @@
     </header>
     <nav class="barnav w-100">
       <div class="d-flex align-items-center flex-row justify-content-around h-100">
-      <div><router-link to="/detail">Proteína</router-link></div>
-       <div><router-link to="/nutricion">Nutrición</router-link></div>
-       <div><router-link to="/detail">Vitaminas</router-link></div>
-       <div><router-link to="/detail">Barritas y Snacks</router-link></div>
-       <div><router-link to="/detail">Alimentación</router-link></div>
+        <div><router-link to="/detail">Proteína</router-link></div>
+        <div><router-link to="/nutricion">Nutrición</router-link></div>
+        <div><router-link to="/detail">Vitaminas</router-link></div>
+        <div><router-link to="/detail">Barritas y Snacks</router-link></div>
+        <div><router-link to="/detail">Alimentación</router-link></div>
       </div>
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
@@ -98,7 +104,6 @@
 <script>
 import axios from 'axios';
 import LiCarComponent from "../components/LiCarComponent.vue";
-
 export default {
   components: {
     LiCarComponent
@@ -114,69 +119,78 @@ export default {
         texto: ""
       },
       searchcontent: [],
-      carrito:[],
-      price:0
+      carrito: [],
+      price: 0
     };
   },
   methods: {
-    actualizaprice(){
-      const carrito=this.$store.getters.carrito;
-      let precio=0;
+    MostrarCarrito() {
+      this.$store.dispatch('encrypt', this.price)
+        .then(hashedPrecio => {
+          this.$router.push({ name: 'ShoppingCartView', params: { precio: hashedPrecio } });
+        })
+        .catch(error => {
+          console.error('Error al encriptar el precio:', error);
+        });
+    },
+    actualizaprice() {
+      const carrito = this.$store.getters.carrito;
+      let precio = 0;
       carrito.forEach(pr => {
-        precio+=pr.Precio*pr.Cantidad;
-        this.price=precio.toFixed(2);
+        precio += pr.Precio * pr.Cantidad;
+        this.price = precio.toFixed(2);
       });
     },
     shouldHideElement() {
-      const numbercar=document.getElementById("numbercar")
-      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992){
-        numbercar.style.display="none"
-      }else{
-        numbercar.style.display="block"
+      const numbercar = document.getElementById("numbercar")
+      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992) {
+        numbercar.style.display = "none"
+      } else {
+        numbercar.style.display = "block"
       }
     },
-    ocultarcarrito(){
-      const div=document.getElementById("dropdownmenu2help");
-      const div2=document.getElementById("dropdownmenu2help2");
-      if (this.$store.getters.estadoUsuario == "No Logueado"){
-        div.style.display="none";
-      }else{
-        div2.style.display="none";
-      }
-      
-    },
-    mostrarcarrito(){
-      const div=document.getElementById("dropdownmenu2help");
-      const div2=document.getElementById("dropdownmenu2help2");
+    ocultarcarrito() {
+      const div = document.getElementById("dropdownmenu2help");
+      const div2 = document.getElementById("dropdownmenu2help2");
       if (this.$store.getters.estadoUsuario == "No Logueado") {
-        if(this.$store.getters.carrito.length != 0){
-        div.style.display="block";
-        }else{
-        div.style.display="none";
+        div.style.display = "none";
+      } else {
+        div2.style.display = "none";
       }
-      }else{
-        if(this.$store.getters.carrito.length != 0){
-        div2.style.display="block";
-        }else{
-        div2.style.display="none";
+
+    },
+    mostrarcarrito() {
+      const div = document.getElementById("dropdownmenu2help");
+      const div2 = document.getElementById("dropdownmenu2help2");
+      if (this.$store.getters.estadoUsuario == "No Logueado") {
+        if (this.$store.getters.carrito.length != 0) {
+          div.style.display = "block";
+        } else {
+          div.style.display = "none";
+        }
+      } else {
+        if (this.$store.getters.carrito.length != 0) {
+          div2.style.display = "block";
+        } else {
+          div2.style.display = "none";
+        }
       }
-      }
-      
+
     },
     async actualizacarrito() {
-     this.carrito=this.$store.getters.carrito;  
+      this.carrito = this.$store.getters.carrito;
     },
-    async muestraproducto(ID) { 
+    async muestraproducto(ID) {
       this.$router.push({ path: `/producto/${ID}` });
-      if(this.isSearchOpen){
+      if (this.isSearchOpen) {
         this.isSearchOpen = !this.isSearchOpen
       }
     },
     ocultainput() {
-    setTimeout(() => {
-      document.getElementById("dropdown-menusearch").style.display = "none"
-    }, 200);
-    
+      setTimeout(() => {
+        document.getElementById("dropdown-menusearch").style.display = "none"
+      }, 200);
+
     },
     revelainput() {
       document.getElementById("dropdown-menusearch").style.display = "block"
@@ -202,7 +216,7 @@ export default {
           li.addEventListener("click", () => {
             this.muestraproducto(this.searchcontent[i].ProductId);
           });
-       
+
           li.addEventListener("mouseover", function () {
             li.style.backgroundColor = "white";
             li.style.color = "black";
@@ -213,7 +227,7 @@ export default {
           })
 
           li.style.padding = "10px";
-          li.style.borderRadius="10px";
+          li.style.borderRadius = "10px";
           list.appendChild(li)
         }
       } catch (error) {
@@ -290,7 +304,7 @@ export default {
     landing() {
       this.$router.push('/');
     }
-   
+
   },
   mounted() {
     window.addEventListener('resize', () => this.shouldHideElement());
@@ -309,34 +323,35 @@ export default {
       hd2.classList.add('d-none');
       hd.classList.remove('d-none')
     }
-   
-    
+
+
   },
   watch: {
-  '$store.getters.carrito': {
-    handler() {
-      this.actualizacarrito();
-      this.actualizaprice();
-    },
-    deep: true
-  }
-},
+    '$store.getters.carrito': {
+      handler() {
+        this.actualizacarrito();
+        this.actualizaprice();
+      },
+      deep: true
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
 @import '../Style/variables.scss';
 
 //HEADER STYLE MOBILE
-.numbercar{
-    background-color: red;
-    position: fixed;
-    right: 1vw;
-    padding: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 360px;
-    margin-left: 35 px;
-  }
+.numbercar {
+  background-color: red;
+  position: fixed;
+  right: 1vw;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 360px;
+  margin-left: 35 px;
+}
+
 .dropdown-menumobile {
   position: fixed;
   top: 22vh;
@@ -403,9 +418,11 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   width: 570px;
   padding: 20px;
+
   &:hover {
     display: block;
   }
+
   ul {
     list-style: none;
     padding: 0;
@@ -425,8 +442,8 @@ export default {
       }
     }
   }
-  
-  
+
+
 }
 
 .dropdown-menusearch {
@@ -438,6 +455,7 @@ export default {
   margin-top: 6px;
   display: none;
   border-radius: 8px;
+
   ul {
     list-style: none;
     margin: 0;
@@ -606,13 +624,14 @@ export default {
     padding: 10px;
     padding-left: 10px;
     padding-right: 12px;
-    margin-right:5px;
+    margin-right: 5px;
 
     &:hover {
       color: $white;
     }
   }
-  #regbutton{
+
+  #regbutton {
     background-color: $bluelight;
     color: $white;
   }
@@ -620,7 +639,7 @@ export default {
 
 //HEADER STYLE DESKTOP
 @media only screen and (min-width: 850px) {
-  .numbercar{
+  .numbercar {
     background-color: red;
     position: fixed;
     right: 1vw;
@@ -628,8 +647,9 @@ export default {
     padding-left: 6px;
     padding-right: 7px;
     border-radius: 360px;
-    
+
   }
+
   @mixin dropdown-menu {
     display: none;
     position: absolute;
@@ -665,7 +685,7 @@ export default {
     @include dropdown-menu;
   }
 
- 
+
 
   .useroptions:hover {
     .dropdown-menu {
@@ -702,6 +722,7 @@ export default {
   .disp {
     display: block;
   }
+
   .barnav {
     display: block;
     font-size: 22px;
@@ -712,16 +733,18 @@ export default {
     top: 12vh;
     height: 6vh;
     z-index: 1;
-      a {
-        color: $white;
-        text-decoration: none;
-        font-weight: 300;
-        &:hover {
-          color: $bluelight;
-        }
-      }
 
-    
+    a {
+      color: $white;
+      text-decoration: none;
+      font-weight: 300;
+
+      &:hover {
+        color: $bluelight;
+      }
+    }
+
+
   }
 
   .searchbardesktop {
@@ -736,6 +759,7 @@ export default {
         border: 3px solid $bluelight;
 
       }
+
       border: 2px solid $bluelight;
       border-radius: 4px;
       outline: none;
