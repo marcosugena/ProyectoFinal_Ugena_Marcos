@@ -27,10 +27,10 @@
       </div>
     </div>
     <div class="social-media d-flex flex-row justify-content-around mt-4">
-      <img src="../assets/instagram.png" alt="" @click="insta" />
-      <img src="../assets/tik-tok.png" alt="" @click="tiktok" />
-      <img src="../assets/twitter.png" alt="" @click="twitter" />
-      <img src="../assets/telegram.png" alt="" @click="telegram" />
+      <img src="@/assets/instagram.png" alt="" @click="insta" />
+      <img src="@/assets/tik-tok.png" alt="" @click="tiktok" />
+      <img src="@/assets/twitter.png" alt="" @click="twitter" />
+      <img src="@/assets/telegram.png" alt="" @click="telegram" />
     </div>
   </footer>
 </template>

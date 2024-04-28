@@ -6,7 +6,7 @@ const store = createStore({
     NombreUsuario:"",
     IdUsuario:-1,
     Carrito:[],
-    key:"ZvD;uHg87<fY9#YP-0C~"
+    key:"'S,2L4eR1d8a0WYN1UVz><?.fcdB4f£9g5m0,kXj;Do}@?i0GY"
   },
   mutations: {
     setUsuarioLogueado(state, valor) {
@@ -22,6 +22,21 @@ const store = createStore({
       state.Carrito = carrito;
     },
     agregarAlCarrito(state, producto) {
+      let encontrado=false;
+      for(let i=0;i<state.Carrito.length;i++){
+        if(producto.Id === state.Carrito[i].Id){
+          state.Carrito[i].Cantidad++;
+          encontrado=true;
+          break;
+        }
+      }
+      if(!encontrado){
+        state.Carrito.push(producto);
+      }
+
+
+
+      /*
       const index = state.Carrito.findIndex(item => item.Id === producto.Id);
   
       if (index !== -1) {
@@ -29,10 +44,14 @@ const store = createStore({
           state.Carrito[index].Cantidad++;
       } else {
           // Si el producto no está en el carrito, agrégalo con cantidad 1
-          producto.Cantidad = 1;
-          state.Carrito.push(producto);
+          const nuevoProducto = { ...producto }; // Crear una copia del producto
+          nuevoProducto.Cantidad = 1;
+          state.Carrito.push(nuevoProducto);
+         
       }
+       */
   }
+  
   
   },
   actions: {

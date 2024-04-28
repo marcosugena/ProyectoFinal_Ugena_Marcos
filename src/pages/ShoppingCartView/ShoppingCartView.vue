@@ -2,7 +2,9 @@
     <HeaderComponent></HeaderComponent>
     <div class="ShoppingCart">
         <ul class="carrocontainer">
-            <LiPaymentComponent></LiPaymentComponent>
+            <div v-for="ca in car" :key="ca.id">
+            <LiPaymentComponent :imgurl="ca.ImagenProducto" :name="ca.Nombre" :cantidad="ca.Cantidad" :precio="ca.Precio"></LiPaymentComponent>
+            </div>
         </ul>
     </div>
     <FooterComponent></FooterComponent>
@@ -15,16 +17,15 @@ import LiPaymentComponent from "../../components/LiPaymentComponent.vue"
 export default {
     data() {
         return {
-            price: 0
+            price: 0,
+            car:[]
         }
     },
     mounted() {
-        console.log(this.$route.params.precio)
-        console.log(this.$store.getters.carrito)
-
-        
+       this.car=this.$store.getters.carrito
         this.$store.dispatch('decrypt', this.$route.params.precio)
             .then(dehashedPrecio => {
+                this.price=dehashedPrecio;
                 console.log(dehashedPrecio)
             })
             .catch(error => {
@@ -52,7 +53,7 @@ export default {
 
 .carrocontainer {
     background: linear-gradient(to bottom right, $grey, $bluelight 40%, $bluelight 40%, $grey 100%, );
-    height: 40vw;
+    height: auto;
     margin-left: 10%;
     margin-right: 10%;
     border-radius: 2px;

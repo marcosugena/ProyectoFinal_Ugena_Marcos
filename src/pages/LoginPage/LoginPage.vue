@@ -3,7 +3,7 @@
     <div class="LoginImage"></div>
     <div class="LoginBox ">
       <div class="d-flex justify-content-center">
-        <img src="../../assets/PowerLab.jpg" alt="" v-on:click="inicio">
+        <img src="@/assets/PowerLab.jpg" alt="" v-on:click="inicio">
       </div>
       <div class="d-flex flex-column loginput">
         <form method="post" id="logform" @submit.prevent="logvalidator">
@@ -115,7 +115,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url('../../assets/tienda.png');
+  background-image: url('@/assets/tienda.png');
   background-size: cover;
   background-position: center;
   filter: brightness(30%) contrast(100%) saturate(100%);

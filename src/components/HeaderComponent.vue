@@ -2,10 +2,10 @@
   <div class="headercomponent">
     <header class="headerpower d-flex align-items-center justify-content-between">
       <div class="hmboilel mx-0">
-        <img src="../assets/menu.png" alt="" id="menu" class="ms-2" @click="Menu">
-        <img src="../assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
+        <img src="@/assets/menu.png" alt="" id="menu" class="ms-2" @click="Menu">
+        <img src="@/assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
       </div>
-      <img src="../assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
+      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column">
         <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search"
           v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
@@ -17,7 +17,7 @@
       </div>
       <div class="header-right mx-lg-3 d-flex mt-1 ">
         <div class="d-flex align-items-center mx-lg-5 useroptions " @click="Options" id="optionsmobile">
-          <img src="../assets/usuario.png" alt="" id="user" class="mx-3  ms-0">
+          <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0">
           <p class="disp mt-3" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
           <div class="dropdown-menu">
             <ul>
@@ -30,7 +30,7 @@
         <div class="d-flex align-items-center carrito mx-2" v-on:mouseover="mostrarcarrito"
           v-on:mouseout="ocultarcarrito">
           <p class="mb-4 numbercar">{{ this.$store.getters.carrito.length }}</p>
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" @click="MostrarCarrito()">
+          <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" style="z-index: 1030;" id="dropdownmenu2help2">
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio"
@@ -47,7 +47,7 @@
 
         <div class="d-flex align-items-center carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
           <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
-          <img src="../assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4"
+          <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4"
             @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" id="dropdownmenu2help" style="z-index: 1030;">
             <ul id="carritopr">
@@ -74,11 +74,11 @@
         <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch"
           v-model="searchtext.texto" v-on:input="searchmobile">
         <div>
-          <img src="../assets/lupa.png" alt="" class="" id="lupa">
+          <img src="@/assets/lupa.png" alt="" class="" id="lupa">
         </div>
       </div>
       <div class="mb-5 ms-2">
-        <img src="../assets/cerrar.png" alt="" id="closesearch" @click="Search">
+        <img src="@/assets/cerrar.png" alt="" id="closesearch" @click="Search">
       </div>
     </div>
     <div class="dropdown-menumobile text-center p-3" id="listsearchmobile">
@@ -87,16 +87,16 @@
     </div>
     <div class="sidebar" :class="{ 'sidebar-open': isMenuOpen }">
       <div class="d-flex flex-row-reverse mx-3 mt-2">
-        <img src="../assets/cerrar.png" alt="" id="close" @click="Menu">
+        <img src="@/assets/cerrar.png" alt="" id="close" @click="Menu">
       </div>
       <ul>
-        <li><router-link to="/detail">Proteína <img src="../assets/proteina-de-suero.png" alt=""
+        <li><router-link to="/detail">Proteína <img src="@/assets/proteina-de-suero.png" alt=""
               id="prote"></router-link></li>
-        <li><router-link to="/nutricion">Nutrición <img src="../assets/comida-suplementaria.png" alt=""></router-link>
+        <li><router-link to="/nutricion">Nutrición <img src="@/assets/comida-suplementaria.png" alt=""></router-link>
         </li>
-        <li><router-link to="/detail">Vitaminas <img src="../assets/vitaminas.png" alt=""></router-link></li>
-        <li><router-link to="/detail">Snacks <img src="../assets/snack.png" alt=""></router-link></li>
-        <li><router-link to="/detail">Alimentación<img src="../assets/snack.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Vitaminas <img src="@/assets/vitaminas.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Snacks <img src="@/assets/snack.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Alimentación<img src="@/assets/snack.png" alt=""></router-link></li>
       </ul>
     </div>
   </div>
@@ -181,10 +181,19 @@ export default {
       this.carrito = this.$store.getters.carrito;
     },
     async muestraproducto(ID) {
-      this.$router.push({ path: `/producto/${ID}` });
       if (this.isSearchOpen) {
         this.isSearchOpen = !this.isSearchOpen
+        let busq=document.getElementById("listsearchmobile")
+        busq.style.display="none"
       }
+      this.$store.dispatch('encrypt', ID.toString())
+        .then(hashedid => {
+          this.$router.push({ name: 'ProductView', params: { id: hashedid } });
+        })
+        .catch(error => {
+          console.error('Error al encriptar el precio:', error);
+        });
+      
     },
     ocultainput() {
       setTimeout(() => {
