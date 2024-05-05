@@ -1,11 +1,12 @@
 import { createStore } from 'vuex';
-
+import CryptoJS from 'crypto-js';
 const store = createStore({
   state: {
     usuarioLogueado: false,
     NombreUsuario:"",
     IdUsuario:-1,
-    Carrito:[]
+    Carrito:[],
+    key:"'S,2L4eR1d8a0WYN1UVz><?.fcdB4f£9g5m0,kXj;Do}@?i0GY"
   },
   mutations: {
     setUsuarioLogueado(state, valor) {
@@ -21,17 +22,19 @@ const store = createStore({
       state.Carrito = carrito;
     },
     agregarAlCarrito(state, producto) {
-      const index = state.Carrito.findIndex(item => item.Id === producto.Id);
-  
-      if (index !== -1) {
-          // Si el producto ya está en el carrito, incrementa la cantidad
-          state.Carrito[index].Cantidad++;
-      } else {
-          // Si el producto no está en el carrito, agrégalo con cantidad 1
-          producto.Cantidad = 1;
-          state.Carrito.push(producto);
+      let encontrado=false;
+      for(let i=0;i<state.Carrito.length;i++){
+        if(producto.Id === state.Carrito[i].Id){
+          state.Carrito[i].Cantidad++;
+          encontrado=true;
+          break;
+        }
+      }
+      if(!encontrado){
+        state.Carrito.push(producto);
       }
   }
+  
   
   },
   actions: {
@@ -58,12 +61,21 @@ const store = createStore({
       // Lógica de actualización de carrito
       commit('setcarrito', carrito);
     },
+    encrypt(context, valor) {
+      // Lógica de encriptación
+      return CryptoJS.AES.encrypt(valor, context.state.key).toString();
+    },
+    decrypt(context, valor) {
+      // Lógica de desencriptación
+      return CryptoJS.AES.decrypt(valor, context.state.key).toString(CryptoJS.enc.Utf8);
+    }
   },
   getters: {
     estadoUsuario: (state) => (state.usuarioLogueado ? 'Logueado' : 'No Logueado'),
     nombreDeUsuario: (state) => state.NombreUsuario,
     Idusu: (state) => state.IdUsuario,
-    carrito: state => state.Carrito
+    carrito: state => state.Carrito,
+    key: state => state.key
   },
 });
 

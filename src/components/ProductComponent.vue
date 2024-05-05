@@ -23,7 +23,14 @@ export default {
   },
   methods: {
     MostrarProducto(ProductId){
-        this.$router.push({ name: 'ProductView', params: { id: ProductId } });
+        this.$store.dispatch('encrypt', ProductId.toString())
+        .then(hashedid => {
+            this.$router.push({ name: 'ProductView', params: { id: hashedid } });
+        })
+        .catch(error => {
+          console.error('Error al encriptar el precio:', error);
+        });
+        
     }
   },
 }

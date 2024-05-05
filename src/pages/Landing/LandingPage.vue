@@ -12,10 +12,10 @@
                 </div>
             </div>
         </div>
-        <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto(2)"></OfferComponent>
+        <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto2(2)"></OfferComponent>
         <div class="Landingvideo d-none d-lg-block">
             <video muted autoplay loop playsinline class="m-0">
-                <source src="../../assets/videocortado.mp4" type="video/mp4">
+                <source src="@/assets/videocortado.mp4" type="video/mp4">
             </video>
             <div class="videotext w-75">
                 <h6>OUR PHILOSOPHY</h6>
@@ -26,28 +26,28 @@
 
         <div class="LandingInfo d-flex align-items-center flex-wrap">
             <div class="infocontainer d-flex flex-column align-items-center">
-                <img src="../../assets/transporte.png" alt="">
+                <img src="@/assets/transporte.png" alt="">
                 <span>ENVÍOS GRATIS Y RÁPIDOS</span>
                 <p class="text-center">
                     Envío rapidísimo en 24/48 horas y gratis a partir de 24,90€
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
-                <img src="../../assets/alta-calidad.png" alt="">
+                <img src="@/assets/alta-calidad.png" alt="">
                 <span>MÁXIMA CALIDAD</span>
                 <p class="text-center">
                     Desarrollado por nuestro equipo de I+D+I y fabricado en nuestra propia fábrica
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
-                <img src="../../assets/sostenibilidad.png" alt="">
+                <img src="@/assets/sostenibilidad.png" alt="">
                 <span>SOSTENIBILIDAD</span>
                 <p class="text-center">
                     Mejoramos progresivamente los procesos existentes para reducir nuestra huella medioambiental
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
-                <img src="../../assets/organico.png" alt="">
+                <img src="@/assets/organico.png" alt="">
                 <span>MATERIAS PRIMAS PREMIUM</span>
                 <p class="text-center">
                     Utilizamos las mejores materias primas probadas y reconocidas por certificados de calidad
@@ -100,6 +100,15 @@ export default {
         },
         MostrarProducto(ProductId){
         this.$router.push({ name: 'ProductView', params: { id: ProductId } });
+    },
+    MostrarProducto2(ProductId){
+        this.$store.dispatch('encrypt', ProductId.toString())
+        .then(hashedid => {
+            this.$router.push({ name: 'ProductView', params: { id: hashedid } });
+        })
+        .catch(error => {
+          console.error('Error al encriptar el precio:', error);
+        });
     }
     },
     mounted() {
@@ -169,7 +178,6 @@ export default {
 
 
 .landing {
-    margin-top: 12vh;
     padding: 0;
 }
 
