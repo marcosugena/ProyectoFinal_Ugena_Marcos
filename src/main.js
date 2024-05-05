@@ -16,7 +16,7 @@ import LoginPage from '../src/pages/LoginPage/LoginPage.vue';
 import NutricionPage from '../src/pages/NutricionPage/NutricionPage.vue'
 import ProductView from '../src/pages/ProductView/ProductView.vue'
 import ShoppingCartView from '../src/pages/ShoppingCartView/ShoppingCartView.vue'
-
+import NotFound from '../src/pages/NotFound/NotFoundPage.vue'
 
 
 // Definir rutas
@@ -49,6 +49,10 @@ const routes = [
     path:'/ShoppingCartView',
     name: 'ShoppingCartView',
     component: ShoppingCartView
+  },
+  {
+    path:'/:catchAll(.*)',
+    component:NotFound
   }
 
 ];
