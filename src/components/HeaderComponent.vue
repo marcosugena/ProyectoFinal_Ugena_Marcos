@@ -6,8 +6,8 @@
         <img src="@/assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
       </div>
       <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
-      <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column">
-        <input type="text" placeholder="Buscar..." class="p-2 ms-5 d-none d-lg-block" v-on:input="search"
+      <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column ">
+        <input type="text" placeholder="Buscar..." class=" p-2 ms-5 d-none d-lg-block" v-on:input="search"
           v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
@@ -17,8 +17,8 @@
       </div>
       <div class="header-right mx-lg-3 d-flex mt-1 ">
         <div class="d-flex align-items-center mx-lg-5 useroptions " @click="Options" id="optionsmobile">
-          <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0">
-          <p class="disp mt-3" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
+          <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0 mb-1">
+          <p class="disp mt-3 fw-bold" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
           <div class="dropdown-menu">
             <ul>
               <li><a href="#">Mis Compras</a></li>
@@ -27,8 +27,8 @@
             </ul>
           </div>
         </div>
-        <div class="d-flex align-items-center carrito mx-2" v-on:mouseover="mostrarcarrito"
-          v-on:mouseout="ocultarcarrito">
+        <div class="d-flex align-items-center carrito mx-2 " v-on:mouseover="mostrarcarritoo"
+          v-on:mouseout="ocultarcarrito" >
           <p class="mb-4 numbercar">{{ this.$store.getters.carrito.length }}</p>
           <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" style="z-index: 1030;" id="dropdownmenu2help2">
@@ -36,16 +36,18 @@
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio"
                 :imageurl="producto.ImagenProducto" :name="producto.Nombre" :Cantidad="producto.Cantidad">
               </LiCarComponent>
+              <p class=" w-100 text-end ">Precio Total: {{ price }}€</p>
             </ul>
           </div>
         </div>
 
       </div>
       <div class="header-right-nologged d-flex">
-        <button class="mx-lg-0 mt-lg-1 mx-lg-0" @click="LoginPage">Login</button>
-        <button class="mx-lg-4 mt-lg-1 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
+        <button class=" mx-lg-0 mt-lg-2 mx-lg-0" @click="LoginPage">Login</button>
+        <button class="mx-lg-4 mt-lg-2 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
 
-        <div class="d-flex align-items-center carrito" v-on:mouseover="mostrarcarrito" v-on:mouseout="ocultarcarrito">
+        <div class="d-flex align-items-center carrito mt-2" v-on:mouseover="mostrarcarritoo"
+          v-on:mouseout="ocultarcarrito">
           <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
           <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4"
             @click="MostrarCarrito()">
@@ -125,13 +127,9 @@ export default {
   },
   methods: {
     MostrarCarrito() {
-      this.$store.dispatch('encrypt', this.price)
-        .then(hashedPrecio => {
-          this.$router.push({ name: 'ShoppingCartView', params: { precio: hashedPrecio } });
-        })
-        .catch(error => {
-          console.error('Error al encriptar el precio:', error);
-        });
+      if (this.$store.getters.carrito.length != 0) {
+        this.$router.push({ name: 'ShoppingCartView' });
+      }
     },
     actualizaprice() {
       const carrito = this.$store.getters.carrito;
@@ -159,23 +157,24 @@ export default {
       }
 
     },
-    mostrarcarrito() {
-      const div = document.getElementById("dropdownmenu2help");
-      const div2 = document.getElementById("dropdownmenu2help2");
-      if (this.$store.getters.estadoUsuario == "No Logueado") {
-        if (this.$store.getters.carrito.length != 0) {
-          div.style.display = "block";
+    mostrarcarritoo() {
+      if (window.innerWidth > 800) {
+        const div = document.getElementById("dropdownmenu2help");
+        const div2 = document.getElementById("dropdownmenu2help2");
+        if (this.$store.getters.estadoUsuario == "No Logueado") {
+          if (this.$store.getters.carrito.length != 0) {
+            div.style.display = "block";
+          } else {
+            div.style.display = "none";
+          }
         } else {
-          div.style.display = "none";
-        }
-      } else {
-        if (this.$store.getters.carrito.length != 0) {
-          div2.style.display = "block";
-        } else {
-          div2.style.display = "none";
+          if (this.$store.getters.carrito.length != 0) {
+            div2.style.display = "block";
+          } else {
+            div2.style.display = "none";
+          }
         }
       }
-
     },
     async actualizacarrito() {
       this.carrito = this.$store.getters.carrito;
@@ -183,8 +182,8 @@ export default {
     async muestraproducto(ID) {
       if (this.isSearchOpen) {
         this.isSearchOpen = !this.isSearchOpen
-        let busq=document.getElementById("listsearchmobile")
-        busq.style.display="none"
+        let busq = document.getElementById("listsearchmobile")
+        busq.style.display = "none"
       }
       this.$store.dispatch('encrypt', ID.toString())
         .then(hashedid => {
@@ -193,7 +192,7 @@ export default {
         .catch(error => {
           console.error('Error al encriptar el precio:', error);
         });
-      
+
     },
     ocultainput() {
       setTimeout(() => {
@@ -312,15 +311,22 @@ export default {
     },
     landing() {
       this.$router.push('/');
+    },
+    comprueba(){
+      if(this.$store.getters.carrito.length == 0){
+        const div = document.getElementById("dropdownmenu2help");
+        const div2 = document.getElementById("dropdownmenu2help2");
+        div.style.display="none";
+        div2.style.display="none";
+      }
+
     }
 
   },
   mounted() {
-    window.addEventListener('resize', () => this.shouldHideElement());
     this.shouldHideElement()
     this.actualizacarrito();
     this.actualizaprice();
-    //this.$store.commit('setUsuarioLogueado', true);
     if (this.$store.getters.estadoUsuario == "No Logueado") {
       let hd = Array.from(document.getElementsByClassName("header-right"))[0];
       let hd2 = Array.from(document.getElementsByClassName("header-right-nologged"))[0];
@@ -342,7 +348,14 @@ export default {
         this.actualizaprice();
       },
       deep: true
+    },
+    '$store.getters.carrito.length': {
+      handler() {
+        this.comprueba()
+      },
+      
     }
+
   },
 };
 </script>
@@ -630,7 +643,7 @@ export default {
     color: $bluelight;
     background-color: $black;
     border-radius: 3px;
-    padding: 10px;
+    padding: 8px;
     padding-left: 10px;
     padding-right: 12px;
     margin-right: 5px;
@@ -709,7 +722,7 @@ export default {
   .headerpower {
     #user {
       width: 40px;
-      height: 4.8vh;
+      height: 4.2vh;
     }
 
     #carrito {
@@ -720,7 +733,7 @@ export default {
 
   .header-right-nologged {
     button {
-      padding-left: 15px;
+      padding-left: 13px;
     }
   }
 

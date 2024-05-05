@@ -1,12 +1,12 @@
 <template>
     <HeaderComponent></HeaderComponent>
-    <div class="productview w-100">
+    <div class="productview w-100 pb-5">
         <div class="d-flex justify-content-center flex-column flex-lg-row productcontainer">
             <div class="d-flex mx-3">
                 <img :src="producto.ImagenProducto" alt="">
             </div>
             <div class="d-flex flex-column ms-lg-5 justify-content-center align-items-center mt-3 mt-lg-0 producttext ">
-                <h2 class="text-center mt-2 mt-lg-0">{{ producto.Nombre }}</h2>
+                <h2 class="text-center mt-4 mt-lg-0">{{ producto.Nombre }}</h2>
                 <p class="text-center w-100 mt-4">{{ producto.Descripcion }}</p>
             </div>
         </div>
@@ -15,14 +15,17 @@
                 POR {{ producto.Precio }}€ <img src="../../assets/carrito-de-compras.png" alt="" class="ms-2"></button>
         </div>
     </div>
+    <FooterComponent></FooterComponent>
 </template>
 
 <script>
 import axios from 'axios';
 import HeaderComponent from "../../components/HeaderComponent.vue";
+import FooterComponent from "../../components/FooterComponent.vue";
 export default {
     components: {
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     },
     data() {
         return {
@@ -81,7 +84,7 @@ export default {
 
 .productview {
     background-color: $black;
-    height: 125vh;
+    height: auto;
     width: 100%;
 }
 
@@ -131,7 +134,7 @@ export default {
 @media only screen and (min-width: 1200px) {
     .productview {
         background-color: $black;
-        height: 90vh;
+        height: auto;
         width: 100%;
     }
 

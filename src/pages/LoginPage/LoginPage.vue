@@ -11,7 +11,7 @@
           </div>
           <div class="Logincontainer mb-4">
             <p class="ms-4">Email</p>
-            <input type="email" id="logemail" v-model="UserData.gmail">
+            <input type="email" id="logemail" class="" v-model="UserData.gmail">
           </div>
           <div class="Logincontainer mb-4">
             <p class="ms-4">Password</p>

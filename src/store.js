@@ -33,23 +33,6 @@ const store = createStore({
       if(!encontrado){
         state.Carrito.push(producto);
       }
-
-
-
-      /*
-      const index = state.Carrito.findIndex(item => item.Id === producto.Id);
-  
-      if (index !== -1) {
-          // Si el producto ya está en el carrito, incrementa la cantidad
-          state.Carrito[index].Cantidad++;
-      } else {
-          // Si el producto no está en el carrito, agrégalo con cantidad 1
-          const nuevoProducto = { ...producto }; // Crear una copia del producto
-          nuevoProducto.Cantidad = 1;
-          state.Carrito.push(nuevoProducto);
-         
-      }
-       */
   }
   
   

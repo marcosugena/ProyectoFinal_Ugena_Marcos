@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto(2)"></OfferComponent>
+        <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto2(2)"></OfferComponent>
         <div class="Landingvideo d-none d-lg-block">
             <video muted autoplay loop playsinline class="m-0">
                 <source src="@/assets/videocortado.mp4" type="video/mp4">
@@ -100,6 +100,15 @@ export default {
         },
         MostrarProducto(ProductId){
         this.$router.push({ name: 'ProductView', params: { id: ProductId } });
+    },
+    MostrarProducto2(ProductId){
+        this.$store.dispatch('encrypt', ProductId.toString())
+        .then(hashedid => {
+            this.$router.push({ name: 'ProductView', params: { id: hashedid } });
+        })
+        .catch(error => {
+          console.error('Error al encriptar el precio:', error);
+        });
     }
     },
     mounted() {
