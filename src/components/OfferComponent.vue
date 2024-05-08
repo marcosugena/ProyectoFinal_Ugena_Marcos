@@ -17,8 +17,8 @@ export default {
 
 .slideroffer{
  img{
-  height: 22.2vh;
-  width: 100%;
+  height: 40vw;
+  width: 100vw;
  }
   background-size: cover;
   background-position: center;

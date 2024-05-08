@@ -5,7 +5,7 @@
                 <h2 id="title2">Error: 404 page not found</h2>
                 <p id="context">Sorry, the page you're looking for cannot be accessed</p>
             </div>
-            <a href="/">Comeback to the Landing</a>
+            <RouterLink to="/">Comeback to the Landing</RouterLink>
         </div>
 </template>
 

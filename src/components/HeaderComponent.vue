@@ -324,6 +324,7 @@ export default {
 
   },
   mounted() {
+    window.addEventListener('resize', () => this.shouldHideElement());
     this.shouldHideElement()
     this.actualizacarrito();
     this.actualizaprice();
@@ -783,7 +784,7 @@ export default {
       }
 
       border: 2px solid $bluelight;
-      border-radius: 4px;
+      border-radius: 8px;
       outline: none;
       width: 50vh;
     }

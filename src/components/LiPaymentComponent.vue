@@ -1,5 +1,5 @@
 <template>
-    <div class="lipay w-100 d-flex align-items-center justify-content-around p-5 ">
+    <div class="lipay w-100 d-flex align-items-center justify-content-between p-5 ">
       
         <div class=" d-flex flex-column flex-lg-row justify-content-between align-items-center w-100 ">
             <img :src="imgurl" alt="" class="imgpr  mb-lg-0 ">

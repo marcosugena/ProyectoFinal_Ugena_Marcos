@@ -2,7 +2,7 @@
     <HeaderComponent></HeaderComponent>
     <div class="productview w-100 pb-5">
         <div class="d-flex justify-content-center flex-column flex-lg-row productcontainer">
-            <div class="d-flex mx-3">
+            <div class="d-flex mx-3 align-items-center justify-content-center">
                 <img :src="producto.ImagenProducto" alt="">
             </div>
             <div class="d-flex flex-column ms-lg-5 justify-content-center align-items-center mt-3 mt-lg-0 producttext ">
