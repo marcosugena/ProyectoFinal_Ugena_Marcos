@@ -16,7 +16,7 @@ export default {
 *{
     margin: 0;
     padding: 0;
-    font-family: "Roboto", "Open Sans", sans-serif;
+    font-family: "Poppins";
     input{
       border: none;
     }

@@ -43,14 +43,14 @@
                 <img src="@/assets/sostenibilidad.png" alt="">
                 <span>SOSTENIBILIDAD</span>
                 <p class="text-center">
-                    Mejoramos progresivamente los procesos existentes para reducir nuestra huella medioambiental
+                    Optimizamos procesos para reducir nuestra huella ecológica.
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="@/assets/organico.png" alt="">
                 <span>MATERIAS PRIMAS PREMIUM</span>
                 <p class="text-center">
-                    Utilizamos las mejores materias primas probadas y reconocidas por certificados de calidad
+                    Utilizamos materias primas de calidad certificada y probada
                 </p>
             </div>
         </div>
