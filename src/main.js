@@ -16,6 +16,7 @@ import LoginPage from '../src/pages/LoginPage/LoginPage.vue';
 import NutricionPage from '../src/pages/NutricionPage/NutricionPage.vue'
 import ProductView from '../src/pages/ProductView/ProductView.vue'
 import ShoppingCartView from '../src/pages/ShoppingCartView/ShoppingCartView.vue'
+import AdminPanel from '../src/pages/AdminPanel/AdminPanel.vue'
 import NotFound from '../src/pages/NotFound/NotFoundPage.vue'
 
 
@@ -51,9 +52,14 @@ const routes = [
     component: ShoppingCartView
   },
   {
+    path:'/admin-panel',
+    component:AdminPanel
+  },
+  {
     path:'/:catchAll(.*)',
     component:NotFound
   }
+
 
 ];
 

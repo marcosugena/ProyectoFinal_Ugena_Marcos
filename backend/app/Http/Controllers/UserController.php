@@ -39,6 +39,14 @@ class UserController extends Controller
             return false;
         }
     }
+    public function esAdmin(Request $request)
+    {
+        $userId=$request->UserId;
+        // Obtener el usuario por su ID
+        $usuario = Usuario::findOrFail($userId);
+        // Verificar si el usuario es administrador
+        return $usuario->Admin;
+    }
 }
 
 

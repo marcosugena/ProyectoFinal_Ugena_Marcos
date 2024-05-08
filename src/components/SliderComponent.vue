@@ -11,7 +11,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
           <img src="@/assets/slide4.jpg" class="d-block w-100" alt="..." />
-          <div class="carousel-caption d-md-block">
+          <div class="carousel-caption d-md-block ">
             <h4 class="mb-1">Descubre el sabor extraordinario de la vida con nuestra selección premium de alimentos</h4>
             <p>Sabor, excelencia, experiencia.</p>
           </div>
@@ -67,8 +67,12 @@ export default {
   }
   .carousel-caption{
     h4{
-      font-size: 18px;
+      font-size: 25px;
+      font-weight: 500;
     }
+  p{
+    font-size: 16px;
+  }
   }
 
   img {
@@ -83,7 +87,7 @@ export default {
     z-index: 0;
 
     img {
-      height: 75vh;
+      height: 100vh;
       width: 100%;
       filter: brightness(60%) contrast(90%) saturate(80%);
     }

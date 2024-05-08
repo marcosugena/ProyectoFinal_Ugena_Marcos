@@ -20,7 +20,7 @@
           <div class="d-flex justify-content-center mt-3 flex-column align-items-center">
             <button type="submit" class="w-25 mt-2">Login</button>
             <div id="danger" class="text-center mt-4">
-              
+
             </div>
           </div>
         </form>
@@ -33,42 +33,61 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      UserData:{
-        gmail:'',
-        password:''
+      UserData: {
+        gmail: '',
+        password: '',
+        UserId:0
       }
     }
   },
   methods: {
-   async logvalidator(e) {
+    async logvalidator(e) {
       let email = document.getElementById("logemail").value;
       let password = document.getElementById("logpass").value;
-      let danger=document.getElementById("danger");
+      let danger = document.getElementById("danger");
       const emaillogex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      danger.textContent="";
-      if ( email == "" || password == "") {
+      danger.textContent = "";
+      if (email == "" || password == "") {
         e.preventDefault();
-        danger.textContent+="Algun Campo Vacio";
-      }else if(!emaillogex.test(email)){
+        danger.textContent += "Algun Campo Vacio";
+      } else if (!emaillogex.test(email)) {
         e.preventDefault()
-        danger.textContent="Email Incorrecto";
-      }else{
+        danger.textContent = "Email Incorrecto";
+      } else {
         //LOGICA DE BACKEND DE login
-        const respuesta=await axios.post('http://127.0.0.1:8000/api/login',this.UserData);
-        if(respuesta.data == ""){
-          let danger=document.getElementById("danger")
-          danger.textContent="Email o Contraseña Incorrectos"
-        }else{
+        const respuesta = await axios.post('http://127.0.0.1:8000/api/login', this.UserData);
+        if (respuesta.data == "") {
+          let danger = document.getElementById("danger")
+          danger.textContent = "Email o Contraseña Incorrectos"
+        } else {
           this.$store.commit('setUsuarioLogueado', true);
           this.$store.commit('setUserName', respuesta.data.usu);
-          this.$store.commit('setId',respuesta.data.id)
+          this.$store.commit('setId', respuesta.data.id)
+          this.UserData.UserId=respuesta.data.id
+          console.log(this.UserData.UserId)
+          this.verificarAdmin();
           this.$router.push("/");
         }
-        
       }
     },
-    inicio(){
+    inicio() {
       this.$router.push('/')
+    },
+    verificarAdmin() {
+      axios.post(`http://127.0.0.1:8000/api/es-admin`,this.UserData)
+        .then(response => {
+          const esAdmin = response.data; 
+          if (esAdmin) {
+            this.$store.commit('setAdmin',true)
+            console.log("a")
+          } else {
+            this.$store.commit('setAdmin',false)
+            console.log("b")
+          }
+        })
+        .catch(error => {
+          console.error('Error al verificar si el usuario es administrador:', error);
+        });
     }
   },
 };
@@ -88,9 +107,11 @@ export default {
     margin-bottom: 5px;
   }
 }
-#danger{
+
+#danger {
   color: red;
 }
+
 .Login {
   position: relative;
   height: 100vh;
@@ -103,7 +124,7 @@ export default {
   input {
     width: 85%;
     margin-left: 20px;
-    border-radius:8px;
+    border-radius: 8px;
     padding: 5px;
   }
 
@@ -121,17 +142,19 @@ export default {
   filter: brightness(30%) contrast(100%) saturate(100%);
   z-index: -1;
 }
+
 .LoginBox {
   img {
     width: 15vh;
     height: 15vh;
   }
+
   color: $white;
   z-index: 1000;
   width: 38vh;
   height: 58vh;
   border-radius: 32px;
-  background: linear-gradient(to bottom right , $grey, $black 40%, $black 80%,$grey 100%,);
+  background: linear-gradient(to bottom right, $grey, $black 40%, $black 80%, $grey 100%, );
 }
 
 button {
@@ -143,14 +166,17 @@ button {
   border: 1px solid $bluelight;
   color: $bluelight;
   border-radius: 6px;
+
   &:hover {
     background-color: $bluelight;
     color: $white;
   }
 }
+
 @media only screen and (min-width: 800px) {
   .LoginBox {
     width: 45vh;
     height: 55vh;
   }
-}</style>
+}
+</style>

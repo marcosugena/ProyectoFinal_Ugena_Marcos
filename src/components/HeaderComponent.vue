@@ -19,11 +19,12 @@
         <div class="d-flex align-items-center mx-lg-5 useroptions " @click="Options" id="optionsmobile">
           <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0 mb-1">
           <p class="disp mt-3 fw-bold" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="#">Mis Compras</a></li>
+          <div class="dropdown-menu" id="dropdownmenumb" >
+            <ul class="text-center">
+              <li ><a href="#">Mis Compras</a></li>
               <li><a href="#">Contacto</a></li>
               <li><a href="#">User Settings</a></li>
+              <li v-if="this.$store.getters.Admin"><RouterLink to="/login">Admin Panel</RouterLink></li>
             </ul>
           </div>
         </div>
@@ -141,11 +142,13 @@ export default {
     },
     shouldHideElement() {
       const numbercar = document.getElementById("numbercar")
-      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992) {
+      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992 && numbercar!=null) {
         numbercar.style.display = "none"
-      } else {
+      } else if(numbercar!=null){
         numbercar.style.display = "block"
       }
+
+      
     },
     ocultarcarrito() {
       const div = document.getElementById("dropdownmenu2help");
@@ -285,10 +288,10 @@ export default {
     },
     Options() {
       this.isOptionOpen = !this.isOptionOpen;
-      const dropdownMenu = document.querySelector('.useroptions .dropdown-menu');
-      if (this.isOptionOpen) {
+      const dropdownMenu = document.getElementById("dropdownmenumb");
+      if (this.isOptionOpen && dropdownMenu != null) {
         dropdownMenu.style.display = 'block';
-      } else {
+      } else if(dropdownMenu != null){
         dropdownMenu.style.display = 'none';
       }
     },
@@ -396,6 +399,7 @@ export default {
 @mixin dropdown-menu {
   display: none;
   position: absolute;
+  right: 0%;
   top: 98%;
   z-index: 10;
   background-color: $black;
