@@ -63,7 +63,7 @@ export default {
   z-index: 1;
   background-color: $black;
   padding: 18px;
-  height: 110vh;
+  height: auto;
   text-align: center;
   position: relative;
   bottom: 0;
@@ -95,12 +95,12 @@ export default {
   }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 700px) {
   .footerclass {
   z-index: 1;
   background-color: $black;
   padding: 18px;
-  height: 47vh;
+  height: auto;
   text-align: center;
   position: relative;
   bottom: 0;

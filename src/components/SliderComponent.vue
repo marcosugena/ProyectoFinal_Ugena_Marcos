@@ -2,8 +2,8 @@
   <div>
     <div id="PowerLabSlider" class="carousel slide slidePower" data-bs-ride="carousel">
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
         <button type="button" data-bs-target="#PowerLabSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
@@ -51,7 +51,7 @@
 </template>
 <script>
 export default {
-  
+
 }
 </script>
 <style lang="scss" scoped>
@@ -62,22 +62,24 @@ export default {
 
   .carousel-inner {
     .carousel-item {
-      transition: transform 1s ease; 
+      transition: transform 1s ease;
     }
   }
-  .carousel-caption{
-    h4{
-      font-size: 25px;
-      font-weight: 500;
+
+  .carousel-caption {
+    h4 {
+      font-size: 15px;
+
     }
-  p{
-    font-size: 16px;
-  }
+
+    p {
+      font-size: 12px;
+    }
   }
 
   img {
     width: 30%;
-    height: 35vh;
+    height: 55vw;
     filter: brightness(60%) contrast(90%) saturate(80%);
   }
 }
@@ -87,16 +89,28 @@ export default {
     z-index: 0;
 
     img {
-      height: 100vh;
+      height: 40vw;
       width: 100%;
       filter: brightness(60%) contrast(90%) saturate(80%);
     }
-  }
- 
-    h4{
-      font-size: 60px;
-    }
-  
-}
+    
+  .carousel-caption {
+    h4 {
+      font-size: 20px;
 
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+  }
+
+  h4 {
+    font-size: 60px;
+    font-weight: 500;
+  }
+
+
+}
 </style>

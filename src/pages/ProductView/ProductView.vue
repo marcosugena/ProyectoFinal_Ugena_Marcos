@@ -110,7 +110,7 @@ export default {
 
 .carritobutton {
     button {
-        background-color: red;
+        background-color: $bluelight;
         color: $white;
         border: none;
         padding: 10px;
@@ -160,7 +160,7 @@ export default {
 
     .carritobutton {
         button {
-            background-color: red;
+            background-color: $bluelight;
             color: $white;
             border: none;
             padding: 10px;

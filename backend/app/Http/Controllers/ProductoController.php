@@ -78,6 +78,32 @@ class ProductoController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    public function CreateProduct(Request $request){
+        try{
+            $producto = Producto::create([
+                'Nombre' => $request->nombre,
+                'ImagenProducto' => $request->imagenname,
+                'Descripcion' => $request->descripcion,
+                'Precio' => $request->precio,
+                'Tipo' => $request->tipo
+            ]);
+            return response()->json(['success' => true, 'usuario' => $producto], 201);
+        }catch (Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    public function guardarImagen(Request $request)
+{
+    if ($request->hasFile('imagen')) {
+        $imagen = $request->file('imagen');
+        $nombreImagen = $imagen->getClientOriginalName();
+        $imagen->move(public_path(), $nombreImagen);
+        return response()->json(['success' => true], 200);
+    } else {
+        return response()->json(['mensaje' => 'No se ha enviado ninguna imagen'], 400);
+    }
+}
     
 
+    
 }

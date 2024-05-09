@@ -64,7 +64,6 @@ export default {
           this.$store.commit('setUserName', respuesta.data.usu);
           this.$store.commit('setId', respuesta.data.id)
           this.UserData.UserId=respuesta.data.id
-          console.log(this.UserData.UserId)
           this.verificarAdmin();
           this.$router.push("/");
         }
@@ -79,10 +78,8 @@ export default {
           const esAdmin = response.data; 
           if (esAdmin) {
             this.$store.commit('setAdmin',true)
-            console.log("a")
           } else {
             this.$store.commit('setAdmin',false)
-            console.log("b")
           }
         })
         .catch(error => {

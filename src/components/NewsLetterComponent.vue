@@ -1,5 +1,5 @@
 <template>
-  <div class="NewsLetter d-flex align-items-center flex-column pb-5">
+  <div class="NewsLetter d-flex align-items-center flex-column p-2 pb-5">
     <form @submit.prevent="formchecker" >
       <div class="newlettertext mt-5 pb-3">
         <h2 class="text-center mt-3 mt-lg-5">REGÍSTRATE EN NUESTRA NEWSLETTER</h2>
@@ -63,7 +63,7 @@ export default {
 
 .NewsLetter {
     background-color: $black;
-    height: 43vh;
+    height: auto;
     width: 100%;
     color: $white;
     font-family: "Futura Bold Italic", sans-serif;

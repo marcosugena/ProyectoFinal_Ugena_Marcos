@@ -1,8 +1,8 @@
 <template>
     <div class="paysend p-5">
-        <div class="paytext">
+        <div class="paytext ">
             <h1>Tienda Online de Nutrición Deportiva, Dietética Natural y Accesorios</h1>
-            <p class="w-75 mb-5">
+            <p class=" mb-5">
                 ¿Eres un entusiasta del deporte y buscas alcanzar tu mejor versión? ¿Te esfuerzas por
                 llevar un estilo de
                 vida saludable o quieres empezar? ¡Entonces estás en el lugar adecuado! En PowerLab, te unirás a una
@@ -22,13 +22,18 @@
                 del mercado, sin importar tu disciplina deportiva u objetivo.
                 Te invitamos a descubrir las virtudes de nuestros productos: eficacia, delicioso sabor y textura, desde
                 nuestras proteínas líderes (como Whey Protein), creatinas, hasta aminoácidos de alta calidad como BCAA's
-                y productos orgánicos. ¡Todo enfocado en promover un interés incesante por el cuidado de la salud!
+                y productos orgánicos.
+            </p>
+            <p>
+                ¡Todo enfocado en promover un interés incesante por el cuidado de la salud!
                 Nuestro objetivo es llevar la Marca PowerLab al más alto nivel, ofreciendo la mayor variedad de
                 productos de Nutrición Deportiva y Dietética Natural, siempre con los mejores precios.
                 En PowerLab diseñamos, creamos y seleccionamos los mejores suplementos y alimentos naturales para
-                ayudarte a alcanzar tus objetivos deportivos y llevar una vida más saludable</p>
+                ayudarte a alcanzar tus objetivos deportivos y llevar una vida más saludable
+            </p>
         </div>
-        <div class="payment d-flex justify-content-end pr-3 mx-4">
+
+        <div class="payment d-lg-flex justify-content-end pr-lg-3 mx-4 mt-5">
             <div><img src="@/assets/mastercard.png" alt=""></div>
             <div><img src="@/assets/visa.png" alt=""></div>
             <div><img src="@/assets/paypal.png" alt=""></div>
@@ -36,7 +41,7 @@
             <div><img src="@/assets/amazonpay.png" alt=""></div>
             <div> <img src="@/assets/sequra.png" alt=""></div>
         </div>
-        <div class="sender d-flex justify-content-end mt-2 pr-3 mx-4">
+        <div class="sender d-lg-flex justify-content-end mt-2 pr-lg-3 mx-4">
             <div><img src="@/assets/correos.png" alt=""></div>
             <div> <img src="@/assets/correosexpress.png" alt=""></div>
             <div><img src="@/assets/dhl.png" alt=""></div>
@@ -70,6 +75,8 @@ export default {
 
     p {
         font-size: 16px;
+        text-wrap: wrap;
+
     }
 }
 
@@ -86,6 +93,8 @@ h3 {
 
 .payment {
     gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 
     img {
         width: 8vh;
@@ -95,6 +104,8 @@ h3 {
 
 .sender {
     gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 
     img {
         width: 8vh;

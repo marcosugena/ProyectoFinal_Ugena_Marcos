@@ -1,9 +1,9 @@
 <template>
-    <div class="Patrocinadores d-lg-flex justify-content-around align-items-center flex-row">     
+    <div class="Patrocinadores d-lg-flex justify-content-around align-items-center flex-row p-lg-5 ">     
             <div class="card">
                 <div class="card-face card-front"><img src="@/assets/amix.jpg" alt=""></div>
                 <div class="card-face card-back">
-                    <p>Amix Para deportistas que quieran mejorar su rendimiento deportivo y cuidar su salud.</p>
+                    <p>Amix Para deportistas que quieran mejorar su rendimiento deportivo</p>
                 </div>
             </div>
             <div class="card">
@@ -15,29 +15,25 @@
             <div class="card">
                 <div class="card-face card-front"><img src="@/assets/usa.jpg" alt=""></div>
                 <div class="card-face card-back">
-                    <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo y alcanzar tus
-                        metas de bienestar físico</p>
+                    <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-face card-front"><img src="@/assets/LifePro.jpg" alt=""></div>
                 <div class="card-face card-back">
-                    <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo y alcanzar tus
-                        metas de bienestar físico</p>
+                    <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-face card-front"><img src="@/assets/hsn.jpg" alt=""></div>
                 <div class="card-face card-back">
-                    <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo y lograr tus objetivos
-                        de bienestar físico.</p>
+                    <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo</p>
                 </div>
             </div>
             <div class="card d-lg-none">
                 <div class="card-face card-front"><img src="@/assets/biocop.jpg" alt=""></div>
                 <div class="card-face card-back">
-                    <p>Con Biocop, descubre productos biológicos que nutren tu cuerpo y contribuyen a un bienestar
-                        equilibrado de manera sostenible</p>
+                    <p>Con Biocop, descubre productos biológicos que nutren tu cuerpo</p>
                 </div>
         </div>
         
@@ -54,21 +50,20 @@ export default {
 @import "../Style/variables.scss";
 .Patrocinadores {
     background: linear-gradient(to bottom right , $grey, $black 50%);
-    height: 70vh;
+    height: auto;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-    justify-content: center;
-    align-items: center;
- 
+    justify-items: center;
+    gap: 30px;
+    padding: 20px;
     h1 {
         text-align: center;
         color: $black;
     }
 }
 .card-container {
-    justify-content: center;
-    margin: 20px;
+    justify-content: center;   
 }
 .card {
     width:15vh;
@@ -76,11 +71,10 @@ export default {
     transform-style: preserve-3d;
     transition: transform 0.8s;
     cursor: pointer;
-    margin-left: 9vw;
+
 
     p {
         font-size: 12px;
-        margin: 10px;
         text-align: center;
     }
 
@@ -122,11 +116,10 @@ export default {
 
 @media only screen and (min-width: 800px) {
     .Patrocinadores{
-        height: 30vh;
+        height: auto;
         
     }
     .card{
-        margin-left: 0;
         width:20vh;
         height:18vh;
         img{

@@ -4,8 +4,8 @@
         <SliderComponent></SliderComponent>
         <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
         <div class="Recommendforyou">
-            <h2 class="pt-4">RECOMENDADO PARA TI</h2>
-            <div class="ProductContainer mt-lg-5">
+            <h2 class="pt-2">RECOMENDADO PARA TI</h2>
+            <div class="ProductContainer ">
                 <div v-for="producto in Recomendados" :key="producto.id">
                     <ProductComponent :price="producto.Precio" :imageURL="producto.ImagenProducto"
                         :nameproduct="producto.Nombre" :ProductId="producto.ProductId"></ProductComponent>
@@ -162,6 +162,7 @@ export default {
 }
 
 .infocontainer {
+    width: 100%;
     span {
         text-transform: uppercase;
         font-size: 1.2em;
@@ -184,10 +185,9 @@ export default {
 
 
 .Recommendforyou {
-    height: 115vh;
+
     background: linear-gradient(to bottom right , $grey, $black 40%, $black 50%,$grey 100%,);
     color: $white;
-
     .ProductContainer {
         display: grid;
         grid-template-columns: repeat(2, 1fr);

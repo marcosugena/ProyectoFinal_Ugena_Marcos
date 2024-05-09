@@ -5,10 +5,10 @@
         <img src="@/assets/menu.png" alt="" id="menu" class="ms-2" @click="Menu">
         <img src="@/assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
       </div>
-      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
+      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-3" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column ">
-        <input type="text" placeholder="Buscar..." class=" p-2 ms-5 d-none d-lg-block" v-on:input="search"
-          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5" v-on:input="search"
+          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput" id="inpudesk">
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
             <ul id="listsearchdesktop"></ul>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="header-right mx-lg-3 d-flex mt-1 ">
-        <div class="d-flex align-items-center mx-lg-5 useroptions " @click="Options" id="optionsmobile">
+        <div class="d-flex align-items-center mx-lg-5 useroptions "  id="optionsmobile" v-on:mouseover="OpenDropdown()" v-on:mouseout="OpenDropdown()">
           <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0 mb-1">
           <p class="disp mt-3 fw-bold" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
           <div class="dropdown-menu" id="dropdownmenumb" >
@@ -24,7 +24,7 @@
               <li ><a href="#">Mis Compras</a></li>
               <li><a href="#">Contacto</a></li>
               <li><a href="#">User Settings</a></li>
-              <li v-if="this.$store.getters.Admin"><RouterLink to="/login">Admin Panel</RouterLink></li>
+              <li v-if="this.$store.getters.Admin"><RouterLink to="/admin-panel">Admin Panel</RouterLink></li>
             </ul>
           </div>
         </div>
@@ -44,8 +44,8 @@
 
       </div>
       <div class="header-right-nologged d-flex">
-        <button class=" mx-lg-0 mt-lg-2 mx-lg-0" @click="LoginPage">Login</button>
-        <button class="mx-lg-4 mt-lg-2 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
+        <button class=" mt-lg-2 mx-lg-0" @click="LoginPage">Login</button>
+        <button class="mx-lg-4 mt-lg-2 " @click="RegisterPage" id="regbutton">Register</button>
 
         <div class="d-flex align-items-center carrito mt-2" v-on:mouseover="mostrarcarritoo"
           v-on:mouseout="ocultarcarrito">
@@ -286,14 +286,14 @@ export default {
     Menu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-    Options() {
-      this.isOptionOpen = !this.isOptionOpen;
-      const dropdownMenu = document.getElementById("dropdownmenumb");
-      if (this.isOptionOpen && dropdownMenu != null) {
-        dropdownMenu.style.display = 'block';
-      } else if(dropdownMenu != null){
-        dropdownMenu.style.display = 'none';
-      }
+    OpenDropdown() {
+     let div=document.getElementById("dropdownmenumb");
+     if(div.style.display == "block"){
+      div.style.display = "none";
+     }else{
+      div.style.display = "block"
+     }
+     
     },
     Search() {
       let list = document.getElementById("listsearchmobile")
@@ -405,12 +405,6 @@ export default {
   background-color: $black;
   color: $white ;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-
-
-  &:hover {
-    display: block;
-  }
-
   ul {
     list-style: none;
     padding: 0;
@@ -509,16 +503,16 @@ export default {
 .headerpower {
   background-color: $black;
   color: $white;
-  height: 12vh;
+  height: auto;
   width: 100%;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-
+  padding-bottom: 0px;
   #menu {
     width: 32px;
-    height: 6.3vh;
+    height: 5vh;
   }
 
   #logo {
@@ -538,7 +532,7 @@ export default {
 
   #lupa {
     width: 35px;
-    height: 4.3vh;
+    height: 4vh;
   }
 }
 
@@ -612,7 +606,7 @@ export default {
   }
 
   #closesearch {
-    height: 20px;
+    height: 4vw;
   }
 
   .searchbarmobile {
@@ -652,7 +646,7 @@ export default {
     padding-left: 10px;
     padding-right: 12px;
     margin-right: 5px;
-
+    height:10%;
     &:hover {
       color: $white;
     }
@@ -663,9 +657,11 @@ export default {
     color: $white;
   }
 }
-
+#inpudesk{
+    display: none;
+  }
 //HEADER STYLE DESKTOP
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 800px) {
   .numbercar {
     background-color: red;
     position: fixed;
@@ -675,6 +671,9 @@ export default {
     padding-right: 7px;
     border-radius: 360px;
 
+  }
+  #inpudesk{
+    display: block;
   }
 
   @mixin dropdown-menu {
@@ -710,24 +709,16 @@ export default {
 
   .dropdown-menu {
     @include dropdown-menu;
+    
   }
-
-
-
-  .useroptions:hover {
-    .dropdown-menu {
-      display: block;
-    }
-  }
-
   .headercomponent {
     margin-bottom: 17vh;
   }
 
   .headerpower {
     #user {
-      width: 40px;
-      height: 4.2vh;
+      width: 35px;
+      height: 35px
     }
 
     #carrito {
@@ -799,8 +790,5 @@ export default {
     }
   }
 
-  .dropdown-menusearch {
-    display: block;
-  }
 }
 </style>
