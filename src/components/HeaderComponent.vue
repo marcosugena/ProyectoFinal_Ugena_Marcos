@@ -5,33 +5,36 @@
         <img src="@/assets/menu.png" alt="" id="menu" class="ms-2" @click="Menu">
         <img src="@/assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
       </div>
-      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-3" @click="landing">
+      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-2 ms-lg-1" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column ">
-        <input type="text" placeholder="Buscar..." class="p-2 ms-5" v-on:input="search"
-          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput" id="inpudesk">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5" v-on:input="search" v-model="searchtext.texto"
+          v-on:focus="revelainput" v-on:blur="ocultainput" id="inpudesk">
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
             <ul id="listsearchdesktop"></ul>
           </div>
         </div>
       </div>
-      <div class="header-right mx-lg-3 d-flex mt-1 ">
-        <div class="d-flex align-items-center mx-lg-5 useroptions "  id="optionsmobile" v-on:mouseover="OpenDropdown()" v-on:mouseout="OpenDropdown()">
+      <div class="header-right d-flex mt-1 ">
+        <div class="d-flex align-items-center mx-lg-5 useroptions " id="optionsmobile" v-on:mouseover="OpenDropdown()"
+          v-on:mouseout="OpenDropdown()">
           <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0 mb-1">
           <p class="disp mt-3 fw-bold" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
-          <div class="dropdown-menu" id="dropdownmenumb" >
+          <div class="dropdown-menu" id="dropdownmenumb">
             <ul class="text-center">
-              <li ><a href="#">Mis Compras</a></li>
+              <li><a href="#">Mis Compras</a></li>
               <li><a href="#">Contacto</a></li>
               <li><a href="#">User Settings</a></li>
-              <li v-if="this.$store.getters.Admin"><RouterLink to="/admin-panel">Admin Panel</RouterLink></li>
+              <li v-if="this.$store.getters.Admin">
+                <RouterLink to="/admin-panel">Admin Panel</RouterLink>
+              </li>
             </ul>
           </div>
         </div>
         <div class="d-flex align-items-center carrito mx-2 " v-on:mouseover="mostrarcarritoo"
-          v-on:mouseout="ocultarcarrito" >
+          v-on:mouseout="ocultarcarrito">
           <p class="mb-4 numbercar">{{ this.$store.getters.carrito.length }}</p>
-          <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" @click="MostrarCarrito()">
+          <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0 mx-lg-3" @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" style="z-index: 1030;" id="dropdownmenu2help2">
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio"
@@ -49,7 +52,7 @@
 
         <div class="d-flex align-items-center carrito mt-2" v-on:mouseover="mostrarcarritoo"
           v-on:mouseout="ocultarcarrito">
-          <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
+          <p class="mb-4 ms-3 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
           <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4"
             @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" id="dropdownmenu2help" style="z-index: 1030;">
@@ -77,7 +80,7 @@
         <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch"
           v-model="searchtext.texto" v-on:input="searchmobile">
         <div>
-          <img src="@/assets/lupa.png" alt="" class="" id="lupa">
+          <img src="@/assets/lupa.png" alt="" class="" id="lupamobile">
         </div>
       </div>
       <div class="mb-5 ms-2">
@@ -142,13 +145,13 @@ export default {
     },
     shouldHideElement() {
       const numbercar = document.getElementById("numbercar")
-      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992 && numbercar!=null) {
+      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992 && numbercar != null) {
         numbercar.style.display = "none"
-      } else if(numbercar!=null){
+      } else if (numbercar != null) {
         numbercar.style.display = "block"
       }
 
-      
+
     },
     ocultarcarrito() {
       const div = document.getElementById("dropdownmenu2help");
@@ -287,13 +290,13 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     OpenDropdown() {
-     let div=document.getElementById("dropdownmenumb");
-     if(div.style.display == "block"){
-      div.style.display = "none";
-     }else{
-      div.style.display = "block"
-     }
-     
+      let div = document.getElementById("dropdownmenumb");
+      if (div.style.display == "block") {
+        div.style.display = "none";
+      } else {
+        div.style.display = "block"
+      }
+
     },
     Search() {
       let list = document.getElementById("listsearchmobile")
@@ -315,12 +318,12 @@ export default {
     landing() {
       this.$router.push('/');
     },
-    comprueba(){
-      if(this.$store.getters.carrito.length == 0){
+    comprueba() {
+      if (this.$store.getters.carrito.length == 0) {
         const div = document.getElementById("dropdownmenu2help");
         const div2 = document.getElementById("dropdownmenu2help2");
-        div.style.display="none";
-        div2.style.display="none";
+        div.style.display = "none";
+        div2.style.display = "none";
       }
 
     }
@@ -357,7 +360,7 @@ export default {
       handler() {
         this.comprueba()
       },
-      
+
     }
 
   },
@@ -405,6 +408,7 @@ export default {
   background-color: $black;
   color: $white ;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+
   ul {
     list-style: none;
     padding: 0;
@@ -497,21 +501,22 @@ export default {
 }
 
 .headercomponent {
-  margin-bottom: 12vh;
+  margin-bottom: 10vh;
 }
 
 .headerpower {
   background-color: $black;
   color: $white;
-  height: auto;
+  height: 10.5vh;
   width: 100%;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   padding-bottom: 0px;
+
   #menu {
-    width: 32px;
+    width: 4vh;
     height: 5vh;
   }
 
@@ -531,8 +536,8 @@ export default {
   }
 
   #lupa {
-    width: 35px;
-    height: 4vh;
+    width: 3.5vh;
+    height: 3.5vh;
   }
 }
 
@@ -579,7 +584,7 @@ export default {
 
 .bottombar {
   position: fixed;
-  top: 12vh;
+  top: 10vh;
   left: -100%;
   width: 100%;
   height: 10%;
@@ -588,7 +593,7 @@ export default {
   transition: 0.5s ease-in-out;
   z-index: 1000;
 
-  #lupa {
+  #lupamobile {
     width: 30px;
     height: 3.8vh;
   }
@@ -606,7 +611,8 @@ export default {
   }
 
   #closesearch {
-    height: 4vw;
+    margin-top: 10px;
+    height: 3vh;
   }
 
   .searchbarmobile {
@@ -646,7 +652,8 @@ export default {
     padding-left: 10px;
     padding-right: 12px;
     margin-right: 5px;
-    height:10%;
+    height: 10%;
+
     &:hover {
       color: $white;
     }
@@ -657,9 +664,11 @@ export default {
     color: $white;
   }
 }
-#inpudesk{
-    display: none;
-  }
+
+#inpudesk {
+  display: none;
+}
+
 //HEADER STYLE DESKTOP
 @media only screen and (min-width: 800px) {
   .numbercar {
@@ -672,7 +681,8 @@ export default {
     border-radius: 360px;
 
   }
-  #inpudesk{
+
+  #inpudesk {
     display: block;
   }
 
@@ -709,13 +719,16 @@ export default {
 
   .dropdown-menu {
     @include dropdown-menu;
-    
+
   }
+
   .headercomponent {
     margin-bottom: 17vh;
   }
 
   .headerpower {
+    height: 12.5vh;
+
     #user {
       width: 35px;
       height: 35px
@@ -724,6 +737,12 @@ export default {
     #carrito {
       width: 5vh;
       height: 5vh;
+      margin-left: 20px;
+    }
+
+    #lupa {
+      width: 4vh;
+      height: 4vh;
     }
   }
 

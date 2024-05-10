@@ -48,6 +48,9 @@ export default {
             try {
                 const respuesta = await axios.post("http://127.0.0.1:8000/api/viewproductid", { id });
                 this.producto = respuesta.data
+                if (Object.keys(respuesta.data).length === 0){
+                    this.$router.push("/NotFound")
+                }             
             } catch (error) {
                 console.error('Error al obtener el producto por ID:', error);
             }

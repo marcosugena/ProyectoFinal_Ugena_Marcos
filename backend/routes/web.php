@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,5 @@ Route::get('/', function () {
 });
 Route::get('/productosnutri',[ProductoController::class,'ObtenerProductosNutricion']);
 Route::get('/productosrecomendados',[ProductoController::class,'ObtenerRecomendados']);
+Route::get('/productos',[ProductoController::class,'ObtenerProductos']);
+Route::get('/users',[UserController::class,'ObtenerUsuarios']);

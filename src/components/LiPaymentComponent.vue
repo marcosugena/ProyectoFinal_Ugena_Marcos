@@ -77,8 +77,7 @@ export default {
   
     
 }
-.imgbut{
-        
+.imgbut{  
         width: 3vh;
         height: 3vh
     }
@@ -90,16 +89,16 @@ export default {
         color: $white;
         flex-direction: row;
         .imgpr{
-        width: 10vh;
-        height: 10vh;
+        width: 20vh;
+        height: 20vh;
         background-color: $white;
         
     } 
     }
     .imgbut{
         background-color: $black;
-        width: 2.2vh;
-        height: 2.2vh
+        width: 3vh;
+        height: 3vh
     }
     
 }

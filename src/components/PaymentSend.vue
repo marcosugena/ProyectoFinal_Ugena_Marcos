@@ -15,7 +15,7 @@
                 nuestra dedicación por alcanzar la excelencia no conoce límites.
             </p>
 
-            <h1>¿Quienes Somos Y Que Podemos Aportarte?</h1>
+            <h1 class="mt-5">¿Quienes Somos Y Que Podemos Aportarte?</h1>
             <p class="mb-4">Con más de una década de experiencia a tu servicio, impulsados por la búsqueda constante de
                 la
                 excelencia, te ofrecemos la mejor selección de productos de nutrición deportiva y alimentación saludable

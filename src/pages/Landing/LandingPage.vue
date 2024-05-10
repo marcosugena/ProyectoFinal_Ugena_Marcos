@@ -2,7 +2,9 @@
     <HeaderComponent></HeaderComponent>
     <div class="landing">
         <SliderComponent></SliderComponent>
+        
         <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
+        
         <div class="Recommendforyou">
             <h2 class="pt-2">RECOMENDADO PARA TI</h2>
             <div class="ProductContainer ">
@@ -12,7 +14,9 @@
                 </div>
             </div>
         </div>
+        <BorderComponent></BorderComponent>
         <OfferComponent :imageUrl="'/banner2.jpg'" @click="MostrarProducto2(2)"></OfferComponent>
+        <BorderComponent></BorderComponent>
         <div class="Landingvideo d-none d-lg-block">
             <video muted autoplay loop playsinline class="m-0">
                 <source src="@/assets/videocortado.mp4" type="video/mp4">
@@ -23,6 +27,7 @@
                 <h4>POWERLAB</h4>
             </div>
         </div>
+        
 
         <div class="LandingInfo d-flex align-items-center flex-wrap">
             <div class="infocontainer d-flex flex-column align-items-center">
@@ -54,24 +59,24 @@
                 </p>
             </div>
         </div>
-        
+
         <PaymentSend></PaymentSend>
-        <CardsComponent></CardsComponent>   
+        <CardsComponent></CardsComponent>
     </div>
     <NewsLetterComponent></NewsLetterComponent>
     <FooterComponent></FooterComponent>
 </template>
 <script>
 import axios from 'axios';
-import HeaderComponent from "../../components/HeaderComponent.vue";
-import FooterComponent from "../../components/FooterComponent.vue";
-import SliderComponent from "../../components/SliderComponent.vue";
-import OfferComponent from "../../components/OfferComponent.vue";
-import ProductComponent from "../../components/ProductComponent.vue";
-import NewsLetterComponent from "../../components/NewsLetterComponent.vue";
-import PaymentSend from "../../components/PaymentSend.vue";
-import CardsComponent from '../../components/CardsComponent.vue';
-
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import SliderComponent from "@/components/SliderComponent.vue";
+import OfferComponent from "@/components/OfferComponent.vue";
+import ProductComponent from "@/components/ProductComponent.vue";
+import NewsLetterComponent from "@/components/NewsLetterComponent.vue";
+import PaymentSend from "@/components/PaymentSend.vue";
+import CardsComponent from '@/components/CardsComponent.vue';
+import BorderComponent from '@/components/BorderComponent.vue';
 export default {
     components: {
         HeaderComponent,
@@ -81,7 +86,8 @@ export default {
         OfferComponent,
         NewsLetterComponent,
         PaymentSend,
-        CardsComponent
+        CardsComponent,
+        BorderComponent
     },
     data() {
         return {
@@ -98,23 +104,23 @@ export default {
             }
 
         },
-        MostrarProducto(ProductId){
-        this.$router.push({ name: 'ProductView', params: { id: ProductId } });
-    },
-    MostrarProducto2(ProductId){
-        this.$store.dispatch('encrypt', ProductId.toString())
-        .then(hashedid => {
-            this.$router.push({ name: 'ProductView', params: { id: hashedid } });
-        })
-        .catch(error => {
-          console.error('Error al encriptar el precio:', error);
-        });
-    }
+        MostrarProducto(ProductId) {
+            this.$router.push({ name: 'ProductView', params: { id: ProductId } });
+        },
+        MostrarProducto2(ProductId) {
+            this.$store.dispatch('encrypt', ProductId.toString())
+                .then(hashedid => {
+                    this.$router.push({ name: 'ProductView', params: { id: hashedid } });
+                })
+                .catch(error => {
+                    console.error('Error al encriptar el precio:', error);
+                });
+        }
     },
     mounted() {
         this.cogerecomend();
     },
-    
+
 };
 </script>
 
@@ -141,18 +147,21 @@ export default {
         text-align: center;
         color: white;
         font-family: "Roboto", "Open Sans", sans-serif;
-        h6{
+
+        h6 {
             font-weight: 400;
         }
-        h2{
+
+        h2 {
             font-size: 74px;
-            font-family: Helvetica,Helvetica Neue,Arial,Lucida Grande,sans-serif;
+            font-family: Helvetica, Helvetica Neue, Arial, Lucida Grande, sans-serif;
             font-weight: 700;
         }
-        h4{
+
+        h4 {
             font-weight: 700;
         }
-        
+
     }
 }
 
@@ -163,6 +172,7 @@ export default {
 
 .infocontainer {
     width: 100%;
+
     span {
         text-transform: uppercase;
         font-size: 1.2em;
@@ -186,8 +196,9 @@ export default {
 
 .Recommendforyou {
 
-    background: linear-gradient(to bottom right , $grey, $black 40%, $black 50%,$grey 100%,);
+    background: linear-gradient(to bottom right, $grey, $black 40%, $black 50%, $grey 100%, );
     color: $white;
+
     .ProductContainer {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -196,14 +207,14 @@ export default {
 
     h2 {
         text-align: center;
-        font-weight:700;
+        font-weight: 700;
     }
 }
 
 .LandingInfo {
     height: 120vh;
-    background: linear-gradient(to bottom , $grey, $black 8%, $black 92%,$grey 100%,);
-    
+    background: linear-gradient(to bottom, $grey, $black 8%, $black 92%, $grey 100%, );
+
     color: $white;
 }
 
@@ -249,5 +260,4 @@ export default {
         }
     }
 }
-
 </style>

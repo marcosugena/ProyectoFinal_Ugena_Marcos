@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-     async regvalidator(e) {
+    async regvalidator(e) {
       //VALIDACION DE DATOS
       let usuario = document.getElementById("regusu").value;
       let email = document.getElementById("regemail").value;
@@ -66,18 +66,18 @@ export default {
         try {
           const respuesta = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
           // Manejar la respuesta como desees
-        if(respuesta.data.success){
+          if (respuesta.data.success) {
             this.$router.push("/");
-        }else{
-          let danger=document.getElementById("danger")
-          danger.textContent="Este correo ya esta registrado";
-        }
+          } else {
+            let danger = document.getElementById("danger")
+            danger.textContent = "Este correo ya esta registrado";
+          }
         } catch (error) {
-          console.error('Error al registrar usuario'+error);
+          console.error('Error al registrar usuario' + error);
         }
       }
     },
-    inicio(){
+    inicio() {
       this.$router.push('/')
     }
   },
@@ -139,12 +139,13 @@ export default {
     width: 15vh;
     height: 15vh;
   }
+
   color: $white;
   z-index: 1000;
   width: 38vh;
   height: 58vh;
   border-radius: 32px;
-  background: linear-gradient(to bottom right , $grey, $black 40%, $black 80%,$grey 100%,);
+  background: linear-gradient(to bottom right, $grey, $black 40%, $black 80%, $grey 100%, );
 }
 
 button {
@@ -156,6 +157,7 @@ button {
   border: 1px solid $bluelight;
   color: $bluelight;
   border-radius: 3px;
+
   &:hover {
     background-color: $bluelight;
     color: $white;

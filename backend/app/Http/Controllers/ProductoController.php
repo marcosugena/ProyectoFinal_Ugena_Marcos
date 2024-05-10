@@ -103,7 +103,36 @@ class ProductoController extends Controller
         return response()->json(['mensaje' => 'No se ha enviado ninguna imagen'], 400);
     }
 }
-    
+public function ObtenerProductos()
+{
+    try {
+        $productosNutricion = Producto::all();
+        return response()->json($productosNutricion);
+    } catch (Exception $e) {
+        return response()->json(['error' => 'Error al obtener productos de nutricion ' . $e], 500);
+    }
+}
+public function DeleteProduct($id)
+{
+    try {
+        $producto = Producto::find($id);
+        if (!$producto) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
 
-    
+        // Eliminar la imagen asociada al producto si existe
+        $nombreImagen = $producto->ImagenProducto;
+        if ($nombreImagen && file_exists(public_path($nombreImagen))) {
+            unlink(public_path($nombreImagen));
+        }
+
+        // Eliminar el producto de la base de datos
+        $producto->delete();
+
+        return response()->json(['message' => 'Producto eliminado correctamente'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al eliminar el producto: ' . $e->getMessage()], 500);
+    }
+}
+
 }

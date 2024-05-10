@@ -165,7 +165,7 @@ p {
         }
 
         div {
-            font-size: x-large;
+            font-size: xx-large;
 
         }
 
