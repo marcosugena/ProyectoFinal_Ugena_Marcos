@@ -6,9 +6,13 @@ const store = createStore({
     NombreUsuario:"",
     IdUsuario:-1,
     Carrito:[],
-    key:"'S,2L4eR1d8a0WYN1UVz><?.fcdB4f£9g5m0,kXj;Do}@?i0GY"
+    key:"'S,2L4eR1d8a0WYN1UVz><?.fcdB4f£9g5m0,kXj;Do}@?i0GY",
+    Admin:false
   },
   mutations: {
+    setAdmin(state, valor) {
+      state.Admin = valor;
+    },
     setUsuarioLogueado(state, valor) {
       state.usuarioLogueado = valor;
     },
@@ -38,6 +42,10 @@ const store = createStore({
   
   },
   actions: {
+    isAdmin({ commit }) {
+      // Lógica de admin
+      commit('setAdmin',true);
+    },
     login({ commit }) {
       // Lógica de autenticación
       commit('setUsuarioLogueado',true);
@@ -75,7 +83,8 @@ const store = createStore({
     nombreDeUsuario: (state) => state.NombreUsuario,
     Idusu: (state) => state.IdUsuario,
     carrito: state => state.Carrito,
-    key: state => state.key
+    key: state => state.key,
+    Admin: state => state.Admin
   },
 });
 

@@ -19,6 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('register', [UserController::class, 'register']);
+Route::post('createadmin', [UserController::class, 'CreateAdmin']);
+Route::post('createproduct', [ProductoController::class, 'CreateProduct']);
+Route::post('guardar-imagen', [ProductoController::class, 'guardarImagen']);
+Route::post('es-admin', [UserController::class, 'esAdmin']);
 Route::post('login',[UserController::class, 'login']);
 Route::post('search',[ProductoController::class,'ObtenerBusqueda']);
 Route::post('viewproductid',[ProductoController::class,'ObtenerProductoPorId']);
+Route::get('deleteproduct/{id}', [ProductoController::class, 'DeleteProduct']);
+Route::get('deleteuser/{id}', [UserController::class, 'DeleteUser']);

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footerclass">
+  <footer class="footerclass fixed-bottom position-relative">
     <div class="footer-container d-lg-flex justify-content-around">
       <div class="d-flex flex-column p-3 text-center ">
         <span>TIENDA ONLINE</span>
@@ -63,10 +63,8 @@ export default {
   z-index: 1;
   background-color: $black;
   padding: 18px;
-  height: 110vh;
+  height: auto;
   text-align: center;
-  position: relative;
-  bottom: 0;
   width: 100%;
 }
 
@@ -95,15 +93,13 @@ export default {
   }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 700px) {
   .footerclass {
   z-index: 1;
   background-color: $black;
   padding: 18px;
-  height: 47vh;
+  height: auto;
   text-align: center;
-  position: relative;
-  bottom: 0;
   width: 100%;
 }
 

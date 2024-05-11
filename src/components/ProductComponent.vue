@@ -3,7 +3,7 @@
         <div class="productbox d-flex " :style="{ backgroundImage: 'url(' + imageURL + ')' }">
         </div>
         <div class="productext d-flex justify-content-center mt-3">
-            <a class="text-center" @click="MostrarProducto(ProductId)">{{nameproduct}}</a>
+            <a class="text-center " @click="MostrarProducto(ProductId)">{{nameproduct}}</a>
         </div>
         <div id="price" class="d-flex flex-column align-items-center mt-0">
             <p >{{ price }} €</p>
@@ -55,9 +55,10 @@ export default {
 .productext {
     p {
         font-size: smaller;
-    
+        
     }
     a{
+        text-wrap: wrap;
         text-decoration: none;
         color: $white;
         &:hover{
@@ -83,7 +84,7 @@ export default {
     }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 800px) {
     .productbox {
         background-size: cover;
         height: 30vh;

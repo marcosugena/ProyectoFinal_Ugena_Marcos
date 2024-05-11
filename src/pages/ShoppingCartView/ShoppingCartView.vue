@@ -3,6 +3,13 @@
 
     <ul class="carrocontainer d-flex flex-column w-100">
         <div v-for="ca in car" :key="ca.id" class="licontainer">
+        <table class="table text-center">
+            <thead class=" ">
+                        <tr class="">
+                            <th scope="col">Carrito</th>
+                        </tr>
+            </thead>
+        </table>
             <LiPaymentComponent :imgurl="ca.ImagenProducto" :name="ca.Nombre" :cantidad="ca.Cantidad"
                 :precio="ca.Precio"></LiPaymentComponent>
         </div>
@@ -99,7 +106,7 @@ p {
     }
 
     div {
-        color: $white;
+        color: $black;
         font-size: larger;
         button {
             background-color: $bluelight;
@@ -159,8 +166,8 @@ p {
         border-right: 2px solid $white;
         }
         p {
-            background-color: $black;
-            color: $white;
+            background-color: $white;
+            color: $black;
             padding: 5px;
         }
 
@@ -172,7 +179,7 @@ p {
         .btndiv {
             color: $white;
             font-size: x-large;
-            background-color: $black;
+            background-color: $white;
 
             button {
                 background-color: $bluelight;

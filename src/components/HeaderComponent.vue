@@ -5,32 +5,35 @@
         <img src="@/assets/menu.png" alt="" id="menu" class="ms-2" @click="Menu">
         <img src="@/assets/lupa.png" alt="" id="lupa" class="ms-3" @click="Search">
       </div>
-      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-2" @click="landing">
+      <img src="@/assets/PowerLab.jpg" alt="" id="logo" class="ms-2 ms-lg-1" @click="landing">
       <div class="searchbardesktop mt-2 ms-lg-5 d-flex justify-content-center flex-column ">
-        <input type="text" placeholder="Buscar..." class=" p-2 ms-5 d-none d-lg-block" v-on:input="search"
-          v-model="searchtext.texto" v-on:focus="revelainput" v-on:blur="ocultainput">
+        <input type="text" placeholder="Buscar..." class="p-2 ms-5" v-on:input="search" v-model="searchtext.texto"
+          v-on:focus="revelainput" v-on:blur="ocultainput" id="inpudesk">
         <div class=" d-flex justify-content-center w-100">
           <div class="dropdown-menusearch text-center " id="dropdown-menusearch">
             <ul id="listsearchdesktop"></ul>
           </div>
         </div>
       </div>
-      <div class="header-right mx-lg-3 d-flex mt-1 ">
-        <div class="d-flex align-items-center mx-lg-5 useroptions " @click="Options" id="optionsmobile">
+      <div class="header-right d-flex mt-1 ">
+        <div class="d-flex align-items-center mx-lg-5 useroptions " id="optionsmobile" v-on:mouseover="OpenDropdown()"
+          v-on:mouseout="OpenDropdown()">
           <img src="@/assets/usuario.png" alt="" id="user" class="mx-3  ms-0 mb-1">
           <p class="disp mt-3 fw-bold" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
-          <div class="dropdown-menu">
-            <ul>
+          <div class="dropdown-menu" id="dropdownmenumb">
+            <ul class="text-center">
               <li><a href="#">Mis Compras</a></li>
-              <li><a href="#">Contacto</a></li>
-              <li><a href="#">User Settings</a></li>
+              <li @click="Logout()">Cerrar Sesión</li>
+              <li v-if="this.$store.getters.Admin">
+                <RouterLink to="/admin-panel">Admin Panel</RouterLink>
+              </li>
             </ul>
           </div>
         </div>
         <div class="d-flex align-items-center carrito mx-2 " v-on:mouseover="mostrarcarritoo"
-          v-on:mouseout="ocultarcarrito" >
+          v-on:mouseout="ocultarcarrito">
           <p class="mb-4 numbercar">{{ this.$store.getters.carrito.length }}</p>
-          <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0" @click="MostrarCarrito()">
+          <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-0 mx-lg-3" @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" style="z-index: 1030;" id="dropdownmenu2help2">
             <ul id="carritopr">
               <LiCarComponent v-for="producto in carrito" :key="producto.Id" :price="producto.Precio"
@@ -43,12 +46,12 @@
 
       </div>
       <div class="header-right-nologged d-flex">
-        <button class=" mx-lg-0 mt-lg-2 mx-lg-0" @click="LoginPage">Login</button>
-        <button class="mx-lg-4 mt-lg-2 mx-1 ms-1" @click="RegisterPage" id="regbutton">Register</button>
+        <button class=" mt-lg-2 mx-lg-0" @click="LoginPage">Login</button>
+        <button class="mx-lg-4 mt-lg-2 " @click="RegisterPage" id="regbutton">Register</button>
 
         <div class="d-flex align-items-center carrito mt-2" v-on:mouseover="mostrarcarritoo"
           v-on:mouseout="ocultarcarrito">
-          <p class="mb-4 ms-2 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
+          <p class="mb-4 ms-3 numbercar ms-lg-0" id="numbercar">{{ this.$store.getters.carrito.length }}</p>
           <img src="@/assets/carrito-de-compras.png" alt="" id="carrito" class="mx-1 d-none d-lg-block mx-lg-4"
             @click="MostrarCarrito()">
           <div class="dropdown-menu2 position-fixed top-0 end-0 p-3" id="dropdownmenu2help" style="z-index: 1030;">
@@ -64,11 +67,11 @@
     </header>
     <nav class="barnav w-100">
       <div class="d-flex align-items-center flex-row justify-content-around h-100">
-        <div><router-link to="/detail">Proteína</router-link></div>
+        <div><router-link to="/proteina">Proteína</router-link></div>
         <div><router-link to="/nutricion">Nutrición</router-link></div>
-        <div><router-link to="/detail">Vitaminas</router-link></div>
-        <div><router-link to="/detail">Barritas y Snacks</router-link></div>
-        <div><router-link to="/detail">Alimentación</router-link></div>
+        <div><router-link to="/vitaminas">Vitaminas</router-link></div>
+        <div><router-link to="/snacks">Barritas y Snacks</router-link></div>
+        <div><router-link to="/alimentacion">Alimentación</router-link></div>
       </div>
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
@@ -76,7 +79,7 @@
         <input type="text" class="justify-content-center align-items-center" placeholder="Buscar..." id="inputsearch"
           v-model="searchtext.texto" v-on:input="searchmobile">
         <div>
-          <img src="@/assets/lupa.png" alt="" class="" id="lupa">
+          <img src="@/assets/lupa.png" alt="" class="" id="lupamobile">
         </div>
       </div>
       <div class="mb-5 ms-2">
@@ -126,6 +129,13 @@ export default {
     };
   },
   methods: {
+    async Logout(){
+          window.location.reload();
+          this.$store.commit('setUsuarioLogueado', false);
+          this.$store.commit('setUserName', "");
+          this.$store.commit('setId',0);
+          this.$store.commit('setAdmin',false);         
+    },
     MostrarCarrito() {
       if (this.$store.getters.carrito.length != 0) {
         this.$router.push({ name: 'ShoppingCartView' });
@@ -141,11 +151,13 @@ export default {
     },
     shouldHideElement() {
       const numbercar = document.getElementById("numbercar")
-      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992) {
+      if (this.$store.getters.estadoUsuario == "No Logueado" && window.innerWidth < 992 && numbercar != null) {
         numbercar.style.display = "none"
-      } else {
+      } else if (numbercar != null) {
         numbercar.style.display = "block"
       }
+
+
     },
     ocultarcarrito() {
       const div = document.getElementById("dropdownmenu2help");
@@ -196,7 +208,10 @@ export default {
     },
     ocultainput() {
       setTimeout(() => {
-        document.getElementById("dropdown-menusearch").style.display = "none"
+        let div=document.getElementById("dropdown-menusearch");
+        if(div != null){
+          div.style.display = "none"
+        }   
       }, 200);
 
     },
@@ -268,6 +283,7 @@ export default {
           li.addEventListener("mouseover", function () {
             li.style.backgroundColor = "white";
             li.style.color = "black";
+            
           })
           li.addEventListener("mouseout", function () {
             li.style.backgroundColor = "#262626";
@@ -283,14 +299,14 @@ export default {
     Menu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-    Options() {
-      this.isOptionOpen = !this.isOptionOpen;
-      const dropdownMenu = document.querySelector('.useroptions .dropdown-menu');
-      if (this.isOptionOpen) {
-        dropdownMenu.style.display = 'block';
+    OpenDropdown() {
+      let div = document.getElementById("dropdownmenumb");
+      if (div.style.display == "block") {
+        div.style.display = "none";
       } else {
-        dropdownMenu.style.display = 'none';
+        div.style.display = "block"
       }
+
     },
     Search() {
       let list = document.getElementById("listsearchmobile")
@@ -312,18 +328,19 @@ export default {
     landing() {
       this.$router.push('/');
     },
-    comprueba(){
-      if(this.$store.getters.carrito.length == 0){
+    comprueba() {
+      if (this.$store.getters.carrito.length == 0) {
         const div = document.getElementById("dropdownmenu2help");
         const div2 = document.getElementById("dropdownmenu2help2");
-        div.style.display="none";
-        div2.style.display="none";
+        div.style.display = "none";
+        div2.style.display = "none";
       }
 
     }
 
   },
   mounted() {
+    window.addEventListener('resize', () => this.shouldHideElement());
     this.shouldHideElement()
     this.actualizacarrito();
     this.actualizaprice();
@@ -353,7 +370,7 @@ export default {
       handler() {
         this.comprueba()
       },
-      
+
     }
 
   },
@@ -376,15 +393,15 @@ export default {
 
 .dropdown-menumobile {
   position: fixed;
-  top: 22vh;
+  top: 20vh;
   width: 100%;
   background-color: $black;
   z-index: 1;
   color: $white;
   display: none;
-
   ul {
     list-style: none;
+    
   }
 
   li {
@@ -395,16 +412,12 @@ export default {
 @mixin dropdown-menu {
   display: none;
   position: absolute;
+  right: 0%;
   top: 98%;
   z-index: 10;
   background-color: $black;
   color: $white ;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-
-
-  &:hover {
-    display: block;
-  }
 
   ul {
     list-style: none;
@@ -414,7 +427,9 @@ export default {
     li {
       padding: 10px;
       font-size: 16px;
-
+      &:hover {
+          color: $bluelight;
+        }
       a {
         text-decoration: none;
         color: $white;
@@ -498,22 +513,23 @@ export default {
 }
 
 .headercomponent {
-  margin-bottom: 12vh;
+  margin-bottom: 10vh;
 }
 
 .headerpower {
   background-color: $black;
   color: $white;
-  height: 12vh;
+  height: 10.5vh;
   width: 100%;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  padding-bottom: 0px;
 
   #menu {
-    width: 32px;
-    height: 6.3vh;
+    width: 4vh;
+    height: 5vh;
   }
 
   #logo {
@@ -532,15 +548,15 @@ export default {
   }
 
   #lupa {
-    width: 35px;
-    height: 4.3vh;
+    width: 3.5vh;
+    height: 3.5vh;
   }
 }
 
 .sidebar {
   z-index: 2;
   position: fixed;
-  top: 12vh;
+  top: 10vh;
   left: -250px;
   width: 250px;
   height: 100%;
@@ -580,16 +596,15 @@ export default {
 
 .bottombar {
   position: fixed;
-  top: 12vh;
+  top: 10vh;
   left: -100%;
   width: 100%;
   height: 10%;
-  background-color: $grey;
+  background-color: $black;
   color: $white;
   transition: 0.5s ease-in-out;
   z-index: 1000;
-
-  #lupa {
+  #lupamobile {
     width: 30px;
     height: 3.8vh;
   }
@@ -607,7 +622,9 @@ export default {
   }
 
   #closesearch {
-    height: 20px;
+    padding: 4px;
+    margin-top: 10px;
+    height: 3vh;
   }
 
   .searchbarmobile {
@@ -647,6 +664,7 @@ export default {
     padding-left: 10px;
     padding-right: 12px;
     margin-right: 5px;
+    height: 10%;
 
     &:hover {
       color: $white;
@@ -659,8 +677,12 @@ export default {
   }
 }
 
+#inpudesk {
+  display: none;
+}
+
 //HEADER STYLE DESKTOP
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 800px) {
   .numbercar {
     background-color: red;
     position: fixed;
@@ -670,6 +692,10 @@ export default {
     padding-right: 7px;
     border-radius: 360px;
 
+  }
+
+  #inpudesk {
+    display: block;
   }
 
   @mixin dropdown-menu {
@@ -705,14 +731,7 @@ export default {
 
   .dropdown-menu {
     @include dropdown-menu;
-  }
 
-
-
-  .useroptions:hover {
-    .dropdown-menu {
-      display: block;
-    }
   }
 
   .headercomponent {
@@ -720,14 +739,22 @@ export default {
   }
 
   .headerpower {
+    height: 12.5vh;
+
     #user {
-      width: 40px;
-      height: 4.2vh;
+      width: 35px;
+      height: 35px
     }
 
     #carrito {
       width: 5vh;
       height: 5vh;
+      margin-left: 20px;
+    }
+
+    #lupa {
+      width: 4vh;
+      height: 4vh;
     }
   }
 
@@ -783,7 +810,7 @@ export default {
       }
 
       border: 2px solid $bluelight;
-      border-radius: 4px;
+      border-radius: 8px;
       outline: none;
       width: 50vh;
     }
@@ -794,8 +821,5 @@ export default {
     }
   }
 
-  .dropdown-menusearch {
-    display: block;
-  }
 }
 </style>
