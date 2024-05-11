@@ -1,5 +1,5 @@
 <template>
-  <footer class="footerclass">
+  <footer class="footerclass fixed-bottom position-relative">
     <div class="footer-container d-lg-flex justify-content-around">
       <div class="d-flex flex-column p-3 text-center ">
         <span>TIENDA ONLINE</span>
@@ -65,8 +65,6 @@ export default {
   padding: 18px;
   height: auto;
   text-align: center;
-  position: relative;
-  bottom: 0;
   width: 100%;
 }
 
@@ -102,8 +100,6 @@ export default {
   padding: 18px;
   height: auto;
   text-align: center;
-  position: relative;
-  bottom: 0;
   width: 100%;
 }
 

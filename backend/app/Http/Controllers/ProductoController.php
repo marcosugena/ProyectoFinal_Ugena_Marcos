@@ -28,7 +28,7 @@ class ProductoController extends Controller
         }
     }
 
-    public function ObtenerProductosVitaminas()
+    public function ObtenerProductosVita()
     {
         try {
             $productosNutricion = Producto::where('tipo', 'vitaminas')->get();
@@ -37,19 +37,19 @@ class ProductoController extends Controller
             return response()->json(['error' => 'Error al obtener productos de nutricion ' . $e], 500);
         }
     }
-    public function ObtenerProductosBySnacks()
+    public function ObtenerProductosSnack()
     {
         try {
-            $productosNutricion = Producto::where('tipo', 'ByS')->get();
+            $productosNutricion = Producto::where('tipo', 'barritas')->get();
             return response()->json($productosNutricion);
         } catch (Exception $e) {
             return response()->json(['error' => 'Error al obtener productos de nutricion ' . $e], 500);
         }
     }
-    public function ObtenerProductosAlimenatcion()
+    public function ObtenerProductosAlimentacion()
     {
         try {
-            $productosNutricion = Producto::where('tipo', 'Alimentacion')->get();
+            $productosNutricion = Producto::where('tipo', 'alimentacion')->get();
             return response()->json($productosNutricion);
         } catch (Exception $e) {
             return response()->json(['error' => 'Error al obtener productos de nutricion ' . $e], 500);

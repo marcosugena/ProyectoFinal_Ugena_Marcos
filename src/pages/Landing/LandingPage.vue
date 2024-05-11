@@ -1,10 +1,8 @@
 <template>
     <HeaderComponent></HeaderComponent>
     <div class="landing">
-        <SliderComponent></SliderComponent>
-        
-        <OfferComponent :imageUrl="'/banner1.jpg'"></OfferComponent>
-        
+        <SliderComponent></SliderComponent> 
+        <OfferComponent :imageUrl="'/banner1.jpg'" @click="MostrarProducto2(11)"></OfferComponent>
         <div class="Recommendforyou">
             <h2 class="pt-2">RECOMENDADO PARA TI</h2>
             <div class="ProductContainer ">
@@ -221,7 +219,7 @@ export default {
 //MEDIAQUERYS
 @media only screen and (min-width: 800px) {
     .Recommendforyou {
-        height: 105vh;
+        height: auto;
         background-color: $black;
         color: $white;
 

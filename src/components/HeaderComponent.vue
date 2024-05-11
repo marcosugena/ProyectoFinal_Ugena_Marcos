@@ -23,8 +23,7 @@
           <div class="dropdown-menu" id="dropdownmenumb">
             <ul class="text-center">
               <li><a href="#">Mis Compras</a></li>
-              <li><a href="#">Contacto</a></li>
-              <li><a href="#">User Settings</a></li>
+              <li @click="Logout()">Cerrar Sesión</li>
               <li v-if="this.$store.getters.Admin">
                 <RouterLink to="/admin-panel">Admin Panel</RouterLink>
               </li>
@@ -68,11 +67,11 @@
     </header>
     <nav class="barnav w-100">
       <div class="d-flex align-items-center flex-row justify-content-around h-100">
-        <div><router-link to="/detail">Proteína</router-link></div>
+        <div><router-link to="/proteina">Proteína</router-link></div>
         <div><router-link to="/nutricion">Nutrición</router-link></div>
-        <div><router-link to="/detail">Vitaminas</router-link></div>
-        <div><router-link to="/detail">Barritas y Snacks</router-link></div>
-        <div><router-link to="/detail">Alimentación</router-link></div>
+        <div><router-link to="/vitaminas">Vitaminas</router-link></div>
+        <div><router-link to="/snacks">Barritas y Snacks</router-link></div>
+        <div><router-link to="/alimentacion">Alimentación</router-link></div>
       </div>
     </nav>
     <div class="bottombar d-flex justify-content-center align-items-center" :class="{ 'bottombar-open': isSearchOpen }">
@@ -130,6 +129,13 @@ export default {
     };
   },
   methods: {
+    async Logout(){
+          window.location.reload();
+          this.$store.commit('setUsuarioLogueado', false);
+          this.$store.commit('setUserName', "");
+          this.$store.commit('setId',0);
+          this.$store.commit('setAdmin',false);         
+    },
     MostrarCarrito() {
       if (this.$store.getters.carrito.length != 0) {
         this.$router.push({ name: 'ShoppingCartView' });
@@ -202,7 +208,10 @@ export default {
     },
     ocultainput() {
       setTimeout(() => {
-        document.getElementById("dropdown-menusearch").style.display = "none"
+        let div=document.getElementById("dropdown-menusearch");
+        if(div != null){
+          div.style.display = "none"
+        }   
       }, 200);
 
     },
@@ -274,6 +283,7 @@ export default {
           li.addEventListener("mouseover", function () {
             li.style.backgroundColor = "white";
             li.style.color = "black";
+            
           })
           li.addEventListener("mouseout", function () {
             li.style.backgroundColor = "#262626";
@@ -383,15 +393,15 @@ export default {
 
 .dropdown-menumobile {
   position: fixed;
-  top: 22vh;
+  top: 20vh;
   width: 100%;
   background-color: $black;
   z-index: 1;
   color: $white;
   display: none;
-
   ul {
     list-style: none;
+    
   }
 
   li {
@@ -417,7 +427,9 @@ export default {
     li {
       padding: 10px;
       font-size: 16px;
-
+      &:hover {
+          color: $bluelight;
+        }
       a {
         text-decoration: none;
         color: $white;
@@ -544,7 +556,7 @@ export default {
 .sidebar {
   z-index: 2;
   position: fixed;
-  top: 12vh;
+  top: 10vh;
   left: -250px;
   width: 250px;
   height: 100%;
@@ -588,11 +600,10 @@ export default {
   left: -100%;
   width: 100%;
   height: 10%;
-  background-color: $grey;
+  background-color: $black;
   color: $white;
   transition: 0.5s ease-in-out;
   z-index: 1000;
-
   #lupamobile {
     width: 30px;
     height: 3.8vh;
@@ -611,6 +622,7 @@ export default {
   }
 
   #closesearch {
+    padding: 4px;
     margin-top: 10px;
     height: 3vh;
   }

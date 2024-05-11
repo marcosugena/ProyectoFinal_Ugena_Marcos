@@ -6,7 +6,7 @@
             <p class="text-center mt-4">{{ name }}</p>
             <p class="text-center mt-4">X{{ cantidad }}</p>
             <p class="text-center mt-4">{{ precio }}€</p>
-            <div class="infopr d-flex flex-column align-items-center justify-content-start mb-lg-1 mb-5 mt-3"><img src="@/assets/mas.png" alt="" class="imgbut mb-2" @click="addproduct(name)"><img src="@/assets/menos.png" alt="" class="imgbut" @click="minusproduct(name)" ></div>
+            <div class="infopr d-flex flex-column flex-lg-row  justify-content-start mb-lg-1 mb-5 mt-3"><img src="@/assets/masn.png" alt="" class="imgbut mb-2 mx-4" @click="addproduct(name)"><img src="@/assets/menosn.png" alt="" class="imgbut" @click="minusproduct(name)" ></div>
             
         </div>
 
@@ -85,7 +85,7 @@ export default {
 
 @media only screen and (min-width: 850px) {
     .lipay {
-        background-color: $black;
+        background-color: $white;
         color: $white;
         flex-direction: row;
         .imgpr{
@@ -96,7 +96,7 @@ export default {
     } 
     }
     .imgbut{
-        background-color: $black;
+        background-color: $white;
         width: 3vh;
         height: 3vh
     }

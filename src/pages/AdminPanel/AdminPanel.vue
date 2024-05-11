@@ -21,7 +21,7 @@
                     </div>
                     <div>
                         <p class="mb-1">Precio</p>
-                        <input type="number" v-model="product.precio" />
+                        <input type="number" step="0.01" v-model="product.precio" />
                     </div>
                     <div>
                         <p class="mb-1">Tipo</p>
@@ -47,6 +47,7 @@
             <h3 class="text-center mb-4 mb-lg-5">Quitar Producto</h3>
             <div class="table d-none d-lg-block">
                 <table class="table table-dark table-striped table-sm">
+           
                     <thead>
                         <tr class="text-center">
                             <th scope="col">ProductId</th>
@@ -58,6 +59,7 @@
                             <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
+          
                     <tbody class="text-center">
                         <tr v-for="producto in prs" :key="producto.id">
                             <td>{{ producto.ProductId }}</td>

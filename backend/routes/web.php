@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/productosnutri',[ProductoController::class,'ObtenerProductosNutricion']);
+Route::get('/productosprote',[ProductoController::class,'ObtenerProductosProte']);
+Route::get('/productosvita',[ProductoController::class,'ObtenerProductosVita']);
+Route::get('/productossnack',[ProductoController::class,'ObtenerProductosSnack']);
+Route::get('/productosalimentacion',[ProductoController::class,'ObtenerProductosAlimentacion']);
 Route::get('/productosrecomendados',[ProductoController::class,'ObtenerRecomendados']);
 Route::get('/productos',[ProductoController::class,'ObtenerProductos']);
 Route::get('/users',[UserController::class,'ObtenerUsuarios']);
