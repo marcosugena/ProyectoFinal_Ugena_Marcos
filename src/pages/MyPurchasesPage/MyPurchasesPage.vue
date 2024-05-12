@@ -81,9 +81,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../Style/variables.scss";
-.mypurchases{
-    background: linear-gradient(to bottom right, $bluelight, $black 40%, $black 50%, $bluelight 100%, );
-    height: 100vh;
-    color:$white;
-}
+  .mypurchases {
+    color: $white;
+    background: linear-gradient(to bottom right, $bluelight, $black 40%, $black 50%, $bluelight 100%);
+    /* Elimina la altura explícita y permite que el contenido defina la altura */
+    min-height: 100vh;
+    height: auto;
+  }
 </style>

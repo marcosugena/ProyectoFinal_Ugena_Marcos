@@ -59,7 +59,7 @@ export default {
       try {
         for (const compra of this.arr) {
           for (const detalle of compra.productos) {
-            const res = await axios.post('/api/viewproductid', { id: detalle.Idp});
+            const res = await axios.post(this.$store.getters.backurl+'/api/viewproductid', { id: detalle.Idp});
             detalle.nombre = res.data.Nombre;
             detalle.imagen = res.data.ImagenProducto;
             detalle.precio = res.data.Precio;
@@ -83,8 +83,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .history-pay {
-  /* Estilos para el componente HistoryPayComponent */
+  img{
+    width: 5vh;
+    height: 5vh;
+  }
+ 
+}
+@media only screen and (min-width: 850px) {
+  .history-pay {
+  img{
+    width: 8vh;
+    height: 8vh;
+  }
+  }
 }
 </style>

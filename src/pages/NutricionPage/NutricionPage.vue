@@ -45,6 +45,8 @@ export default {
 @import "../../Style/variables.scss";
 
 .fondonutri {
+    min-height: 100vh;
+    height: auto;
     background: linear-gradient(to bottom right, $black 2%, $grey 100%, );
     display: grid;
     grid-template-columns: repeat(2, 1fr);

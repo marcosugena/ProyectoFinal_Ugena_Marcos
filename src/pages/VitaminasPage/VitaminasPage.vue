@@ -45,6 +45,8 @@ export default {
 
 .fondonutri {
     background: linear-gradient(to bottom right, $black 30%, $blue 80%, );
+    min-height: 100vh;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0px;

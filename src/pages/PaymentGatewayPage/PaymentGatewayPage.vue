@@ -89,7 +89,7 @@
     <p class="text-white">Precio Total: {{ this.$route.params.totalprice }}€</p>
     </div>
     </div>
-    <p class="text-danger text-center mb-1" id="res"></p>
+    <p class="text-danger text-center" id="res"></p>
     <div class="w-100 d-flex justify-content-center">
       <button type="submit" class="btn btn-primary btn-lg btn-block">Pay Secure</button>
     </div>
@@ -125,33 +125,45 @@ export default {
     }
   },
   methods:{
-    async logvalidator(e){
-      const addressValues = Object.values(this.Address);
-      const visavalues=Object.values(this.Visa);
-      for(let i = 0; i < addressValues.length; i++){
-        if(addressValues[i] === ""){
-          e.preventDefault();
-          document.getElementById("res").textContent = "Algun campo vacio";
-          break;
+    async logvalidator(e) {
+    const addressValues = Object.values(this.Address);
+    const visavalues = Object.values(this.Visa);
+    let campoVacioEncontrado = false; 
+
+    for (let i = 0; i < addressValues.length; i++) {
+        if (addressValues[i] === "") {
+            e.preventDefault();
+            document.getElementById("res").textContent = "Algun campo vacio";
+            campoVacioEncontrado = true; 
+            break;
         }
-      }
-      for(let i = 0; i < visavalues.length; i++){
-        if(addressValues[i] === ""){
-          e.preventDefault();
-          document.getElementById("res").textContent = "Algun campo vacio";
-          break;
-        }
-      }
-     e.preventDefault();
-     const respuesta= await axios.post(this.$store.getters.backurl+'/api/createcompra', this.Compra);
-     const compraid=respuesta.data.compra.CompraId;
-     let obj={
-      carrito:this.$store.getters.carrito,
-      compraId:compraid
-     }
-    await axios.post(this.$store.getters.backurl+'/api/createdetailcompra', obj);
-    this.$router.push("/")
     }
+
+    if (!campoVacioEncontrado) { 
+        for (let i = 0; i < visavalues.length; i++) {
+            if (visavalues[i] === "") {
+                e.preventDefault();
+                document.getElementById("res").textContent = "Algun campo vacio";
+                campoVacioEncontrado = true; 
+                break;
+            }
+        }
+    }
+    if (!campoVacioEncontrado) {
+        e.preventDefault();
+        const respuesta = await axios.post(this.$store.getters.backurl + '/api/createcompra', this.Compra);
+        const compraid = respuesta.data.compra.CompraId;
+        let obj = {
+            carrito: this.$store.getters.carrito,
+            compraId: compraid
+        };
+        await axios.post(this.$store.getters.backurl + '/api/createdetailcompra', obj);
+        let carr = [];
+        this.$store.commit("setcarrito", carr);
+        this.$router.push("/");
+    }
+}
+
   }
 }
 </script>
@@ -191,7 +203,8 @@ export default {
 }
 @media only screen and (min-width: 850px) {
   .containera{
-  height: 100vh;
+    min-height: 100vh;
+    height: auto;
   background: linear-gradient(to bottom right, $bluelight, $black 40%, $black 50%, $bluelight 100%, );
 }
 }
