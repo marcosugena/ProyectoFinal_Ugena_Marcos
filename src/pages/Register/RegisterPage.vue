@@ -64,7 +64,7 @@ export default {
       } else {
         //LOGICA DE BACKEND DE REGISTRO
         try {
-          const respuesta = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
+          const respuesta = await axios.post(this.$store.getters.backurl+'/api/register', this.userData);
           // Manejar la respuesta como desees
           if (respuesta.data.success) {
             this.$router.push("/");

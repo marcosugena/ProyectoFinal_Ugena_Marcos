@@ -23,7 +23,14 @@ class Detalle_CompraController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
+    public function DevuelveProducts($id){
+        try{
+            $products=Detalle_compra::where("CompraId",$id)->get();
+            return response()->json($products);
+        }catch (Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
 
 

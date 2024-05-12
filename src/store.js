@@ -7,7 +7,8 @@ const store = createStore({
     IdUsuario:-1,
     Carrito:[],
     key:"'S,2L4eR1d8a0WYN1UVz><?.fcdB4f£9g5m0,kXj;Do}@?i0GY",
-    Admin:false
+    Admin:false,
+    backurl:"http://127.0.0.1:8000"
   },
   mutations: {
     setAdmin(state, valor) {
@@ -84,7 +85,8 @@ const store = createStore({
     Idusu: (state) => state.IdUsuario,
     carrito: state => state.Carrito,
     key: state => state.key,
-    Admin: state => state.Admin
+    Admin: state => state.Admin,
+    backurl: state => state.backurl
   },
 });
 

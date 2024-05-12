@@ -12,7 +12,7 @@
         </div>
         <div class="d-flex align-items-center justify-content-center carritobutton">
             <button class="d-flex flex-row justify-content-center align-items-center" @click="AnyadirCarrito()">AÑADIR
-                POR {{ producto.Precio }}€ <img src="../../assets/carrito-de-compras.png" alt="" class="ms-2"></button>
+                POR {{ producto.Precio }}€ <img src="@/assets/carrito-de-compras.png" alt="" class="ms-2"></button>
         </div>
     </div>
     <FooterComponent></FooterComponent>
@@ -20,8 +20,8 @@
 
 <script>
 import axios from 'axios';
-import HeaderComponent from "../../components/HeaderComponent.vue";
-import FooterComponent from "../../components/FooterComponent.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 export default {
     components: {
         HeaderComponent,
@@ -46,7 +46,7 @@ export default {
     methods: {
         async cargaproducto(id) {
             try {
-                const respuesta = await axios.post("http://127.0.0.1:8000/api/viewproductid", { id });
+                const respuesta = await axios.post(this.$store.getters.backurl+"/api/viewproductid", { id });
                 this.producto = respuesta.data
                 if (Object.keys(respuesta.data).length === 0){
                     this.$router.push("/NotFound")

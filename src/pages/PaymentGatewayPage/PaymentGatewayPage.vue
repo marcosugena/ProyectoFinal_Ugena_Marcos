@@ -126,7 +126,6 @@ export default {
   },
   methods:{
     async logvalidator(e){
-      /*
       const addressValues = Object.values(this.Address);
       const visavalues=Object.values(this.Visa);
       for(let i = 0; i < addressValues.length; i++){
@@ -143,20 +142,15 @@ export default {
           break;
         }
       }
-      */
      e.preventDefault();
-     
-      console.log(this.$store.getters.carrito)
-      console.log(this.Compra)
-     const respuesta= await axios.post('http://127.0.0.1:8000/api/createcompra', this.Compra);
+     const respuesta= await axios.post(this.$store.getters.backurl+'/api/createcompra', this.Compra);
      const compraid=respuesta.data.compra.CompraId;
-     console.log(this.$store.getters.carrito)
      let obj={
       carrito:this.$store.getters.carrito,
       compraId:compraid
      }
-     const respuesta2= await axios.post('http://127.0.0.1:8000/api/createdetailcompra', obj);
-     console.log(respuesta2.data)
+    await axios.post(this.$store.getters.backurl+'/api/createdetailcompra', obj);
+    this.$router.push("/")
     }
   }
 }

@@ -158,7 +158,7 @@
 
 <script>
 import axios from "axios";
-import HeaderComponent from "../../components/HeaderComponent.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 export default {
     components: {
         HeaderComponent,
@@ -204,7 +204,7 @@ export default {
             }
             this.subirfoto();
             const respuesta = await axios.post(
-                "http://127.0.0.1:8000/api/createproduct",
+                this.$store.getters.backurl+"/api/createproduct",
                 this.product
             );
             if (respuesta.data.success) {
@@ -220,29 +220,29 @@ export default {
             let formData = new FormData();
             formData.append("imagen", this.Imagen);
             try {
-                await axios.post("http://127.0.0.1:8000/api/guardar-imagen", formData);
+                await axios.post(this.$store.getters.backurl+"/api/guardar-imagen", formData);
             } catch (error) {
                 console.error("Error al subir la imagen:", error);
             }
         },
         async cogerProducts() {
-            const respuesta = await axios.get("http://127.0.0.1:8000/productos");
+            const respuesta = await axios.get(this.$store.getters.backurl+"/productos");
             this.prs = respuesta.data;
         },
         async deleteProduct(id) {
-            await axios.get(`http://127.0.0.1:8000/api/deleteproduct/${id}`);
+            await axios.get(this.$store.getters.backurl+`/api/deleteproduct/${id}`);
             this.cogerProducts();
         },
         async cogerUsers() {
-            const respuesta = await axios.get("http://127.0.0.1:8000/users");
+            const respuesta = await axios.get(this.$store.getters.backurl+"/users");
             this.users = respuesta.data;
         },
         async deleteUser(id) {
-            await axios.get(`http://127.0.0.1:8000/api/deleteuser/${id}`);
+            await axios.get(this.$store.getters.backurl+`/api/deleteuser/${id}`);
             this.cogerUsers();
         },
         async anyadeadmin() {
-            await axios.post('http://127.0.0.1:8000/api/createadmin', this.userData);
+            await axios.post(this.$store.getters.backurl+'/api/createadmin', this.userData);
             this.cogerUsers();
         }
     },

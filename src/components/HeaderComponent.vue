@@ -22,7 +22,7 @@
           <p class="disp mt-3 fw-bold" @click="PageContact">{{ this.$store.getters.nombreDeUsuario }}</p>
           <div class="dropdown-menu" id="dropdownmenumb">
             <ul class="text-center">
-              <li><a href="#">Mis Compras</a></li>
+              <li><RouterLink to="/mypurchases">Mis Compras</RouterLink></li>
               <li @click="Logout()">Cerrar Sesión</li>
               <li v-if="this.$store.getters.Admin">
                 <RouterLink to="/admin-panel">Admin Panel</RouterLink>
@@ -220,7 +220,7 @@ export default {
     },
     async search() {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/search", {
+        const response = await axios.post(this.$store.getters.backurl+"/api/search", {
           palabra: this.searchtext.texto
         });
         this.searchcontent = response.data;
@@ -259,7 +259,7 @@ export default {
     },
     async searchmobile() {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/search", {
+        const response = await axios.post(this.$store.getters.backurl+"/api/search", {
           palabra: this.searchtext.texto
         });
         this.searchcontent = response.data;

@@ -23,12 +23,16 @@ import ShoppingCartView from '@/pages/ShoppingCartView/ShoppingCartView.vue'
 import AdminPanel from '@/pages/AdminPanel/AdminPanel.vue'
 import NotFound from '@/pages/NotFound/NotFoundPage.vue'
 import PaymentGatewayPage from '@/pages/PaymentGatewayPage/PaymentGatewayPage.vue'
-
+import MyPurchasesPage from '@/pages/MyPurchasesPage/MyPurchasesPage.vue'
 // Definir rutas
 const routes = [
   {
     path: '/',
     component: LandingPage,
+  },
+  {
+    path: '/mypurchases',
+    component:MyPurchasesPage
   },
   {
     path: '/detail',

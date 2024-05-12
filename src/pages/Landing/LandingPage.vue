@@ -95,7 +95,7 @@ export default {
     methods: {
         async cogerecomend() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/productosrecomendados")
+                const response = await axios.get(this.$store.getters.backurl+"/productosrecomendados")
                 this.Recomendados = response.data.recomendados;
             } catch (error) {
                 console.error('Error al obtener productos:', error);

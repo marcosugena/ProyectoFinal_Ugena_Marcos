@@ -31,4 +31,6 @@ Route::post('login',[UserController::class, 'login']);
 Route::post('search',[ProductoController::class,'ObtenerBusqueda']);
 Route::post('viewproductid',[ProductoController::class,'ObtenerProductoPorId']);
 Route::get('deleteproduct/{id}', [ProductoController::class, 'DeleteProduct']);
+Route::get('damecompras/{id}', [CompraController::class, 'DevuelveCompra']);
+Route::get('dameprs/{id}', [Detalle_CompraController::class, 'DevuelveProducts']);
 Route::get('deleteuser/{id}', [UserController::class, 'DeleteUser']);

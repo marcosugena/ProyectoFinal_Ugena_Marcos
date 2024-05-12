@@ -22,7 +22,14 @@ class CompraController extends Controller
         }
     }
 
-
+    public function DevuelveCompra($id){
+        try{
+            $compras=Compra::where("UsuarioId",$id)->get();
+            return response()->json($compras);
+        }catch (Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
 
 

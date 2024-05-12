@@ -31,7 +31,7 @@ export default {
     methods: {
         async CogeProductos() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/productosalimentacion');
+                const response = await axios.get(this.$store.getters.backurl+'/productosalimentacion');
                 this.productos = response.data;
             } catch (error) {
                 console.error('Error al obtener productos:', error);

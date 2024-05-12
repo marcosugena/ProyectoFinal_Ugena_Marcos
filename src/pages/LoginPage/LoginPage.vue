@@ -55,7 +55,7 @@ export default {
         danger.textContent = "Email Incorrecto";
       } else {
         //LOGICA DE BACKEND DE login
-        const respuesta = await axios.post('http://127.0.0.1:8000/api/login', this.UserData);
+        const respuesta = await axios.post(this.$store.getters.backurl+'/api/login', this.UserData);
         if (respuesta.data == "") {
           let danger = document.getElementById("danger")
           danger.textContent = "Email o Contraseña Incorrectos"
@@ -73,7 +73,7 @@ export default {
       this.$router.push('/')
     },
     verificarAdmin() {
-      axios.post(`http://127.0.0.1:8000/api/es-admin`,this.UserData)
+      axios.post(this.$store.getters.backurl+`/api/es-admin`,this.UserData)
         .then(response => {
           const esAdmin = response.data; 
           if (esAdmin) {
