@@ -2,26 +2,21 @@
     <HeaderComponent></HeaderComponent>
 
     <ul class="carrocontainer d-flex flex-column w-100">
-        <div v-for="ca in car" :key="ca.id" class="licontainer">
-        <table class="table text-center">
-            <thead class=" ">
-                        <tr class="">
-                            <th scope="col">Carrito</th>
-                        </tr>
-            </thead>
-        </table>
+        <div v-for="ca in car" :key="ca.id" class="aca licontainer">
             <LiPaymentComponent :imgurl="ca.ImagenProducto" :name="ca.Nombre" :cantidad="ca.Cantidad"
                 :precio="ca.Precio"></LiPaymentComponent>
         </div>
         <p class="text-lg-end text-center w-100 pricetotal fs-5 px-lg-4 pt-lg-5 p-5 ">Precio total: {{ price }}€</p>
-        <div class="w-lg-100 d-flex justify-content-center p-5 btndiv"><button class=" ">Finalizar Compra</button></div>
+        <div class="aca w-lg-100 d-flex justify-content-center p-5 btndiv"><button @click="gateway()">Finalizar Compra</button></div>
+        <div class="w-100 d-flex justify-content-center"><label class="text-danger" id="nolog"></label></div>
+        
     </ul>
     <FooterComponent></FooterComponent>
 </template>
 <script>
-import HeaderComponent from "../../components/HeaderComponent.vue"
-import FooterComponent from "../../components/FooterComponent.vue"
-import LiPaymentComponent from "../../components/LiPaymentComponent.vue"
+import HeaderComponent from "@/components/HeaderComponent.vue"
+import FooterComponent from "@/components/FooterComponent.vue"
+import LiPaymentComponent from "@/components/LiPaymentComponent.vue"
 export default {
     data() {
         return {
@@ -39,6 +34,14 @@ export default {
         FooterComponent
     },
     methods: {
+        gateway(){
+            if(this.$store.getters.estadoUsuario == 'Logueado'){
+                this.$router.push({ name: 'PaymentGatewayPage', params: { totalprice: this.price } });
+            }else{
+                document.getElementById("nolog").textContent="No estas logueado";
+            }
+            
+        },
         refresh() {
             this.car = this.$store.getters.carrito;
         },
@@ -79,7 +82,7 @@ export default {
 
 
 .ShoppingCart {
-    background-color: $black;
+    background-color: $white;
     height: auto;
     width: 100%;
     padding: 60px;
@@ -100,7 +103,7 @@ p {
         border-right: 2px solid $white;
         }
     p {
-        background-color: $black;
+        background-color: $white;
         color: $bluelight;
         padding: 5px;
     }
@@ -124,7 +127,7 @@ p {
 .btndiv {
             color: $white;
             font-size: x-large;
-            background-color: $black;
+            background-color: $white;
 
             button {
                 background-color: $bluelight;
@@ -139,12 +142,14 @@ p {
             }
         }
         .pricetotal {
+        box-shadow: 4px 4px 40px $black;
         border-top:2px solid $white ;
         font-size: x-large;
     }
 
 @media only screen and (min-width: 850px) {
     .pricetotal {
+        box-shadow: 4px 4px 40px $black;
         border-top:2px solid $white ;
         font-size: x-large;
     }

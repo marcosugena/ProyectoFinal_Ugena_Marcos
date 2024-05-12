@@ -6,7 +6,7 @@
             <p class="text-center mt-4">{{ name }}</p>
             <p class="text-center mt-4">X{{ cantidad }}</p>
             <p class="text-center mt-4">{{ precio }}€</p>
-            <div class="infopr d-flex flex-column flex-lg-row  justify-content-start mb-lg-1 mb-5 mt-3"><img src="@/assets/masn.png" alt="" class="imgbut mb-2 mx-4" @click="addproduct(name)"><img src="@/assets/menosn.png" alt="" class="imgbut" @click="minusproduct(name)" ></div>
+            <div class="infopr d-flex flex-column align-items-center   justify-content-start mb-lg-1 mb-5 mt-3 "><img src="@/assets/masn.png" alt="" class="imgbut mb-2 mx-4" @click="addproduct(name)"><img src="@/assets/menosn.png" alt="" class="imgbut" @click="minusproduct(name)" ></div>
             
         </div>
 
@@ -65,10 +65,11 @@ export default {
 @import "../Style/variables.scss";
 
 .lipay { 
-    background-color: $black;
+    background-color: $white;
     color: $white;
     display: flex;
     flex-direction: column;
+    box-shadow: 4px 4px 40px $black;
     .imgpr{
         width: 20vh;
         height: 20vh;
@@ -88,6 +89,7 @@ export default {
         background-color: $white;
         color: $white;
         flex-direction: row;
+        box-shadow: 4px 4px 40px $black;
         .imgpr{
         width: 20vh;
         height: 20vh;

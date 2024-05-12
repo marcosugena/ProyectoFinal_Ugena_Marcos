@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\Detalle_CompraController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('register', [UserController::class, 'register']);
+Route::post('createcompra', [CompraController::class, 'CreateCompra']);
+Route::post('createdetailcompra', [Detalle_CompraController::class, 'CreateDetalleCompra']);
 Route::post('createadmin', [UserController::class, 'CreateAdmin']);
 Route::post('createproduct', [ProductoController::class, 'CreateProduct']);
 Route::post('guardar-imagen', [ProductoController::class, 'guardarImagen']);

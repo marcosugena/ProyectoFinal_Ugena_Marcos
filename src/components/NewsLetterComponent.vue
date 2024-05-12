@@ -95,7 +95,7 @@ export default {
         background-color: #1babf9;
         border: none;
         color: $white;
-        padding: 16px;
+        padding: 14px;
         border-radius: 4px;
     }
 }
@@ -116,7 +116,6 @@ export default {
 
     button {
         background-color: #1babf9;
-        
         border: none;
         color: $white;
         padding: 14px;
@@ -125,7 +124,6 @@ export default {
         &:hover{
           background-color: $white;
           color: $bluelight;
-          border: 2px solid $bluelight;
         }
     }
 }
