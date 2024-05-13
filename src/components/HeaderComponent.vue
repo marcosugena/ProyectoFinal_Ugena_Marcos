@@ -101,7 +101,7 @@
         </li>
         <li><router-link to="/detail">Vitaminas <img src="@/assets/vitaminas.png" alt=""></router-link></li>
         <li><router-link to="/detail">Snacks <img src="@/assets/snack.png" alt=""></router-link></li>
-        <li><router-link to="/detail">Alimentación<img src="@/assets/snack.png" alt=""></router-link></li>
+        <li><router-link to="/detail">Alimentación<img src="@/assets/alimentacion-saludable.png" alt=""></router-link></li>
       </ul>
     </div>
   </div>
@@ -538,8 +538,8 @@ export default {
   }
 
   #user {
-    width: 40px;
-    height: 5.3vh;
+    width: 35px;
+    height: 35px;
   }
 
   #carrito {
@@ -584,7 +584,7 @@ export default {
 
       a {
         text-decoration: none;
-        color: $bluelight2;
+        color: $bluelight;
       }
     }
   }
@@ -605,8 +605,8 @@ export default {
   transition: 0.5s ease-in-out;
   z-index: 1000;
   #lupamobile {
-    width: 30px;
-    height: 3.8vh;
+    width: 3vh;
+    height: 3vh;
   }
 
   input {

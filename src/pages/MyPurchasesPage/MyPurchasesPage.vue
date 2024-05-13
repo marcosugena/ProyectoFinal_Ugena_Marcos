@@ -1,14 +1,14 @@
 <template>
-    <div class="mypurchases p-5" v-if="almacen.length > 0">
-        <RouterLink to="/" class="text-white">Go Back</RouterLink>
-        <HistoryPayComponent :arr="almacen" class="mt-4"></HistoryPayComponent>
+    <div class="mypurchases p-5">
+        <RouterLink v-if="almacen.length > 0" to="/" class="text-white">Go Back</RouterLink>
+        <HistoryPayComponent v-if="almacen.length > 0" :arr="almacen" class="mt-4"></HistoryPayComponent>
+        <div v-else class="text-white d-flex justify-content-center align-items-center flex-column"><h2>No hay compras recientes...</h2><RouterLink to="/" class="fs-4 mt-5">Go back to the Landing</RouterLink></div>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import HistoryPayComponent from '@/components/HistoryPayComponent.vue';
-
 export default {
     components:{
         HistoryPayComponent
@@ -23,7 +23,7 @@ export default {
             id: this.$store.getters.Idusu,
             Compras:[],
             Productos:[],
-            almacen:[]
+            almacen:[],
         }
     },
     mounted() {
@@ -83,8 +83,7 @@ export default {
 @import "../../Style/variables.scss";
   .mypurchases {
     color: $white;
-    background: linear-gradient(to bottom right, $bluelight, $black 40%, $black 50%, $bluelight 100%);
-    /* Elimina la altura explícita y permite que el contenido defina la altura */
+    background: linear-gradient(to bottom right, $bluelight, $black 40%, $black 40%, $bluelight 100%);
     min-height: 100vh;
     height: auto;
   }

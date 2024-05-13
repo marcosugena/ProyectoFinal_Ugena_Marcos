@@ -8,7 +8,7 @@
         <a href="#">Todos los productos</a>
       </div>
       <div class="d-flex flex-column p-3 text-center mt-3">
-        <span>AYUDA</span>
+        <span>CONTÁCTANOS</span>
         <a href="#">Contacto</a>
         <a href="#">Devoluciones</a>
         <a href="#">Trabaja para nosotros</a>

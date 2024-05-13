@@ -15,19 +15,19 @@
         <div class="card">
             <div class="card-face card-front"><img src="@/assets/usa.jpg" alt=""></div>
             <div class="card-face card-back">
-                <p>Descubre en BiotechUSA una gama completa de productos para esculpir tu cuerpo</p>
+                <p>BiotechUSA una gama completa de productos para esculpir tu cuerpo</p>
             </div>
         </div>
         <div class="card">
             <div class="card-face card-front"><img src="@/assets/LifePro.jpg" alt=""></div>
             <div class="card-face card-back">
-                <p>Descubre en LifePro una gama completa de productos para esculpir tu cuerpo</p>
+                <p>LifePro una gama completa de productos para esculpir tu cuerpo</p>
             </div>
         </div>
         <div class="card">
             <div class="card-face card-front"><img src="@/assets/hsn.jpg" alt=""></div>
             <div class="card-face card-back">
-                <p>Con HSN, descubre una amplia gama de productos para esculpir tu cuerpo</p>
+                <p>Con HSN,tienes amplia gama de productos para esculpir tu cuerpo</p>
             </div>
         </div>
         <div class="card d-lg-none">
@@ -78,7 +78,7 @@ export default {
 
 
     p {
-        font-size: 12px;
+        font-size: 10px;
         text-align: center;
     }
 
@@ -127,7 +127,9 @@ export default {
     .card {
         width: 20vh;
         height: 18vh;
-
+        p{
+            font-size: 14px;
+        }
         img {
             width: 20vh;
             height: 18vh;

@@ -72,7 +72,7 @@ export default {
   },
   watch: {
     arr: {
-      immediate: true, // Esto hace que el watcher se ejecute inmediatamente después de montar el componente
+      immediate: true,
       handler(val) {
         if (val && val.length) {
           this.obtenerproductos();
@@ -84,8 +84,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../Style/variables.scss";
 .history-pay {
   img{
+    background-color: $white;
     width: 5vh;
     height: 5vh;
   }
@@ -94,8 +96,8 @@ export default {
 @media only screen and (min-width: 850px) {
   .history-pay {
   img{
-    width: 8vh;
-    height: 8vh;
+    width: 10vh;
+    height: 10vh;
   }
   }
 }
