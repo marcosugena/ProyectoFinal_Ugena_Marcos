@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Usuario;
+use App\Models\Compra;
+use App\Models\Detalle_Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
@@ -57,14 +59,26 @@ class UserController extends Controller
 public function DeleteUser($id)
 {
     try {
-        $user= Usuario::find($id);
+        $user = Usuario::find($id);
         if (!$user) {
-            return response()->json(['error' => 'Producto no encontrado'], 404);
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
         }
+
+        // Obtener IDs de compras del usuario
+        $compraIds = Compra::where('UsuarioId', $id)->pluck('CompraId');
+
+        // Eliminar detalles de compra asociados a las compras del usuario
+        Detalle_compra::whereIn('CompraId', $compraIds)->delete();
+
+        // Eliminar las compras del usuario
+        Compra::where('UsuarioId', $id)->delete();
+
+        // Eliminar el usuario
         $user->delete();
-        return response()->json(['message' => 'Producto eliminado correctamente'], 200);
+
+        return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
     } catch (\Exception $e) {
-        return response()->json(['error' => 'Error al eliminar el producto: ' . $e->getMessage()], 500);
+        return response()->json(['error' => 'Error al eliminar el usuario: ' . $e->getMessage()], 500);
     }
 }
 public function CreateAdmin(Request $request)

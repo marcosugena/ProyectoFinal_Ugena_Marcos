@@ -1,19 +1,45 @@
 <template>
   <div class="NewsLetter d-flex align-items-center flex-column p-2 pb-5">
-    <form @submit.prevent="formchecker" >
+    <form @submit.prevent="formchecker">
       <div class="newlettertext mt-5 pb-3">
-        <h2 class="text-center mt-3 mt-lg-5">REGÍSTRATE EN NUESTRA NEWSLETTER</h2>
-        <p class="text-center">Mantente al día sobre los mejores productos y las mejores ofertas del mercado.</p>
+        <h2 class="text-center mt-3 mt-lg-5">
+          REGÍSTRATE EN NUESTRA NEWSLETTER
+        </h2>
+        <p class="text-center">
+          Mantente al día sobre los mejores productos y las mejores ofertas del
+          mercado.
+        </p>
       </div>
-      <div class="newform d-flex justify-content-center flex-column align-items-center ">
-        <input type="text" placeholder="Email" id="formemailnew" :class="{ 'form-control': true, 'is-invalid': !emailvalid || !checkboxvalid}" >
-        <p class="mt-3"><input type="checkbox" class="mx-1" id="checkboxnew">Acepto la política de privacidad </p>
+      <div
+        class="newform d-flex justify-content-center flex-column align-items-center"
+      >
+        <input
+          type="text"
+          placeholder="Email"
+          id="formemailnew"
+          :class="{
+            'form-control': true,
+            'is-invalid': !emailvalid || !checkboxvalid,
+          }"
+        />
+        <p class="mt-3">
+          <input type="checkbox" class="mx-1" id="checkboxnew" />Acepto la
+          política de privacidad
+        </p>
         <button type="submit">SUSCRÍBITE</button>
       </div>
-      <div class="invalidemail text-center mt-1" id="emailerror" :style="{ display: emailvalid ? 'none' : 'block' }">
+      <div
+        class="invalidemail text-center mt-1"
+        id="emailerror"
+        :style="{ display: emailvalid ? 'none' : 'block' }"
+      >
         Por favor, ingresa un correo electrónico válido.
       </div>
-      <div class="invalidcheckbox text-center mt-1" id="checkboxerror" :style="{ display: checkboxvalid ? 'none' : 'block' }">
+      <div
+        class="invalidcheckbox text-center mt-1"
+        id="checkboxerror"
+        :style="{ display: checkboxvalid ? 'none' : 'block' }"
+      >
         Por favor, acepta la política de privacidad.
       </div>
       <div v-if="formSubmitted" class="success-message text-center mt-2">
@@ -62,72 +88,71 @@ export default {
 @import "../Style/variables.scss";
 
 .NewsLetter {
-    background-color: $black;
-    height: auto;
-    width: 100%;
-    color: $white;
-    font-family: "Futura Bold Italic", sans-serif;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  background-color: $black;
+  height: auto;
+  width: 100%;
+  color: $white;
+  font-family: "Futura Bold Italic", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.invalidemail,.invalidcheckbox{
-    color: red;
+.invalidemail,
+.invalidcheckbox {
+  color: red;
 }
-.success-message{
-    color: $bluelight;
+.success-message {
+  color: $bluelight;
 }
 
 .newform {
-    input[type="text"] {
-        width: 35vh;
-        padding: 12px;
-        border-radius: 6px;
-        border: none;
+  input[type="text"] {
+    width: 35vh;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
 
-        &:focus {
-            outline: none;
-            border: none;
-        }
+    &:focus {
+      outline: none;
+      border: none;
     }
+  }
 
-    button {
-        background-color: #1babf9;
-        border: none;
-        color: $white;
-        padding: 16px;
-        border-radius: 4px;
-    }
+  button {
+    background-color: #1babf9;
+    border: none;
+    color: $white;
+    padding: 14px;
+    border-radius: 4px;
+  }
 }
 
 @media only screen and (min-width: 800px) {
-    .newform {
+  .newform {
     input[type="text"] {
-        width: 50vh;
-        padding: 14px;
-        border-radius: 6px;
-        border: none;
+      width: 50vh;
+      padding: 14px;
+      border-radius: 6px;
+      border: none;
 
-        &:focus {
-            outline: none;
-            border: none;
-        }
+      &:focus {
+        outline: none;
+        border: none;
+      }
     }
 
     button {
-        background-color: #1babf9;
-        
-        border: none;
-        color: $white;
-        padding: 14px;
-        width: 30%;
-        border-radius: 4px;
-        &:hover{
-          background-color: $white;
-          color: $bluelight;
-          border: 2px solid $bluelight;
-        }
+      background-color: #1babf9;
+      border: none;
+      color: $white;
+      padding: 14px;
+      width: 30%;
+      border-radius: 4px;
+      &:hover {
+        background-color: $white;
+        color: $bluelight;
+      }
     }
-}
+  }
 }
 </style>

@@ -1,28 +1,29 @@
 <template>
   <div class="Register d-flex justify-content-center align-items-center">
     <div class="RegisterImage"></div>
-    <div class="RegisterBox ">
+    <div class="RegisterBox">
       <div class="d-flex justify-content-center">
-        <img src="@/assets/PowerLab.jpg" alt="" v-on:click="inicio">
+        <img src="@/assets/PowerLab.jpg" alt="" v-on:click="inicio" />
       </div>
       <div class="d-flex flex-column reginput">
         <form method="post" id="regform" @submit.prevent="regvalidator">
           <div class="registercontainer">
             <p class="ms-4">UserName</p>
-            <input type="text" id="regusu" v-model="userData.username">
+            <input type="text" id="regusu" v-model="userData.username" />
           </div>
           <div class="registercontainer">
             <p class="ms-4">Email</p>
-            <input type="email" id="regemail" v-model="userData.email">
+            <input type="email" id="regemail" v-model="userData.email" />
           </div>
           <div class="registercontainer">
             <p class="ms-4">Password</p>
-            <input type="password" id="regpass" v-model="userData.password">
+            <input type="password" id="regpass" v-model="userData.password" />
           </div>
-          <div class="d-flex justify-content-center mt-3 flex-column align-items-center">
+          <div
+            class="d-flex justify-content-center mt-3 flex-column align-items-center"
+          >
             <button type="submit" class="w-50 mt-2">Register</button>
-            <div id="danger" class="text-center mt-4">
-            </div>
+            <div id="danger" class="text-center mt-4"></div>
           </div>
         </form>
       </div>
@@ -31,16 +32,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
       userData: {
-        username: '',
-        email: '',
-        password: '',
+        username: "",
+        email: "",
+        password: "",
       },
-    }
+    };
   },
   methods: {
     async regvalidator(e) {
@@ -50,43 +51,46 @@ export default {
       let password = document.getElementById("regpass").value;
       let danger = document.getElementById("danger");
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const usuregex = /[A-Z]/
+      const usuregex = /[A-Z]/;
       danger.textContent = "";
       if (usuario == "" || email == "" || password == "") {
         e.preventDefault();
         danger.textContent += "Algun Campo Vacio";
       } else if (!emailRegex.test(email)) {
-        e.preventDefault()
+        e.preventDefault();
         danger.textContent = "Email Incorrecto";
       } else if (!usuregex.test(usuario)) {
         danger.textContent = "Introduce una mayuscula en el UserName";
-        e.preventDefault()
+        e.preventDefault();
       } else {
         //LOGICA DE BACKEND DE REGISTRO
         try {
-          const respuesta = await axios.post('http://127.0.0.1:8000/api/register', this.userData);
+          const respuesta = await axios.post(
+            this.$store.getters.backurl + "/api/register",
+            this.userData
+          );
           // Manejar la respuesta como desees
           if (respuesta.data.success) {
             this.$router.push("/");
           } else {
-            let danger = document.getElementById("danger")
+            let danger = document.getElementById("danger");
             danger.textContent = "Este correo ya esta registrado";
           }
         } catch (error) {
-          console.error('Error al registrar usuario' + error);
+          console.error("Error al registrar usuario" + error);
         }
       }
     },
     inicio() {
-      this.$router.push('/')
-    }
+      this.$router.push("/");
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 * {
-  margin: 0
+  margin: 0;
 }
 
 @import "../../Style/variables.scss";
@@ -118,7 +122,6 @@ export default {
     border-radius: 8px;
     padding: 5px;
   }
-
 }
 
 .RegisterImage {
@@ -127,7 +130,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url('@/assets/tienda.png');
+  background-image: url("@/assets/tienda.png");
   background-size: cover;
   background-position: center;
   filter: brightness(30%) contrast(100%) saturate(100%);
@@ -143,9 +146,15 @@ export default {
   color: $white;
   z-index: 1000;
   width: 38vh;
-  height: 58vh;
+  height: auto;
   border-radius: 32px;
-  background: linear-gradient(to bottom right, $grey, $black 40%, $black 80%, $grey 100%, );
+  background: linear-gradient(
+    to bottom right,
+    $grey,
+    $black 40%,
+    $black 80%,
+    $grey 100%
+  );
 }
 
 button {
@@ -167,7 +176,7 @@ button {
 @media only screen and (min-width: 800px) {
   .RegisterBox {
     width: 45vh;
-    height: 55vh;
+    height: auto;
   }
 }
 </style>
