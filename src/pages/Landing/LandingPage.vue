@@ -30,7 +30,7 @@
         <div class="LandingInfo d-flex align-items-center flex-wrap">
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="@/assets/transporte.png" alt="">
-                <span>ENVÍOS GRATIS Y RÁPIDOS</span>
+                <span>ENVÍOS GRATIS</span>
                 <p class="text-center">
                     Envío rapidísimo en 24/48 horas y gratis a partir de 24,90€
                 </p>
@@ -39,7 +39,7 @@
                 <img src="@/assets/alta-calidad.png" alt="">
                 <span>MÁXIMA CALIDAD</span>
                 <p class="text-center">
-                    Desarrollado por nuestro equipo de I+D+I y fabricado en nuestra propia fábrica
+                    Desarrollado por I+D+I y fabricado en nuestra propia fábrica
                 </p>
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
@@ -51,7 +51,7 @@
             </div>
             <div class="infocontainer d-flex flex-column align-items-center">
                 <img src="@/assets/organico.png" alt="">
-                <span>MATERIAS PRIMAS PREMIUM</span>
+                <span>MATERIAS PRIMAS</span>
                 <p class="text-center">
                     Utilizamos materias primas de calidad certificada y probada
                 </p>
@@ -210,14 +210,14 @@ export default {
 }
 
 .LandingInfo {
-    height: 120vh;
+    height: auto;
     background: linear-gradient(to bottom, $grey, $black 8%, $black 92%, $grey 100%, );
 
     color: $white;
 }
 
 //MEDIAQUERYS
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 850px) {
     .Recommendforyou {
         height: auto;
         background-color: $black;
@@ -237,9 +237,11 @@ export default {
     }
 
     .LandingInfo {
-        height: 40vh;
+        min-height: 60vh;
+        height: auto;
         width: 100%;
         background-color: lighten($grey, 0%);
+        text-wrap: wrap;
     }
 
     .infocontainer {

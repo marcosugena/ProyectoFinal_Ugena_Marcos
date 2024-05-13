@@ -1,25 +1,25 @@
 <template>
   <footer class="footerclass fixed-bottom position-relative">
-    <div class="footer-container d-lg-flex justify-content-around">
-      <div class="d-flex flex-column p-3 text-center ">
+    <div class="footer-container d-lg-flex justify-content-around align">
+      <div class="d-flex flex-column p-3 text-center mt-2 ">
         <span>TIENDA ONLINE</span>
         <a href="#">Mas popular</a>
         <a href="#">Nuevos productos</a>
         <a href="#">Todos los productos</a>
       </div>
-      <div class="d-flex flex-column p-3 text-center mt-3">
+      <div class="d-flex flex-column p-3 text-center mt-2">
         <span>CONTÁCTANOS</span>
         <a href="#">Contacto</a>
         <a href="#">Devoluciones</a>
         <a href="#">Trabaja para nosotros</a>
       </div>
-      <div class="d-flex flex-column p-3 text-center mt-3">
+      <div class="d-flex flex-column p-3 text-center mt-2">
         <span>INFORMACIÓN</span>
         <a href="#">Sobre nosotros</a>
         <a href="#">Noticias</a>
         <a href="#">Términos y condiciones</a>
       </div>
-      <div class="d-flex flex-column p-3 text-center mt-3 mb-4">
+      <div class="d-flex flex-column p-3 text-center mt-2">
         <span>AYUDA</span>
         <a href="#">Mas popular</a>
         <a href="#">Nuevos productos</a>
