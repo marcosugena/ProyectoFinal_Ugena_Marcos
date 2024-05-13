@@ -250,7 +250,7 @@ export default {
   }
 
   .LandingInfo {
-    min-height: 40vh;
+    padding: 40px;
     height: auto;
     width: 100%;
     background-color: lighten($grey, 0%);
