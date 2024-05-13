@@ -1,22 +1,20 @@
 <template>
   <div class="slideroffer">
-    <img :src="imageUrl" alt="">
+    <img :src="imageUrl" alt="" />
   </div>
 </template>
 <script>
 export default {
   props: {
-    imageUrl: String
+    imageUrl: String,
   },
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "../Style/variables.scss";
 
 .slideroffer {
-
   img {
     height: 40vw;
     width: 100vw;

@@ -1,19 +1,14 @@
 <template>
-    
-    <div>
-        <p>holaaaaaaaa</p>
-        <router-link to="/">Pulsa</router-link>
-    </div>
+  <div>
+    <p>holaaaaaaaa</p>
+    <router-link to="/">Pulsa</router-link>
+  </div>
 </template>
 
 <script>
-    export default {
-        components:{
-            
-        },
-    }
+export default {
+  components: {},
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

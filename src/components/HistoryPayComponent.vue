@@ -32,7 +32,7 @@
           </thead>
           <tbody>
             <tr v-for="(producto, i) in compra.productos" :key="i">
-              <td><img :src="producto.imagen" alt="Producto" width="50"></td>
+              <td><img :src="producto.imagen" alt="Producto" width="50" /></td>
               <td>{{ producto.nombre }}</td>
               <td>{{ producto.precio }}</td>
               <td>{{ producto.Cantidad }}</td>
@@ -45,21 +45,24 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   props: {
     arr: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     async obtenerproductos() {
       try {
         for (const compra of this.arr) {
           for (const detalle of compra.productos) {
-            const res = await axios.post(this.$store.getters.backurl+'/api/viewproductid', { id: detalle.Idp});
+            const res = await axios.post(
+              this.$store.getters.backurl + "/api/viewproductid",
+              { id: detalle.Idp }
+            );
             detalle.nombre = res.data.Nombre;
             detalle.imagen = res.data.ImagenProducto;
             detalle.precio = res.data.Precio;
@@ -68,7 +71,7 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    }
+    },
   },
   watch: {
     arr: {
@@ -77,28 +80,27 @@ export default {
         if (val && val.length) {
           this.obtenerproductos();
         }
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "../Style/variables.scss";
 .history-pay {
-  img{
+  img {
     background-color: $white;
     width: 5vh;
     height: 5vh;
   }
- 
 }
 @media only screen and (min-width: 850px) {
   .history-pay {
-  img{
-    width: 10vh;
-    height: 10vh;
-  }
+    img {
+      width: 10vh;
+      height: 10vh;
+    }
   }
 }
 </style>

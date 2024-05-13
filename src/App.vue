@@ -9,33 +9,33 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      loading: true 
-    }
+      loading: true,
+    };
   },
   mounted() {
     setTimeout(() => {
-      this.loading = false; 
-    }, 1000); 
-  }
-}
+      this.loading = false;
+    }, 1000);
+  },
+};
 </script>
 
 <style lang="scss">
 @import "./Style/variables.scss";
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins";
-    input{
-      border: none;
-    }
-    input:focus{
-      outline: none;
-      border: none;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  input {
+    border: none;
+  }
+  input:focus {
+    outline: none;
+    border: none;
   }
 }
 .loading-overlay {
@@ -62,7 +62,11 @@ export default {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

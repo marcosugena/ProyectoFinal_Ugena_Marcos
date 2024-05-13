@@ -1,7 +1,7 @@
 <template>
   <footer class="footerclass fixed-bottom position-relative">
     <div class="footer-container d-lg-flex justify-content-around align">
-      <div class="d-flex flex-column p-3 text-center mt-2 ">
+      <div class="d-flex flex-column p-3 text-center mt-2">
         <span>TIENDA ONLINE</span>
         <a href="#">Mas popular</a>
         <a href="#">Nuevos productos</a>
@@ -42,16 +42,16 @@ export default {
   },
   methods: {
     insta() {
-      window.location.href = 'https://www.instagram.com';
+      window.location.href = "https://www.instagram.com";
     },
     tiktok() {
-      window.location.href = 'https://www.tiktok.com';
+      window.location.href = "https://www.tiktok.com";
     },
     twitter() {
-      window.location.href = 'https://www.twitter.com';
+      window.location.href = "https://www.twitter.com";
     },
     telegram() {
-      window.location.href = 'https://www.telegram.com';
+      window.location.href = "https://www.telegram.com";
     },
   },
 };
@@ -81,13 +81,13 @@ export default {
     text-decoration: none;
     margin-top: 15px;
     font-size: 16px;
-    &:hover{
+    &:hover {
       color: $bluelight;
     }
   }
 }
-.social-media{
-  img{
+.social-media {
+  img {
     width: 5vh;
     height: 5vh;
   }
@@ -95,36 +95,36 @@ export default {
 
 @media only screen and (min-width: 700px) {
   .footerclass {
-  z-index: 1;
-  background-color: $black;
-  padding: 18px;
-  height: auto;
-  text-align: center;
-  width: 100%;
-}
-
-.footer-container {
-  color: $bluelight;
-
-  span {
-    font-size: 20px;
+    z-index: 1;
+    background-color: $black;
+    padding: 18px;
+    height: auto;
+    text-align: center;
+    width: 100%;
   }
 
-  a {
-    color: $white;
-    text-decoration: none;
-    margin-top: 15px;
-    font-size: 16px;
-    &:hover{
-      color: $bluelight;
+  .footer-container {
+    color: $bluelight;
+
+    span {
+      font-size: 20px;
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+      margin-top: 15px;
+      font-size: 16px;
+      &:hover {
+        color: $bluelight;
+      }
     }
   }
-}
-.social-media{
-  img{
-    width: 5vh;
-    height: 5vh;
+  .social-media {
+    img {
+      width: 5vh;
+      height: 5vh;
+    }
   }
-}
 }
 </style>

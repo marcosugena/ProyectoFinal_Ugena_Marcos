@@ -1,27 +1,31 @@
 <template>
   <div class="Login d-flex justify-content-center align-items-center">
     <div class="LoginImage"></div>
-    <div class="LoginBox ">
+    <div class="LoginBox">
       <div class="d-flex justify-content-center">
-        <img src="@/assets/PowerLab.jpg" alt="" v-on:click="inicio">
+        <img src="@/assets/PowerLab.jpg" alt="" v-on:click="inicio" />
       </div>
       <div class="d-flex flex-column loginput">
         <form method="post" id="logform" @submit.prevent="logvalidator">
-          <div class="Logincontainer">
-          </div>
+          <div class="Logincontainer"></div>
           <div class="Logincontainer mb-4">
             <p class="ms-4">Email</p>
-            <input type="email" id="logemail" class="" v-model="UserData.gmail">
+            <input
+              type="email"
+              id="logemail"
+              class=""
+              v-model="UserData.gmail"
+            />
           </div>
           <div class="Logincontainer mb-4">
             <p class="ms-4">Password</p>
-            <input type="password" id="logpass" v-model="UserData.password">
+            <input type="password" id="logpass" v-model="UserData.password" />
           </div>
-          <div class="d-flex justify-content-center mt-3 flex-column align-items-center">
+          <div
+            class="d-flex justify-content-center mt-3 flex-column align-items-center"
+          >
             <button type="submit" class="w-25 mt-2">Login</button>
-            <div id="danger" class="text-center mt-4">
-
-            </div>
+            <div id="danger" class="text-center mt-4"></div>
           </div>
         </form>
       </div>
@@ -29,16 +33,16 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
       UserData: {
-        gmail: '',
-        password: '',
-        UserId:0
-      }
-    }
+        gmail: "",
+        password: "",
+        UserId: 0,
+      },
+    };
   },
   methods: {
     async logvalidator(e) {
@@ -51,48 +55,55 @@ export default {
         e.preventDefault();
         danger.textContent += "Algun Campo Vacio";
       } else if (!emaillogex.test(email)) {
-        e.preventDefault()
+        e.preventDefault();
         danger.textContent = "Email Incorrecto";
       } else {
         //LOGICA DE BACKEND DE login
-        const respuesta = await axios.post(this.$store.getters.backurl+'/api/login', this.UserData);
+        const respuesta = await axios.post(
+          this.$store.getters.backurl + "/api/login",
+          this.UserData
+        );
         if (respuesta.data == "") {
-          let danger = document.getElementById("danger")
-          danger.textContent = "Email o Contraseña Incorrectos"
+          let danger = document.getElementById("danger");
+          danger.textContent = "Email o Contraseña Incorrectos";
         } else {
-          this.$store.commit('setUsuarioLogueado', true);
-          this.$store.commit('setUserName', respuesta.data.usu);
-          this.$store.commit('setId', respuesta.data.id)
-          this.UserData.UserId=respuesta.data.id
+          this.$store.commit("setUsuarioLogueado", true);
+          this.$store.commit("setUserName", respuesta.data.usu);
+          this.$store.commit("setId", respuesta.data.id);
+          this.UserData.UserId = respuesta.data.id;
           this.verificarAdmin();
           this.$router.push("/");
         }
       }
     },
     inicio() {
-      this.$router.push('/')
+      this.$router.push("/");
     },
     verificarAdmin() {
-      axios.post(this.$store.getters.backurl+`/api/es-admin`,this.UserData)
-        .then(response => {
-          const esAdmin = response.data; 
+      axios
+        .post(this.$store.getters.backurl + `/api/es-admin`, this.UserData)
+        .then((response) => {
+          const esAdmin = response.data;
           if (esAdmin) {
-            this.$store.commit('setAdmin',true)
+            this.$store.commit("setAdmin", true);
           } else {
-            this.$store.commit('setAdmin',false)
+            this.$store.commit("setAdmin", false);
           }
         })
-        .catch(error => {
-          console.error('Error al verificar si el usuario es administrador:', error);
+        .catch((error) => {
+          console.error(
+            "Error al verificar si el usuario es administrador:",
+            error
+          );
         });
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 * {
-  margin: 0
+  margin: 0;
 }
 
 @import "../../Style/variables.scss";
@@ -124,7 +135,6 @@ export default {
     border-radius: 8px;
     padding: 5px;
   }
-
 }
 
 .LoginImage {
@@ -133,7 +143,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url('@/assets/tienda.png');
+  background-image: url("@/assets/tienda.png");
   background-size: cover;
   background-position: center;
   filter: brightness(30%) contrast(100%) saturate(100%);
@@ -151,7 +161,13 @@ export default {
   width: 38vh;
   height: 58vh;
   border-radius: 32px;
-  background: linear-gradient(to bottom right, $grey, $black 40%, $black 80%, $grey 100%, );
+  background: linear-gradient(
+    to bottom right,
+    $grey,
+    $black 40%,
+    $black 80%,
+    $grey 100%
+  );
 }
 
 button {

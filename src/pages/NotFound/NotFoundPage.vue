@@ -1,18 +1,18 @@
 <template>
-      <div className="found-container">
-            <h1 id="title">4<span><img src=@/assets/ghost.svg alt="" id="ghost" /></span>4</h1>
-            <div className="mt-5">
-                <h2 id="title2">Error: 404 page not found</h2>
-                <p id="context">Sorry, the page you're looking for cannot be accessed</p>
-            </div>
-            <RouterLink to="/">Comeback to the Landing</RouterLink>
-        </div>
+  <div className="found-container">
+    <h1 id="title">
+      4<span><img src=@/assets/ghost.svg alt="" id="ghost" /></span>4
+    </h1>
+    <div className="mt-5">
+      <h2 id="title2">Error: 404 page not found</h2>
+      <p id="context">Sorry, the page you're looking for cannot be accessed</p>
+    </div>
+    <RouterLink to="/">Comeback to the Landing</RouterLink>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -36,9 +36,9 @@ $heading: #e7ebf2;
 #title {
   color: $bluelight;
   font-size: 12.5rem;
-  letter-spacing: .10em;
-  margin: .025em 0;
-  text-shadow: .05em .05em 0 rgba(0,0,0,.25);
+  letter-spacing: 0.1em;
+  margin: 0.025em 0;
+  text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.25);
   white-space: nowrap;
 
   @media (max-width: 30rem) {
@@ -54,7 +54,7 @@ $heading: #e7ebf2;
 
 #title2 {
   color: $heading;
-  margin-bottom: .40em;
+  margin-bottom: 0.4em;
 }
 
 #context {
@@ -74,12 +74,11 @@ $heading: #e7ebf2;
 
 @keyframes spooky {
   from {
-    transform: translateY(.15em) scaleY(.90);
+    transform: translateY(0.15em) scaleY(0.9);
   }
 
   to {
-    transform: translateY(-.15em);
+    transform: translateY(-0.15em);
   }
 }
-
 </style>
