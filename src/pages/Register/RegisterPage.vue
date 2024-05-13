@@ -143,7 +143,7 @@ export default {
   color: $white;
   z-index: 1000;
   width: 38vh;
-  height: 58vh;
+  height: auto;
   border-radius: 32px;
   background: linear-gradient(to bottom right, $grey, $black 40%, $black 80%, $grey 100%, );
 }
@@ -167,7 +167,7 @@ button {
 @media only screen and (min-width: 800px) {
   .RegisterBox {
     width: 45vh;
-    height: 55vh;
+    height: auto;
   }
 }
 </style>
