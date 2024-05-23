@@ -199,11 +199,51 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal de confirmación -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro de que desea eliminar este producto?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" @click="confirmDelete">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal de confirmación para eliminar usuario -->
+   <div class="modal fade" id="confirmDeleteUserModal" tabindex="-1" aria-labelledby="confirmDeleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteUserModalLabel">Confirmar Eliminación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro de que desea eliminar este usuario?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" @click="confirmDeleteUser">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 import HeaderComponent from "@/components/HeaderComponent.vue";
+import { Modal } from "bootstrap"; // Correct import for Modal
+
 export default {
   components: {
     HeaderComponent,
@@ -226,6 +266,8 @@ export default {
         email: "",
         password: "",
       },
+      productIdToDelete: null,
+      userIdToDelete: null,
     };
   },
   beforeMount() {
@@ -259,7 +301,7 @@ export default {
         this.product
       );
       if (respuesta.data.success) {
-        this.res = "Producto añadido con exitó";
+        this.res = "Producto añadido con éxito";
       }
       this.cogerProducts();
     },
@@ -285,17 +327,37 @@ export default {
       );
       this.prs = respuesta.data;
     },
-    async deleteProduct(id) {
-      await axios.get(this.$store.getters.backurl + `/api/deleteproduct/${id}`);
+    deleteProduct(id) {
+      this.productIdToDelete = id;
+      var confirmDeleteModal = new Modal(document.getElementById('confirmDeleteModal'));
+      confirmDeleteModal.show();
+    },
+    async confirmDelete() {
+      await axios.get(this.$store.getters.backurl + `/api/deleteproduct/${this.productIdToDelete}`);
+      this.productIdToDelete = null;
       this.cogerProducts();
+      var confirmDeleteModal = Modal.getInstance(document.getElementById('confirmDeleteModal'));
+      if (confirmDeleteModal) {
+        confirmDeleteModal.hide();
+      }
     },
     async cogerUsers() {
       const respuesta = await axios.get(this.$store.getters.backurl + "/users");
       this.users = respuesta.data;
     },
-    async deleteUser(id) {
-      await axios.get(this.$store.getters.backurl + `/api/deleteuser/${id}`);
+    deleteUser(id) {
+      this.userIdToDelete = id;
+      var confirmDeleteUserModal = new Modal(document.getElementById('confirmDeleteUserModal'));
+      confirmDeleteUserModal.show();
+    },
+    async confirmDeleteUser() {
+      await axios.get(this.$store.getters.backurl + `/api/deleteuser/${this.userIdToDelete}`);
+      this.userIdToDelete = null;
       this.cogerUsers();
+      var confirmDeleteUserModal = Modal.getInstance(document.getElementById('confirmDeleteUserModal'));
+      if (confirmDeleteUserModal) {
+        confirmDeleteUserModal.hide();
+      }
     },
     async anyadeadmin() {
       await axios.post(
@@ -311,6 +373,7 @@ export default {
   },
 };
 </script>
+
 
 <style lang="scss" scoped>
 @import "../../Style/variables.scss";
