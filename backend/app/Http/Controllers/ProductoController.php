@@ -135,4 +135,33 @@ public function DeleteProduct($id)
     }
 }
 
+public function updateProduct(Request $request, $id)
+{
+    try {
+        $producto = Producto::find($id);
+
+        if (!$producto) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
+
+        $producto->Nombre = $request->input('Nombre');
+        $producto->Descripcion = $request->input('Descripcion');
+        $producto->Precio = $request->input('Precio');
+        $producto->Tipo = $request->input('Tipo');
+
+        if ($request->hasFile('ImagenProducto')) {
+            $imagen = $request->file('ImagenProducto');
+            $nombreImagen = $imagen->getClientOriginalName();
+            $imagen->move(public_path('images'), $nombreImagen);
+            $producto->ImagenProducto = '/images/' . $nombreImagen;
+        }
+
+        $producto->save();
+
+        return response()->json(['success' => true, 'producto' => $producto], 200);
+    } catch (Exception $e) {
+        return response()->json(['error' => 'Error al actualizar el producto: ' . $e->getMessage()], 500);
+    }
+}
+
 }

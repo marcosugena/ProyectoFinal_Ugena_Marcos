@@ -12,20 +12,11 @@
           </div>
           <div>
             <p class="mt-2 mb-1">Imagen a Subir</p>
-            <input
-              type="file"
-              @change="handleFileUpload"
-              class="form-control"
-              id="imgproduct"
-            />
+            <input type="file" @change="handleFileUpload" class="form-control" id="imgproduct" />
           </div>
           <div>
             <p class="mt-2 mb-1">Descripción</p>
-            <textarea
-              class="form-control"
-              style="resize: none"
-              v-model="product.descripcion"
-            >
+            <textarea class="form-control" style="resize: none" v-model="product.descripcion">
             </textarea>
           </div>
           <div>
@@ -42,14 +33,8 @@
               <option value="alimentacion">Alimentación</option>
             </select>
           </div>
-          <div
-            class="w-100 d-flex justify-content-center flex-column align-items-center"
-          >
-            <button
-              type="submit"
-              class="form-control btn btn-primary"
-              id="btns"
-            >
+          <div class="w-100 d-flex justify-content-center flex-column align-items-center">
+            <button type="submit" class="form-control btn btn-primary" id="btns">
               Añadir Producto
             </button>
             <p class="text-primary mt-2">{{ res }}</p>
@@ -84,23 +69,18 @@
               <td>{{ producto.Descripcion }}</td>
               <td>{{ producto.Precio }}€</td>
               <td>{{ producto.Tipo }}</td>
-              <td
-                class="text-danger p-3"
-                @click="deleteProduct(producto.ProductId)"
-              >
-                DELETE
+              <td class="text-danger p-3">
+                <button class="btn btn-info mb-3" @click="openEditModal(producto)">Editar</button>
+                <button class="btn btn-danger" @click="deleteProduct(producto.ProductId)">Eliminar</button>
               </td>
             </tr>
           </tbody>
+
         </table>
       </div>
 
       <div class="delete-mobile d-block d-lg-none">
-        <ul
-          class="text-center d-flex flex-column justify-content-center"
-          v-for="producto in prs"
-          :key="producto.id"
-        >
+        <ul class="text-center d-flex flex-column justify-content-center" v-for="producto in prs" :key="producto.id">
           <li class="p-3">ID {{ producto.ProductId }}</li>
           <li class="p-3">{{ producto.Nombre }}</li>
           <li class="p-3"><img :src="producto.ImagenProducto" /></li>
@@ -139,11 +119,8 @@
         </table>
       </div>
       <div class="removeusers-mobile d-block d-lg-none">
-        <ul
-          v-for="usuario in users"
-          :key="usuario.UserId"
-          class="d-flex flex-column justify-content-around align-items-center"
-        >
+        <ul v-for="usuario in users" :key="usuario.UserId"
+          class="d-flex flex-column justify-content-around align-items-center">
           <li class="p-3">ID: {{ usuario.UserId }}</li>
           <li class="p-3">NAME: {{ usuario.UserName }}</li>
           <li class="p-3 text-wrap text-center">GMAIL: {{ usuario.Gmail }}</li>
@@ -159,39 +136,18 @@
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="mb-4">
           <label for="regusu">UserName</label>
-          <input
-            type="text"
-            id="regusu"
-            class="form-control w-100"
-            v-model="userData.username"
-          />
+          <input type="text" id="regusu" class="form-control w-100" v-model="userData.username" />
         </div>
         <div class="mb-4">
           <label for="regemail">Email</label>
-          <input
-            type="email"
-            id="regemail"
-            class="form-control w-100"
-            v-model="userData.email"
-          />
+          <input type="email" id="regemail" class="form-control w-100" v-model="userData.email" />
         </div>
         <div class="mb-4">
           <label for="regpass">Password</label>
-          <input
-            type="password"
-            id="regpass"
-            class="form-control w-100"
-            v-model="userData.password"
-          />
+          <input type="password" id="regpass" class="form-control w-100" v-model="userData.password" />
         </div>
-        <div
-          class="d-flex justify-content-center mt-3 flex-column align-items-center"
-        >
-          <button
-            type="submit"
-            class="btn btn-primary w-lg-25 mt-2"
-            @click="anyadeadmin()"
-          >
+        <div class="d-flex justify-content-center mt-3 flex-column align-items-center">
+          <button type="submit" class="btn btn-primary w-lg-25 mt-2" @click="anyadeadmin()">
             Create Admin
           </button>
           <div id="danger" class="text-center mt-4"></div>
@@ -201,7 +157,8 @@
   </div>
 
   <!-- Modal de confirmación -->
-  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -219,8 +176,9 @@
     </div>
   </div>
 
-   <!-- Modal de confirmación para eliminar usuario -->
-   <div class="modal fade" id="confirmDeleteUserModal" tabindex="-1" aria-labelledby="confirmDeleteUserModalLabel" aria-hidden="true">
+  <!-- Modal de confirmación para eliminar usuario -->
+  <div class="modal fade" id="confirmDeleteUserModal" tabindex="-1" aria-labelledby="confirmDeleteUserModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -237,12 +195,58 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal para editar producto -->
+  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form @submit.prevent="editProduct">
+            <div class="mb-3">
+              <label for="editProductName" class="form-label" style="color: black;">Nombre</label>
+              <input type="text" class="form-control" id="editProductName" v-model="editedProduct.Nombre" />
+            </div>
+            <div class="mb-3">
+              <label for="editProductDescription" class="form-label" style="color: black;">Descripción</label>
+              <textarea class="form-control" id="editProductDescription" style="resize: none"
+                v-model="editedProduct.Descripcion"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="editProductPrice" class="form-label" style="color: black;">Precio</label>
+              <input type="number" step="0.01" class="form-control text-black" id="editProductPrice"
+                v-model="editedProduct.Precio" />
+            </div>
+            <div class="mb-3">
+              <label for="editProductType" class="form-label" style="color: black;">Tipo</label>
+              <select id="editProductType" class="form-select w-25" v-model="editedProduct.Tipo">
+                <option value="nutricion">Nutrición</option>
+                <option value="proteina">Proteína</option>
+                <option value="vitaminas">Vitaminas</option>
+                <option value="barritas">Barritas y Snacks</option>
+                <option value="alimentacion">Alimentación</option>
+              </select>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </template>
 
 <script>
 import axios from "axios";
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import { Modal } from "bootstrap"; // Correct import for Modal
+import { Modal } from "bootstrap"; 
 
 export default {
   components: {
@@ -268,6 +272,15 @@ export default {
       },
       productIdToDelete: null,
       userIdToDelete: null,
+      editedProduct: {
+        ProductId: null,
+        Nombre: "",
+        Descripcion: "",
+        Precio: "",
+        Tipo: "",
+        ImagenProducto: ""
+      },
+
     };
   },
   beforeMount() {
@@ -276,6 +289,24 @@ export default {
     }
   },
   methods: {
+    async editProduct() {
+      try {
+        await axios.put(`${this.$store.getters.backurl}/api/updateproduct/${this.editedProduct.ProductId}`, this.editedProduct);
+        var editProductModal = Modal.getInstance(document.getElementById('editProductModal'));
+        if (editProductModal) {
+          editProductModal.hide();
+        }
+       
+        this.cogerProducts();
+      } catch (error) {
+        console.error("Error al editar el producto:", error);
+      }
+    },
+    openEditModal(product) {
+      this.editedProduct = { ...product };
+      var editProductModal = new Modal(document.getElementById('editProductModal'));
+      editProductModal.show();
+    },
     checkAdmin() {
       if (this.$store.getters.Admin == false) {
         return false;

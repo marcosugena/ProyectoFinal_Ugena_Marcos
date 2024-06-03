@@ -34,3 +34,4 @@ Route::get('deleteproduct/{id}', [ProductoController::class, 'DeleteProduct']);
 Route::get('damecompras/{id}', [CompraController::class, 'DevuelveCompra']);
 Route::get('dameprs/{id}', [Detalle_CompraController::class, 'DevuelveProducts']);
 Route::get('deleteuser/{id}', [UserController::class, 'DeleteUser']);
+Route::put('updateproduct/{id}', [ProductoController::class, 'UpdateProduct']);
