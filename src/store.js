@@ -8,7 +8,7 @@ const store = createStore({
     Carrito:[],
     key:"'S,2L4eR1d8a0WYN1UVz><?.fcdB4f£9g5m0,kXj;Do}@?i0GY",
     Admin:false,
-    backurl:"http://3.88.104.36:8000"
+    backurl:"http://75.101.206.35:8000"
   },
   mutations: {
     setAdmin(state, valor) {

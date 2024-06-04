@@ -334,7 +334,9 @@ export default {
       if (respuesta.data.success) {
         this.res = "Producto añadido con éxito";
       }
-      this.cogerProducts();
+      setTimeout(() => {
+        this.cogerProducts();
+      }, 5000);
     },
     handleFileUpload(event) {
       this.Imagen = event.target.files[0];
