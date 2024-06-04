@@ -192,7 +192,7 @@
       </div>
       <ul>
         <li>
-          <router-link to="/detail"
+          <router-link to="/proteina"
             >Proteína
             <img src="@/assets/proteina-de-suero.png" alt="" id="prote"
           /></router-link>
@@ -203,17 +203,17 @@
           /></router-link>
         </li>
         <li>
-          <router-link to="/detail"
+          <router-link to="/vitaminas"
             >Vitaminas <img src="@/assets/vitaminas.png" alt=""
           /></router-link>
         </li>
         <li>
-          <router-link to="/detail"
+          <router-link to="/snacks"
             >Snacks <img src="@/assets/snack.png" alt=""
           /></router-link>
         </li>
         <li>
-          <router-link to="/detail"
+          <router-link to="/alimentacion"
             >Alimentación<img src="@/assets/alimentacion-saludable.png" alt=""
           /></router-link>
         </li>
