@@ -336,7 +336,7 @@ export default {
       }
       setTimeout(() => {
         this.cogerProducts();
-      }, 5000);
+      }, 2000);
     },
     handleFileUpload(event) {
       this.Imagen = event.target.files[0];
