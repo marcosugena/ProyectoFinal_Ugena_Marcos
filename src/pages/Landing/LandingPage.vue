@@ -22,7 +22,7 @@
     <BorderComponent></BorderComponent>
     <OfferComponent
       :imageUrl="'/banner2.jpg'"
-      @click="MostrarProducto2(2)"
+      @click="MostrarProducto2(53)"
     ></OfferComponent>
     <BorderComponent></BorderComponent>
     <div class="Landingvideo d-none d-lg-block">
